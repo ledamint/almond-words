@@ -1,0 +1,35 @@
+@import '../../../style/_variables.scss';
+
+:host {
+    min-width: 50%;
+}
+
+.precise-answer {
+    width: 100%;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    margin-top: 18px;
+    background-color: transparent;
+    text-align: center;
+    outline: 0;
+    color: $pink-theme-second-color;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+:host-context(.blue-theme) .precise-answer {
+    color: $blue-theme-second-color;
+}
+
+.incorrect {
+    color: rgba(255, 0, 0, 0.8) !important;
+    border-color: rgba(255, 0, 0, 0.8) !important;
+}
+
+
+@media (max-width:480px) {
+    .precise-answer {
+        font-size: 35px;
+    }
+}

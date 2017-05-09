@@ -1,0 +1,81 @@
+@import '../../../style/_variables.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.letters_main-word {
+  margin-bottom: 20px;
+}
+
+.letter {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  font-size: 28px;
+  line-height: 1.45;
+  text-align: center;
+  color: black;
+}
+
+.letters_main-word .letter {
+  visibility: hidden;
+  font-weight: bold;
+  border-color: $pink-theme-second-color;
+}
+
+:host-context(.blue-theme) .letters_main-word .letter {
+  /*background-color: darkblue;*/
+  color: $blue-theme-second-color;
+  border-color: $blue-theme-second-color;
+}
+
+.letters_main-word .letter.checked {
+  visibility: visible;
+  color: $pink-theme-second-color;
+}
+
+.letters_answer .letter {
+  cursor: pointer;
+}
+
+.letters_answer .letter:hover {
+  background-color: #ff00ff;
+  /*color: purple;
+  border-color: purple;*/
+}
+
+:host-context(.blue-theme) .letters_answer .letter:hover {
+  background-color: #4d88ff;
+  /*color: darkblue;
+  border-color: darkblue;*/
+}
+
+.letters_answer .letter:active {
+  transform: translate(1px, 1px);
+}
+
+.letters_answer .letter.selected {
+  visibility: hidden;
+}
+
+@media (max-width:480px) {
+  .letters_main-word .letter {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

@@ -1,0 +1,41 @@
+@import 'style/_variables.scss';
+
+body {
+  font-family: $main-font;
+  // overflow: hidden;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  font-size: 22px;
+  background-color: transparent;
+  transform: translate(-115%, -50%);
+
+  &__item {
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: gray;
+
+    &:active {
+      color: white;
+    }
+  }
+}
+
+@media (max-width: 1070px) {
+  .side-panel {
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+    top: auto;
+    left: 0;
+    bottom: -60px;
+    width: 100%;
+    transform: none;
+  }
+}

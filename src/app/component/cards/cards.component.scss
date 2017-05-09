@@ -1,0 +1,44 @@
+@import '../../../style/_variables.scss';
+
+h1 {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 0 10px 20px;
+  padding: 10px;
+  border: 2px solid $pink-theme-second-color;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+:host-context(.blue-theme) .card {
+  border-color: $blue-theme-second-color;
+}
+
+.word {
+  padding: 2px 0;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 26px;
+  }
+
+  .card {
+    width: 130px;
+    margin: 0 6px 10px;
+    font-size: 16px;
+  }
+}
