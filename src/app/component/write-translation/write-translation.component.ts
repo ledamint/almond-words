@@ -5,13 +5,13 @@ import { EventsService }  from '../../service/events.service';
 
 @Component({
   selector: 'write-translation',
-  template: `<input class="precise-answer" [class.incorrect]="answerIncorrect" name="precise-answer"
+  template: `<input class="precise-answer" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
              [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" >`,
   styleUrls: ['./write-translation.component.scss']
 })
 export class WriteTranslation implements OnInit {
   answer: string = '';
-  answerIncorrect: boolean = false;
+  isAnswerIncorrect: boolean = false;
 
   constructor(private wordsService: WordsService,
               private eventsService: EventsService,
@@ -25,16 +25,16 @@ export class WriteTranslation implements OnInit {
 
   checkAnswer(answer: string) {
     answer = answer.toLowerCase();
-    if (this.wordsService.mainWord[this.wordsService.auxiliaryLanguage] === answer) {
+    if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
       this.eventsService.onTranslationCorrect();
-      this.answerIncorrect = false;
+      this.isAnswerIncorrect = false;
     } else {
-      this.answerIncorrect = true;
+      this.isAnswerIncorrect = true;
     }
   }
 
   setUpOneRound() {
-    this.answerIncorrect = false;
+    this.isAnswerIncorrect = false;
     this.answer = '';
     this.focusPreciseAnswer();
   }

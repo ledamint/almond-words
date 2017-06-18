@@ -26,7 +26,7 @@ var ChooseTranslation = (function () {
     };
     ChooseTranslation.prototype.setUpOneRound = function () {
         this.answers = [];
-        var realTranslation = this.wordsService.mainWord[this.wordsService.auxiliaryLanguage];
+        var realTranslation = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage];
         while (true) {
             var randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
             var randomTransaltion = randomWord[this.wordsService.auxiliaryLanguage];
@@ -42,7 +42,7 @@ var ChooseTranslation = (function () {
         this.answers[Math.floor(Math.random() * 3)] = realTranslation;
     };
     ChooseTranslation.prototype.checkAnswer = function (answer) {
-        if (this.wordsService.mainWord[this.wordsService.auxiliaryLanguage] === answer) {
+        if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
             this.eventsService.onTranslationCorrect();
         }
     };

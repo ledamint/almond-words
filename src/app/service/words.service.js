@@ -10,19 +10,19 @@ var core_1 = require("@angular/core");
 var words_1 = require("./words");
 var WordsService = (function () {
     function WordsService() {
-        this.checkingLanguage = 'russian';
+        this.mainLanguage = 'russian';
         this.auxiliaryLanguage = 'english';
         this.words = words_1.words;
-        this.mainWord = words_1.words[0];
+        this.testingWord = words_1.words[0];
         this.themes = ['pink', 'blue'];
         this.currentThemeId = 0;
     }
-    WordsService.prototype.changeMainWord = function () {
-        this.mainWord = words_1.words[Math.floor(Math.random() * words_1.words.length)];
+    WordsService.prototype.changeTestingWord = function () {
+        this.testingWord = words_1.words[Math.floor(Math.random() * words_1.words.length)];
     };
     WordsService.prototype.changeLanguages = function () {
-        var temp = this.checkingLanguage;
-        this.checkingLanguage = this.auxiliaryLanguage;
+        var temp = this.mainLanguage;
+        this.mainLanguage = this.auxiliaryLanguage;
         this.auxiliaryLanguage = temp;
     };
     WordsService.prototype.changeBackground = function () {

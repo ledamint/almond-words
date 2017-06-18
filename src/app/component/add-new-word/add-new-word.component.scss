@@ -1,0 +1,52 @@
+@import '../../../style/_variables.scss';
+
+h1 {
+    margin: 0 0 30px;
+    text-align: center;
+}
+
+.new-word-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.text-input {
+  height: 30px;
+  width: 80%;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border: 2px solid black;
+  outline: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+
+  &::-webkit-input-placeholder { color: rgba(0, 0, 0, 0.5); }
+  &::-moz-placeholder          { color: rgba(0, 0, 0, 0.5); }
+  &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
+}
+
+.button {
+  margin: 0 auto;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 25px;
+  font-family: $main-font;
+  cursor: pointer;
+
+  &[disabled] {
+    color: grey;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-input {
+    width: 100%;
+  }
+}

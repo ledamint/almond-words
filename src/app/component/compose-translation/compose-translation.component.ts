@@ -11,7 +11,7 @@ interface WordLetter {
 @Component({
   selector: 'compose-translation',
   template: `<div class="letters letters_main-word">
-                 <div class="letter" [class.checked]="mainWordLetter.checked" *ngFor="let mainWordLetter of mainWordLetters"> {{ mainWordLetter.letter }}</div>
+                 <div class="letter" [class.checked]="testingWordLetter.checked" *ngFor="let testingWordLetter of testingWordLetters"> {{ testingWordLetter.letter }}</div>
              </div>
              <div class="letters letters_answer">
                  <div class="letter" [class.selected]="answerLetter.checked" *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">{{ answerLetter.letter }}</div>
@@ -19,8 +19,8 @@ interface WordLetter {
   styleUrls: ['./compose-translation.component.scss']
 })
 export class ComposeTranslation implements OnInit {
-  lettersOfMainWord: string[];
-  mainWordLetters: WordLetter[] = [];
+  lettersOftestingWord: string[];
+  testingWordLetters: WordLetter[] = [];
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number;
 
@@ -33,17 +33,17 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOfMainWord = this.wordsService.mainWord[this.wordsService.auxiliaryLanguage].split('');
+    this.lettersOftestingWord = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage].split('');
     this.checkingLetterIndex = 0;
-    this.setUpMainWordLetters();
+    this.setUptestingWordLetters();
     this.setUpAnswerLetters();
   }
 
-  setUpMainWordLetters() {
-    this.mainWordLetters = [];
+  setUptestingWordLetters() {
+    this.testingWordLetters = [];
 
-    this.lettersOfMainWord.forEach((letter) => {
-      this.mainWordLetters.push({
+    this.lettersOftestingWord.forEach((letter) => {
+      this.testingWordLetters.push({
         letter: letter,
         checked: false
       })
@@ -52,10 +52,10 @@ export class ComposeTranslation implements OnInit {
 
   setUpAnswerLetters() {
     this.answerLetters = [];
-    var lettersOfMainWordRandom = this.lettersOfMainWord.slice();
+    var lettersOftestingWordRandom = this.lettersOftestingWord.slice();
 
     // shuffle
-    lettersOfMainWordRandom.forEach((letter, i, answerLetters) => {
+    lettersOftestingWordRandom.forEach((letter, i, answerLetters) => {
       const randomNumber = Math.floor(Math.random() * answerLetters.length);
       const randomLetter = answerLetters[randomNumber];
 
@@ -63,7 +63,7 @@ export class ComposeTranslation implements OnInit {
       answerLetters[i] = randomLetter;
     });
 
-    lettersOfMainWordRandom.forEach((letter) => {
+    lettersOftestingWordRandom.forEach((letter) => {
       this.answerLetters.push({
         letter: letter,
         checked: false
@@ -72,12 +72,12 @@ export class ComposeTranslation implements OnInit {
   }
 
   checkLetter(answerLetter: WordLetter) {
-    if (answerLetter.letter === this.mainWordLetters[this.checkingLetterIndex]['letter']) {
-      this.mainWordLetters[this.checkingLetterIndex]['checked'] = true;
+    if (answerLetter.letter === this.testingWordLetters[this.checkingLetterIndex]['letter']) {
+      this.testingWordLetters[this.checkingLetterIndex]['checked'] = true;
       answerLetter.checked = true;
       this.checkingLetterIndex += 1;
     }
 
-    if (this.checkingLetterIndex === this.lettersOfMainWord.length) this.eventsService.onTranslationCorrect();
+    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onTranslationCorrect();
   }
 }

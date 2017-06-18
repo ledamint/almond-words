@@ -39,7 +39,7 @@ var Cards = (function () {
 Cards = __decorate([
     core_1.Component({
         selector: 'cards',
-        template: "\n      <h1>Your words</h1>\n      <div class=\"cards\">\n        <div *ngFor=\"let card of cards\" class=\"card\">\n          <span *ngFor=\"let word of card\" title=\"{{ word[wordsService.checkingLanguage] }}\" class=\"word\">{{ word[wordsService.auxiliaryLanguage] }}</span>\n          <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">Check it</a>\n        </div>\n      </div>\n    ",
+        template: "\n      <h1>Your words</h1>\n      <div class=\"cards\">\n        <div *ngFor=\"let card of cards\" class=\"card\">\n          <span *ngFor=\"let word of card\" title=\"{{ word[wordsService.mainLanguage] }}\" class=\"word\">{{ word[wordsService.auxiliaryLanguage] }}</span>\n          <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">Check it</a>\n        </div>\n      </div>\n    ",
         styleUrls: ['./cards.component.css']
     }),
     __metadata("design:paramtypes", [words_service_1.WordsService,

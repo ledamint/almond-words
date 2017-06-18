@@ -28,7 +28,7 @@ var WriteTranslation = (function () {
     };
     WriteTranslation.prototype.checkAnswer = function (answer) {
         answer = answer.toLowerCase();
-        if (this.wordsService.mainWord[this.wordsService.auxiliaryLanguage] === answer) {
+        if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
             this.eventsService.onTranslationCorrect();
             this.answerIncorrect = false;
         }

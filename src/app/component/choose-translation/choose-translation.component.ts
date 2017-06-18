@@ -24,7 +24,7 @@ export class ChooseTranslation implements OnInit {
   setUpOneRound() {
     this.answers = [];
 
-    const realTranslation = this.wordsService.mainWord[this.wordsService.auxiliaryLanguage];
+    const realTranslation = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage];
 
     while (true) {
       const randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
@@ -40,12 +40,14 @@ export class ChooseTranslation implements OnInit {
     }
 
     // insert real translation
-    this.answers[Math.floor(Math.random() * 3)] = realTranslation;
+    this.answers[Math.floor(Math.random() * 4)] = realTranslation;
   }
 
   checkAnswer(answer: string) {
-    if (this.wordsService.mainWord[this.wordsService.auxiliaryLanguage] === answer) {
+    if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
       this.eventsService.onTranslationCorrect();
+    } else {
+      this.eventsService.onTranslationNotCorrect();
     }
   }
 }

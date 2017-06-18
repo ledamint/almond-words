@@ -22,7 +22,7 @@ var TestBlock = (function () {
     TestBlock.prototype.ngOnInit = function () {
         var _this = this;
         this.eventsService.translationCorrect$.subscribe(function () {
-            _this.wordsService.changeMainWord();
+            _this.wordsService.changeTestingWord();
             _this.eventsService.onNewRound();
         });
     };
@@ -41,7 +41,7 @@ var TestBlock = (function () {
 TestBlock = __decorate([
     core_1.Component({
         selector: 'test-block',
-        template: "\n        <span class=\"origin-word\">{{ wordsService.mainWord[wordsService.checkingLanguage] }}</span>\n        <router-outlet (activate)=\"onActivate($event)\"></router-outlet>\n        <div class=\"type-of-tests\">\n            <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">easy</a>\n            <a routerLink=\"/test/compose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">medium</a>\n            <a routerLink=\"/test/write-translation\" routerLinkActive=\"active\" class=\"type-of-test\">hard</a>\n            <div class=\"type-of-test\" (click)=\"changeLanguages()\">switch</div>\n        </div>\n    ",
+        template: "\n        <span class=\"origin-word\">{{ wordsService.testingWord[wordsService.mainLanguage] }}</span>\n        <router-outlet (activate)=\"onActivate($event)\"></router-outlet>\n        <div class=\"type-of-tests\">\n            <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">easy</a>\n            <a routerLink=\"/test/compose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">medium</a>\n            <a routerLink=\"/test/write-translation\" routerLinkActive=\"active\" class=\"type-of-test\">hard</a>\n            <div class=\"type-of-test\" (click)=\"changeLanguages()\">switch</div>\n        </div>\n    ",
         styleUrls: ['./test-block.component.css']
     }),
     __metadata("design:paramtypes", [words_service_1.WordsService,

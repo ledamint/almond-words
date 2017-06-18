@@ -1,48 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { WordsService }  from '../../service/words.service';
+import { WordsService, Word }  from '../../service/words.service';
 import { EventsService }  from '../../service/events.service';
-import { Word } from '../../service/words';
-
-import axios from 'axios';
 
 @Component({
   selector: 'cards',
   template: `
       <h1>Your words</h1>
       <div class="cards">
-        <div *ngFor="let card of cards" class="card">
-          <span *ngFor="let word of card" title="{{ word[wordsService.checkingLanguage] }}" class="word">{{ word[wordsService.auxiliaryLanguage] }}</span>
-          <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test">Check it</a>
+        <div *ngFor="let card of wordsService.cards" class="card">
+          <span *ngFor="let word of card" title="{{ word[wordsService.auxiliaryLanguage] }}" class="word">{{ word[wordsService.mainLanguage] }}
+            <span class="delete" (click)="deleteWord(word)">delete</span>
+          </span>
+          <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test" (click)="wordsService.startTest(card)">Check it</a>
         </div>
       </div>
       <div class="side-panel">
-          <span class="side-panel__item">add new word</span>
+          <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>
+          <div class="side-panel__item" (click)="wordsService.changeLanguages()">switch</div>
       </div>
     `,
   styleUrls: ['./cards.component.scss']
 })
 export class Cards implements OnInit {
-  cards: Array<Word[]> = [];
+
   constructor(private wordsService: WordsService,
-              private eventsService: EventsService,
-              private route: Router) {  }
+              private eventsService: EventsService) { }
 
   ngOnInit() {
-    this.distributeWords();
+
   }
 
-  distributeWords() {
-    let cardId: number = -1;
-
-    this.wordsService.words.forEach((word, i) => {
-      if (i % 10 === 0) {
-        cardId += 1;
-        this.cards[cardId] = [];
-      }
-
-      this.cards[cardId].push(word);
-    });
+  deleteWord(word: Word) {
+    this.wordsService.deleteWord(word);
   }
 }

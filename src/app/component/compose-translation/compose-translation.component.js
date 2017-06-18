@@ -16,7 +16,7 @@ var ComposeTranslation = (function () {
     function ComposeTranslation(wordsService, eventsService) {
         this.wordsService = wordsService;
         this.eventsService = eventsService;
-        this.mainWordLetters = [];
+        this.testingWordLetters = [];
         this.answerLetters = [];
     }
     ComposeTranslation.prototype.ngOnInit = function () {
@@ -26,16 +26,16 @@ var ComposeTranslation = (function () {
         });
     };
     ComposeTranslation.prototype.setUpOneRound = function () {
-        this.lettersOfMainWord = this.wordsService.mainWord[this.wordsService.auxiliaryLanguage].split('');
+        this.lettersOftestingWord = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage].split('');
         this.checkingLetterIndex = 0;
-        this.setUpMainWordLetters();
+        this.setUptestingWordLetters();
         this.setUpAnswerLetters();
     };
-    ComposeTranslation.prototype.setUpMainWordLetters = function () {
+    ComposeTranslation.prototype.setUptestingWordLetters = function () {
         var _this = this;
-        this.mainWordLetters = [];
-        this.lettersOfMainWord.forEach(function (letter) {
-            _this.mainWordLetters.push({
+        this.testingWordLetters = [];
+        this.lettersOftestingWord.forEach(function (letter) {
+            _this.testingWordLetters.push({
                 letter: letter,
                 checked: false
             });
@@ -44,15 +44,15 @@ var ComposeTranslation = (function () {
     ComposeTranslation.prototype.setUpAnswerLetters = function () {
         var _this = this;
         this.answerLetters = [];
-        var lettersOfMainWordRandom = this.lettersOfMainWord.slice();
+        var lettersOftestingWordRandom = this.lettersOftestingWord.slice();
         // shuffle
-        lettersOfMainWordRandom.forEach(function (letter, i, answerLetters) {
+        lettersOftestingWordRandom.forEach(function (letter, i, answerLetters) {
             var randomNumber = Math.floor(Math.random() * answerLetters.length);
             var randomLetter = answerLetters[randomNumber];
             answerLetters[randomNumber] = letter;
             answerLetters[i] = randomLetter;
         });
-        lettersOfMainWordRandom.forEach(function (letter) {
+        lettersOftestingWordRandom.forEach(function (letter) {
             _this.answerLetters.push({
                 letter: letter,
                 checked: false
@@ -60,12 +60,12 @@ var ComposeTranslation = (function () {
         });
     };
     ComposeTranslation.prototype.checkLetter = function (answerLetter) {
-        if (answerLetter.letter === this.mainWordLetters[this.checkingLetterIndex]['letter']) {
-            this.mainWordLetters[this.checkingLetterIndex]['checked'] = true;
+        if (answerLetter.letter === this.testingWordLetters[this.checkingLetterIndex]['letter']) {
+            this.testingWordLetters[this.checkingLetterIndex]['checked'] = true;
             answerLetter.checked = true;
             this.checkingLetterIndex += 1;
         }
-        if (this.checkingLetterIndex === this.lettersOfMainWord.length)
+        if (this.checkingLetterIndex === this.lettersOftestingWord.length)
             this.eventsService.onTranslationCorrect();
     };
     return ComposeTranslation;
@@ -73,7 +73,7 @@ var ComposeTranslation = (function () {
 ComposeTranslation = __decorate([
     core_1.Component({
         selector: 'compose-translation',
-        template: "<div class=\"letters letters_main-word\">\n                 <div class=\"letter\" [class.checked]=\"mainWordLetter.checked\" *ngFor=\"let mainWordLetter of mainWordLetters\"> {{ mainWordLetter.letter }}</div>\n             </div>\n             <div class=\"letters letters_answer\">\n                 <div class=\"letter\" [class.selected]=\"answerLetter.checked\" *ngFor=\"let answerLetter of answerLetters\" (click)=\"checkLetter(answerLetter)\">{{ answerLetter.letter }}</div>\n             </div>",
+        template: "<div class=\"letters letters_main-word\">\n                 <div class=\"letter\" [class.checked]=\"testingWordLetter.checked\" *ngFor=\"let testingWordLetter of testingWordLetters\"> {{ testingWordLetter.letter }}</div>\n             </div>\n             <div class=\"letters letters_answer\">\n                 <div class=\"letter\" [class.selected]=\"answerLetter.checked\" *ngFor=\"let answerLetter of answerLetters\" (click)=\"checkLetter(answerLetter)\">{{ answerLetter.letter }}</div>\n             </div>",
         styleUrls: ['./compose-translation.component.css']
     }),
     __metadata("design:paramtypes", [words_service_1.WordsService, events_service_1.EventsService])

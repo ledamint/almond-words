@@ -28,7 +28,7 @@ export class Background implements OnInit  {
 
   ngOnInit(): void {
     this.setUpBackgroundLines();
-    this.setUpAnimation();
+    this.setUpAnimation();  
   }
 
   setUpBackgroundLines(): void {
