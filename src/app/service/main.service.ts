@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service'
@@ -14,7 +13,7 @@ export interface Word {
 }
 
 @Injectable()
-export class WordsService {
+export class MainService {
   mainLanguage: string = 'english';
   auxiliaryLanguage: string = 'russian';
 

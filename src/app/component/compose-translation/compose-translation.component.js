@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var events_service_1 = require("../../service/events.service");
 var ComposeTranslation = (function () {
-    function ComposeTranslation(wordsService, eventsService) {
-        this.wordsService = wordsService;
+    function ComposeTranslation(mainService, eventsService) {
+        this.mainService = mainService;
         this.eventsService = eventsService;
         this.testingWordLetters = [];
         this.answerLetters = [];
@@ -26,7 +26,7 @@ var ComposeTranslation = (function () {
         });
     };
     ComposeTranslation.prototype.setUpOneRound = function () {
-        this.lettersOftestingWord = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage].split('');
+        this.lettersOftestingWord = this.mainService.testingWord[this.mainService.auxiliaryLanguage].split('');
         this.checkingLetterIndex = 0;
         this.setUptestingWordLetters();
         this.setUpAnswerLetters();
@@ -76,7 +76,7 @@ ComposeTranslation = __decorate([
         template: "<div class=\"letters letters_main-word\">\n                 <div class=\"letter\" [class.checked]=\"testingWordLetter.checked\" *ngFor=\"let testingWordLetter of testingWordLetters\"> {{ testingWordLetter.letter }}</div>\n             </div>\n             <div class=\"letters letters_answer\">\n                 <div class=\"letter\" [class.selected]=\"answerLetter.checked\" *ngFor=\"let answerLetter of answerLetters\" (click)=\"checkLetter(answerLetter)\">{{ answerLetter.letter }}</div>\n             </div>",
         styleUrls: ['./compose-translation.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService, events_service_1.EventsService])
+    __metadata("design:paramtypes", [words_service_1.mainService, events_service_1.EventsService])
 ], ComposeTranslation);
 exports.ComposeTranslation = ComposeTranslation;
 //# sourceMappingURL=compose-translation.component.js.map

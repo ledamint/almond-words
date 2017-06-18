@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var Background = (function () {
-    function Background(wordsService) {
-        this.wordsService = wordsService;
+    function Background(mainService) {
+        this.mainService = mainService;
         this.backgroundLines = [];
         this.disableBackground = false;
         this.sumOfLineClick = 0;
@@ -30,7 +30,7 @@ var Background = (function () {
                 left: 0,
                 top: 0
             };
-            var randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)]['english'];
+            var randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['english'];
             backgroundLine.word = randomWord;
             backgroundLine.left = i;
             backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
@@ -60,10 +60,10 @@ var Background = (function () {
 Background = __decorate([
     core_1.Component({
         selector: 'background',
-        template: "\n      <div class=\"background\" [hidden]=\"disableBackground\">\n          <div *ngFor=\"let backgroundLine of backgroundLines\" class=\"background-line\" (click)=\"restartBackgroundLine(backgroundLine)\"\n          [style.left]=\"backgroundLine.left + '%'\" [style.top]=\"backgroundLine.top + '%'\">{{ backgroundLine.word }}</div>\n          <div class=\"change-theme\" (click)=\"wordsService.changeBackground()\">O</div>\n      </div>",
+        template: "\n      <div class=\"background\" [hidden]=\"disableBackground\">\n          <div *ngFor=\"let backgroundLine of backgroundLines\" class=\"background-line\" (click)=\"restartBackgroundLine(backgroundLine)\"\n          [style.left]=\"backgroundLine.left + '%'\" [style.top]=\"backgroundLine.top + '%'\">{{ backgroundLine.word }}</div>\n          <div class=\"change-theme\" (click)=\"mainService.changeBackground()\">O</div>\n      </div>",
         styleUrls: ['./background.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService])
+    __metadata("design:paramtypes", [words_service_1.mainService])
 ], Background);
 exports.Background = Background;
 //# sourceMappingURL=background.component.js.map

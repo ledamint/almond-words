@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { EventsService }  from '../../service/events.service';
 export class ChooseTranslation implements OnInit {
   answers: string[] = [];
 
-  constructor(private wordsService: WordsService, private eventsService: EventsService) {  }
+  constructor(private mainService: MainService, private eventsService: EventsService) {  }
 
   ngOnInit() {
     this.eventsService.newRound$.subscribe(() => {
@@ -24,11 +24,11 @@ export class ChooseTranslation implements OnInit {
   setUpOneRound() {
     this.answers = [];
 
-    const realTranslation = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage];
+    const realTranslation = this.mainService.testingWord[this.mainService.auxiliaryLanguage];
 
     while (true) {
-      const randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
-      const randomTransaltion = randomWord[this.wordsService.auxiliaryLanguage];
+      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)];
+      const randomTransaltion = randomWord[this.mainService.auxiliaryLanguage];
 
       if (this.answers.indexOf(randomTransaltion) === -1) {
         if (randomTransaltion !== realTranslation) {
@@ -44,7 +44,7 @@ export class ChooseTranslation implements OnInit {
   }
 
   checkAnswer(answer: string) {
-    if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
+    if (this.mainService.testingWord[this.mainService.auxiliaryLanguage] === answer) {
       this.eventsService.onTranslationCorrect();
     } else {
       this.eventsService.onTranslationNotCorrect();

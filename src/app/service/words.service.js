@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var words_1 = require("./words");
-var WordsService = (function () {
-    function WordsService() {
+var mainService = (function () {
+    function mainService() {
         this.mainLanguage = 'russian';
         this.auxiliaryLanguage = 'english';
         this.words = words_1.words;
@@ -17,24 +17,24 @@ var WordsService = (function () {
         this.themes = ['pink', 'blue'];
         this.currentThemeId = 0;
     }
-    WordsService.prototype.changeTestingWord = function () {
+    mainService.prototype.changeTestingWord = function () {
         this.testingWord = words_1.words[Math.floor(Math.random() * words_1.words.length)];
     };
-    WordsService.prototype.changeLanguages = function () {
+    mainService.prototype.changeLanguages = function () {
         var temp = this.mainLanguage;
         this.mainLanguage = this.auxiliaryLanguage;
         this.auxiliaryLanguage = temp;
     };
-    WordsService.prototype.changeBackground = function () {
+    mainService.prototype.changeBackground = function () {
         if (this.currentThemeId !== this.themes.length - 1)
             this.currentThemeId += 1;
         else
             this.currentThemeId = 0;
     };
-    return WordsService;
+    return mainService;
 }());
-WordsService = __decorate([
+mainService = __decorate([
     core_1.Injectable()
-], WordsService);
-exports.WordsService = WordsService;
-//# sourceMappingURL=words.service.js.map
+], mainService);
+exports.mainService = mainService;
+//# sourceMappingURL=main.service.js.map

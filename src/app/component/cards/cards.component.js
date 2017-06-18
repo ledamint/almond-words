@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var events_service_1 = require("../../service/events.service");
 var Cards = (function () {
-    function Cards(wordsService, eventsService, route) {
-        this.wordsService = wordsService;
+    function Cards(mainService, eventsService, route) {
+        this.mainService = mainService;
         this.eventsService = eventsService;
         this.route = route;
         this.cards = [];
@@ -26,7 +26,7 @@ var Cards = (function () {
     Cards.prototype.distributeWords = function () {
         var _this = this;
         var cardId = -1;
-        this.wordsService.words.forEach(function (word, i) {
+        this.mainService.words.forEach(function (word, i) {
             if (i % 10 === 0) {
                 cardId += 1;
                 _this.cards[cardId] = [];
@@ -39,10 +39,10 @@ var Cards = (function () {
 Cards = __decorate([
     core_1.Component({
         selector: 'cards',
-        template: "\n      <h1>Your words</h1>\n      <div class=\"cards\">\n        <div *ngFor=\"let card of cards\" class=\"card\">\n          <span *ngFor=\"let word of card\" title=\"{{ word[wordsService.mainLanguage] }}\" class=\"word\">{{ word[wordsService.auxiliaryLanguage] }}</span>\n          <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">Check it</a>\n        </div>\n      </div>\n    ",
+        template: "\n      <h1>Your words</h1>\n      <div class=\"cards\">\n        <div *ngFor=\"let card of cards\" class=\"card\">\n          <span *ngFor=\"let word of card\" title=\"{{ word[mainService.mainLanguage] }}\" class=\"word\">{{ word[mainService.auxiliaryLanguage] }}</span>\n          <a routerLink=\"/test/choose-translation\" routerLinkActive=\"active\" class=\"type-of-test\">Check it</a>\n        </div>\n      </div>\n    ",
         styleUrls: ['./cards.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService,
+    __metadata("design:paramtypes", [words_service_1.mainService,
         events_service_1.EventsService,
         router_1.Router])
 ], Cards);

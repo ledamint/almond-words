@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 
 interface BackgroundLine {
   word: string;
@@ -14,7 +14,7 @@ interface BackgroundLine {
       <div class="background">
           <div *ngFor="let backgroundLine of backgroundLines" class="background-line" (click)="restartBackgroundLine(backgroundLine)"
           [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'" [hidden]="disableBackground">{{ backgroundLine.word }}</div>
-          <div class="change-theme" (click)="wordsService.changeBackground()">O</div>
+          <div class="change-theme" (click)="mainService.changeBackground()">O</div>
       </div>`,
   styleUrls: [ './background.component.scss' ]
 })
@@ -24,7 +24,7 @@ export class Background implements OnInit  {
   sumOfLineClick: number = 0;
   backgroundInterval = null;
 
-  constructor(private wordsService: WordsService) {  }
+  constructor(private mainService: MainService) {  }
 
   ngOnInit(): void {
     this.setUpBackgroundLines();
@@ -38,7 +38,7 @@ export class Background implements OnInit  {
         left: 0,
         top: 0
       };
-      const randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)]['english'];
+      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['english'];
       backgroundLine.word = randomWord;
       backgroundLine.left = i;
       backgroundLine.top = -Math.floor((Math.random() * 200) + 1);

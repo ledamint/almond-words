@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
   selector: 'test-block',
   template: `
-        <span class="origin-word">{{ wordsService.testingWord[wordsService.mainLanguage] }}</span>
+        <span class="origin-word">{{ mainService.testingWord[mainService.mainLanguage] }}</span>
         <router-outlet (activate)="onActivate($event)"></router-outlet>
         <div class="side-panel">
             <a routerLink="/test/choose-translation" routerLinkActive="active" class="side-panel__item">easy</a>
@@ -19,13 +19,13 @@ import { EventsService }  from '../../service/events.service';
   styleUrls: ['./test-block.component.scss']
 })
 export class TestBlock implements OnInit {
-  constructor(private wordsService: WordsService,
+  constructor(private mainService: MainService,
               private eventsService: EventsService,
               private route: Router) {  }
 
   ngOnInit() {
     this.eventsService.translationCorrect$.subscribe(() => {
-      this.wordsService.changeTestingWord();
+      this.mainService.changeTestingWord();
       this.eventsService.onNewRound();
     });
   }
@@ -39,7 +39,7 @@ export class TestBlock implements OnInit {
   }
 
   changeLanguages() {
-    this.wordsService.changeLanguages();
+    this.mainService.changeLanguages();
     this.eventsService.onNewRound();
   }
 }

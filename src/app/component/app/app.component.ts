@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
   selector: 'my-app',
   template: `
-    <div class="wrapper" [class.blue-theme]="wordsService.themes[wordsService.currentThemeId] === 'blue' ? true : false">
+    <div class="wrapper" [class.blue-theme]="mainService.themes[mainService.currentThemeId] === 'blue' ? true : false">
         <main class="content">
           <router-outlet></router-outlet>
         </main>
@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
   // TODO add type
   err: Object = { };
 
-  constructor(private wordsService: WordsService,
+  constructor(private mainService: MainService,
               private eventService: EventsService) {  }
 
   ngOnInit() {
-    this.wordsService.setUpWords();
+    this.mainService.setUpWords();
 
     this.eventService.serverError$
       .subscribe(err => this.showError(err));

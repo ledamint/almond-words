@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 interface WordLetter {
@@ -24,7 +24,7 @@ export class ComposeTranslation implements OnInit {
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number;
 
-  constructor(private wordsService: WordsService, private eventsService: EventsService) {  }
+  constructor(private mainService: MainService, private eventsService: EventsService) {  }
 
   ngOnInit() {
     this.eventsService.newRound$.subscribe(() => {
@@ -33,7 +33,7 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOftestingWord = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage].split('');
+    this.lettersOftestingWord = this.mainService.testingWord[this.mainService.auxiliaryLanguage].split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
     this.setUpAnswerLetters();

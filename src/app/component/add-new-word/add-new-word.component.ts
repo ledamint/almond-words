@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { WordsService, Word }  from '../../service/words.service';
+import { MainService, Word }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { EventsService }  from '../../service/events.service';
   template: `
           <h1>Add a new word</h1>
           <form class="new-word-form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
-            <input class="text-input" type="text" name="main-word" placeholder="{{ wordsService.mainLanguage }}" ngModel required>
-            <input class="text-input" type="text" name="translation" placeholder="{{ wordsService.auxiliaryLanguage }}" ngModel required>
+            <input class="text-input" type="text" name="main-word" placeholder="{{ mainService.mainLanguage }}" ngModel required>
+            <input class="text-input" type="text" name="translation" placeholder="{{ mainService.auxiliaryLanguage }}" ngModel required>
             <button class="button button-animate" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">
@@ -24,7 +24,7 @@ import { EventsService }  from '../../service/events.service';
 export class AddNewWord implements OnInit {
   isPopUpHidden: boolean = true;
 
-  constructor(private wordsService: WordsService,
+  constructor(private mainService: MainService,
               private eventsService: EventsService) { }
 
   ngOnInit() {
@@ -44,10 +44,10 @@ export class AddNewWord implements OnInit {
         russian: ''
       };
 
-      newWord[this.wordsService.mainLanguage] = mainWord;
-      newWord[this.wordsService.auxiliaryLanguage] = translation;
+      newWord[this.mainService.mainLanguage] = mainWord;
+      newWord[this.mainService.auxiliaryLanguage] = translation;
 
-      this.wordsService.addNewWord(newWord);
+      this.mainService.addNewWord(newWord);
     }
   }
 

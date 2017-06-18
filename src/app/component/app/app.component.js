@@ -10,20 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var AppComponent = (function () {
-    function AppComponent(wordsService) {
-        this.wordsService = wordsService;
+    function AppComponent(mainService) {
+        this.mainService = mainService;
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <div class=\"wrapper\" [class.blue-theme]=\"wordsService.themes[wordsService.currentThemeId] === 'blue' ? true : false\">\n        <main class=\"content\">          \n          <router-outlet></router-outlet>\n        </main>\n        <background></background>\n    </div>",
+        template: "\n    <div class=\"wrapper\" [class.blue-theme]=\"mainService.themes[mainService.currentThemeId] === 'blue' ? true : false\">\n        <main class=\"content\">          \n          <router-outlet></router-outlet>\n        </main>\n        <background></background>\n    </div>",
         styleUrls: ['./app.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService])
+    __metadata("design:paramtypes", [words_service_1.mainService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

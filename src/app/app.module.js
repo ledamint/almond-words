@@ -17,7 +17,7 @@ var test_block_component_1 = require("./component/test-block/test-block.componen
 var choose_translation_component_1 = require("./component/choose-translation/choose-translation.component");
 var compose_translation_component_1 = require("./component/compose-translation/compose-translation.component");
 var write_translation_component_1 = require("./component/write-translation/write-translation.component");
-var words_service_1 = require("./service/words.service");
+var words_service_1 = require("./service/main.service");
 var events_service_1 = require("./service/events.service");
 var appRoutes = [
     { path: 'cards', component: cards_component_1.Cards },
@@ -53,7 +53,7 @@ AppModule = __decorate([
             write_translation_component_1.WriteTranslation,
             cards_component_1.Cards],
         bootstrap: [app_component_1.AppComponent],
-        providers: [words_service_1.WordsService, events_service_1.EventsService]
+        providers: [words_service_1.mainService, events_service_1.EventsService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

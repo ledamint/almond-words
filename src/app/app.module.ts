@@ -13,7 +13,7 @@ import { ChooseTranslation } from './component/choose-translation/choose-transla
 import { ComposeTranslation } from './component/compose-translation/compose-translation.component';
 import { WriteTranslation } from './component/write-translation/write-translation.component';
 
-import { WordsService } from './service/words.service';
+import { MainService } from './service/main.service';
 import { EventsService } from './service/events.service';
 
 
@@ -49,6 +49,6 @@ const appRoutes: Routes = [
                   Cards,
                   AddNewWord ],
   bootstrap: [ AppComponent ],
-  providers: [ WordsService, EventsService ]
+  providers: [ MainService, EventsService ]
 })
 export class AppModule { }

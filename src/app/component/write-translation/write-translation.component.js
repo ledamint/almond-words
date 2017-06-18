@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var events_service_1 = require("../../service/events.service");
 var WriteTranslation = (function () {
-    function WriteTranslation(wordsService, eventsService, elementRef) {
-        this.wordsService = wordsService;
+    function WriteTranslation(mainService, eventsService, elementRef) {
+        this.mainService = mainService;
         this.eventsService = eventsService;
         this.elementRef = elementRef;
         this.answer = '';
@@ -28,7 +28,7 @@ var WriteTranslation = (function () {
     };
     WriteTranslation.prototype.checkAnswer = function (answer) {
         answer = answer.toLowerCase();
-        if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
+        if (this.mainService.testingWord[this.mainService.auxiliaryLanguage] === answer) {
             this.eventsService.onTranslationCorrect();
             this.answerIncorrect = false;
         }
@@ -53,7 +53,7 @@ WriteTranslation = __decorate([
         template: "<input class=\"precise-answer\" [class.incorrect]=\"answerIncorrect\" name=\"precise-answer\"\n             [(ngModel)]=\"answer\" #preciseAnswer=\"ngModel\" (keyup.enter)=\"checkAnswer(preciseAnswer.value)\" >",
         styleUrls: ['./write-translation.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService,
+    __metadata("design:paramtypes", [words_service_1.mainService,
         events_service_1.EventsService,
         core_1.ElementRef])
 ], WriteTranslation);

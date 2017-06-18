@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var words_service_1 = require("../../service/words.service");
+var words_service_1 = require("../../service/main.service");
 var events_service_1 = require("../../service/events.service");
 var ChooseTranslation = (function () {
-    function ChooseTranslation(wordsService, eventsService) {
-        this.wordsService = wordsService;
+    function ChooseTranslation(mainService, eventsService) {
+        this.mainService = mainService;
         this.eventsService = eventsService;
         this.answers = [];
     }
@@ -26,10 +26,10 @@ var ChooseTranslation = (function () {
     };
     ChooseTranslation.prototype.setUpOneRound = function () {
         this.answers = [];
-        var realTranslation = this.wordsService.testingWord[this.wordsService.auxiliaryLanguage];
+        var realTranslation = this.mainService.testingWord[this.mainService.auxiliaryLanguage];
         while (true) {
-            var randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
-            var randomTransaltion = randomWord[this.wordsService.auxiliaryLanguage];
+            var randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)];
+            var randomTransaltion = randomWord[this.mainService.auxiliaryLanguage];
             if (this.answers.indexOf(randomTransaltion) === -1) {
                 if (randomTransaltion !== realTranslation) {
                     this.answers.push(randomTransaltion);
@@ -42,7 +42,7 @@ var ChooseTranslation = (function () {
         this.answers[Math.floor(Math.random() * 3)] = realTranslation;
     };
     ChooseTranslation.prototype.checkAnswer = function (answer) {
-        if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
+        if (this.mainService.testingWord[this.mainService.auxiliaryLanguage] === answer) {
             this.eventsService.onTranslationCorrect();
         }
     };
@@ -54,7 +54,7 @@ ChooseTranslation = __decorate([
         template: "<div class=\"answers\">\n                <button class=\"answer\" *ngFor=\"let answer of answers\" (click)=\"checkAnswer(answer)\">{{ answer }}</button>\n             </div>",
         styleUrls: ['./choose-translation.component.css']
     }),
-    __metadata("design:paramtypes", [words_service_1.WordsService, events_service_1.EventsService])
+    __metadata("design:paramtypes", [words_service_1.mainService, events_service_1.EventsService])
 ], ChooseTranslation);
 exports.ChooseTranslation = ChooseTranslation;
 //# sourceMappingURL=choose-translation.component.js.map

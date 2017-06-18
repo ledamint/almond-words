@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class WriteTranslation implements OnInit {
   answer: string = '';
   isAnswerIncorrect: boolean = false;
 
-  constructor(private wordsService: WordsService,
+  constructor(private mainService: MainService,
               private eventsService: EventsService,
               private elementRef: ElementRef) {  }
 
@@ -25,7 +25,7 @@ export class WriteTranslation implements OnInit {
 
   checkAnswer(answer: string) {
     answer = answer.toLowerCase();
-    if (this.wordsService.testingWord[this.wordsService.auxiliaryLanguage] === answer) {
+    if (this.mainService.testingWord[this.mainService.auxiliaryLanguage] === answer) {
       this.eventsService.onTranslationCorrect();
       this.isAnswerIncorrect = false;
     } else {
