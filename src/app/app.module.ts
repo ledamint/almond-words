@@ -15,7 +15,7 @@ import { WriteTranslation } from './component/write-translation/write-translatio
 
 import { MainService } from './service/main.service';
 import { EventsService } from './service/events.service';
-
+import { TestWordsService } from './service/test-words.service';
 
 // TODO move to separate file
 const appRoutes: Routes = [
@@ -49,6 +49,6 @@ const appRoutes: Routes = [
                   Cards,
                   AddNewWord ],
   bootstrap: [ AppComponent ],
-  providers: [ MainService, EventsService ]
+  providers: [ MainService, EventsService, TestWordsService ]
 })
 export class AppModule { }

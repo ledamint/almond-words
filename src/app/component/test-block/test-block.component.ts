@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { MainService }  from '../../service/main.service';
+import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
   selector: 'test-block',
   template: `
-        <span class="origin-word">{{ mainService.testingWord[mainService.mainLanguage] }}</span>
+        <span class="origin-word">{{ testWordsService.testingWord[mainService.mainLanguage] }}</span>
         <router-outlet (activate)="onActivate($event)"></router-outlet>
         <div class="side-panel">
             <a routerLink="/test/choose-translation" routerLinkActive="active" class="side-panel__item">easy</a>
@@ -20,21 +20,17 @@ import { EventsService }  from '../../service/events.service';
 })
 export class TestBlock implements OnInit {
   constructor(private mainService: MainService,
-              private eventsService: EventsService,
-              private route: Router) {  }
+              private testWordsService: TestWordsService,
+              private eventsService: EventsService) {  }
 
   ngOnInit() {
     this.eventsService.translationCorrect$.subscribe(() => {
-      this.mainService.changeTestingWord();
+      this.testWordsService.changeTestingWord();
       this.eventsService.onNewRound();
     });
   }
 
   onActivate(Component) {
-    // if (this.route.url === '/write-translation') {
-    //   Component.focusPreciseAnswer();
-    // }
-
     this.eventsService.onNewRound();
   }
 

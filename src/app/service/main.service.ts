@@ -58,11 +58,6 @@ export class MainService {
     });
   }
 
-  startTest(card:  Word[]) {
-    this.testingCard = card;
-    this.changeTestingWord();
-  }
-
   addNewWord(newWord: Word) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -88,10 +83,6 @@ export class MainService {
         },
         (err) => this.eventsService.onServerError(err)
       );
-  }
-
-  changeTestingWord() {
-    this.testingWord = this.testingCard[Math.floor(Math.random() * this.testingCard.length)];
   }
 
   changeLanguages() {

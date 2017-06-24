@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MainService }  from '../../service/main.service';
+import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
 interface WordLetter {
@@ -24,7 +25,9 @@ export class ComposeTranslation implements OnInit {
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number;
 
-  constructor(private mainService: MainService, private eventsService: EventsService) {  }
+  constructor(private mainService: MainService,
+              private testWordsService: TestWordsService,
+              private eventsService: EventsService) {  }
 
   ngOnInit() {
     this.eventsService.newRound$.subscribe(() => {
@@ -33,7 +36,7 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOftestingWord = this.mainService.testingWord[this.mainService.auxiliaryLanguage].split('');
+    this.lettersOftestingWord = this.testWordsService.testingWord[this.mainService.auxiliaryLanguage].split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
     this.setUpAnswerLetters();
@@ -52,10 +55,10 @@ export class ComposeTranslation implements OnInit {
 
   setUpAnswerLetters() {
     this.answerLetters = [];
-    var lettersOftestingWordRandom = this.lettersOftestingWord.slice();
+    var lettersOfTestingWordRandom = this.lettersOftestingWord.slice();
 
     // shuffle
-    lettersOftestingWordRandom.forEach((letter, i, answerLetters) => {
+    lettersOfTestingWordRandom.forEach((letter, i, answerLetters) => {
       const randomNumber = Math.floor(Math.random() * answerLetters.length);
       const randomLetter = answerLetters[randomNumber];
 
@@ -63,7 +66,7 @@ export class ComposeTranslation implements OnInit {
       answerLetters[i] = randomLetter;
     });
 
-    lettersOftestingWordRandom.forEach((letter) => {
+    lettersOfTestingWordRandom.forEach((letter) => {
       this.answerLetters.push({
         letter: letter,
         checked: false

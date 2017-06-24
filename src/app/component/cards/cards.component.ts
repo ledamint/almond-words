@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MainService, Word }  from '../../service/main.service';
+import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { EventsService }  from '../../service/events.service';
           <span *ngFor="let word of card" title="{{ word[mainService.auxiliaryLanguage] }}" class="word">{{ word[mainService.mainLanguage] }}
             <span class="delete" (click)="deleteWord(word)">delete</span>
           </span>
-          <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test" (click)="mainService.startTest(card)">Check it</a>
+          <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test" (click)="testWordsService.startTest(card)">Check it</a>
         </div>
       </div>
       <div class="side-panel">
@@ -25,6 +26,7 @@ import { EventsService }  from '../../service/events.service';
 export class Cards implements OnInit {
 
   constructor(private mainService: MainService,
+              private testWordsService: TestWordsService,
               private eventsService: EventsService) { }
 
   ngOnInit() {
