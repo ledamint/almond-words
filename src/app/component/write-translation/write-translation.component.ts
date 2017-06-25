@@ -27,8 +27,8 @@ export class WriteTranslation implements OnInit {
 
   checkAnswer(answer: string) {
     answer = answer.toLowerCase();
-    if (this.testWordsService.testingWord[this.mainService.auxiliaryLanguage] === answer) {
-      this.eventsService.onTranslationCorrect();
+    if (this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage] === answer) {
+      this.eventsService.onTranslationCorrect(3);
       this.isAnswerIncorrect = false;
     } else {
       this.isAnswerIncorrect = true;

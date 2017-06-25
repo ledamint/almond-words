@@ -19,8 +19,9 @@ export class EventsService {
     this.newRoundSubject.next();
   }
 
-  onTranslationCorrect() {
-    this.translationCorrectSubject.next();
+  onTranslationCorrect(sumOfPoints) {
+    this.translationCorrectSubject
+        .next(sumOfPoints);
   }
 
   onTranslationNotCorrect() {

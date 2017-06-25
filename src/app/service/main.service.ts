@@ -36,11 +36,11 @@ export class MainService {
   setUpWords() {
     this.http.get('words')
       .map(res => res.json())
-      .subscribe(data => {
+      .subscribe((data) => {
         this.words = data;
         this.distributeWords();
       },
-      (err) => this.eventsService.onServerError(err)
+      err => this.eventsService.onServerError(err)
     );
   }
 
@@ -70,7 +70,7 @@ export class MainService {
           this.distributeWords();
           this.eventsService.onAddNewWord();
         },
-        (err) => this.eventsService.onServerError(err)
+        err => this.eventsService.onServerError(err)
       );
   }
 
@@ -81,7 +81,7 @@ export class MainService {
           this.words = this.words.filter(word => word._id !== deletedWord._id);
           this.distributeWords();
         },
-        (err) => this.eventsService.onServerError(err)
+        err => this.eventsService.onServerError(err)
       );
   }
 

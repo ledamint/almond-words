@@ -7,7 +7,7 @@ import { EventsService }  from '../../service/events.service';
 @Component({
   selector: 'test-block',
   template: `
-        <span class="origin-word">{{ testWordsService.testingWord[mainService.mainLanguage] }}</span>
+        <span class="origin-word">{{ testWordsService.currentTestingWord[mainService.mainLanguage] }}</span>
         <router-outlet (activate)="onActivate($event)"></router-outlet>
         <div class="side-panel">
             <a routerLink="/test/choose-translation" routerLinkActive="active" class="side-panel__item">easy</a>
@@ -24,10 +24,7 @@ export class TestBlock implements OnInit {
               private eventsService: EventsService) {  }
 
   ngOnInit() {
-    this.eventsService.translationCorrect$.subscribe(() => {
-      this.testWordsService.changeTestingWord();
-      this.eventsService.onNewRound();
-    });
+
   }
 
   onActivate(Component) {

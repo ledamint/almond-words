@@ -36,7 +36,7 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOftestingWord = this.testWordsService.testingWord[this.mainService.auxiliaryLanguage].split('');
+    this.lettersOftestingWord = this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage].split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
     this.setUpAnswerLetters();
@@ -81,6 +81,6 @@ export class ComposeTranslation implements OnInit {
       this.checkingLetterIndex += 1;
     }
 
-    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onTranslationCorrect();
+    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onTranslationCorrect(2);
   }
 }
