@@ -2,7 +2,19 @@
 
 body {
   font-family: $main-font;
-  // overflow: hidden;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: $pink-theme-second-color;
+  }
+
+  .blue-theme &:hover {
+    color: $blue-theme-second-color;
+  }
 }
 
 .side-panel {
@@ -24,6 +36,10 @@ body {
     &:active {
       color: white;
     }
+
+    &:hover, .blue-theme &:hover {
+      color: white;
+    }
   }
 }
 
@@ -39,7 +55,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-// TODO: button common style
+// TODO: button and hover common style
 .button-animate {
   &:hover {
     color: $pink-theme-second-color;

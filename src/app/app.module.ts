@@ -8,6 +8,7 @@ import { AppComponent } from './component/app/app.component';
 import { Background } from './component/background/background.component';
 import { Cards } from './component/cards/cards.component';
 import { AddNewWord } from './component/add-new-word/add-new-word.component';
+import { TestChoice } from './component/test-choice/test-choice.component';
 import { TestBlock } from './component/test-block/test-block.component';
 import { ChooseTranslation } from './component/choose-translation/choose-translation.component';
 import { ComposeTranslation } from './component/compose-translation/compose-translation.component';
@@ -21,16 +22,13 @@ import { TestWordsService } from './service/test-words.service';
 const appRoutes: Routes = [
   { path: 'cards', component: Cards },
   { path: 'add-new-word', component: AddNewWord },
+  { path: 'test-choice', component: TestChoice },
   { path: 'test',
     component: TestBlock,
     children: [
       { path: 'choose-translation', component: ChooseTranslation },
       { path: 'compose-translation', component: ComposeTranslation },
-      { path: 'write-translation', component: WriteTranslation },
-      { path: '',
-        redirectTo: '/test/choose-translation',
-        pathMatch: 'full'
-      },
+      { path: 'write-translation', component: WriteTranslation }
     ] },
   { path: '',
     redirectTo: '/cards',
@@ -42,6 +40,7 @@ const appRoutes: Routes = [
   imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent,
                   Background,
+                  TestChoice,
                   TestBlock,
                   ChooseTranslation,
                   ComposeTranslation,

@@ -14,7 +14,7 @@ import { EventsService }  from '../../service/events.service';
             {{ word[mainService.mainLanguage] }}
             <span class="delete" (click)="deleteWord(word)">delete</span>
           </span>
-          <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test" (click)="testWordsService.startTest(card)">Check it</a>
+          <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test" (click)="testWordsService.startTest(card)">Check it</a>
         </div>
       </div>
       <div class="side-panel">
