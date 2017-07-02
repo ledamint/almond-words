@@ -10,7 +10,8 @@ import { EventsService }  from '../../service/events.service';
       <h1>Your words</h1>
       <div class="cards">
         <div *ngFor="let card of mainService.cards" class="card">
-          <span *ngFor="let word of card" title="{{ word[mainService.auxiliaryLanguage] }}" class="word">{{ word[mainService.mainLanguage] }}
+          <span *ngFor="let word of card" title="{{ word[mainService.auxiliaryLanguage] }}" [style.opacity]="word.knowledge/10" class="word">
+            {{ word[mainService.mainLanguage] }}
             <span class="delete" (click)="deleteWord(word)">delete</span>
           </span>
           <a routerLink="/test/choose-translation" routerLinkActive="active" class="type-of-test" (click)="testWordsService.startTest(card)">Check it</a>

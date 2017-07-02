@@ -48,9 +48,9 @@ export class ChooseTranslation implements OnInit {
 
   checkAnswer(answer: string) {
     if (this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage] === answer) {
-      this.eventsService.onTranslationCorrect(1);
+      this.eventsService.onEnterAnswer({ testId: 0, isAnswerRight: true });
     } else {
-      this.eventsService.onTranslationNotCorrect();
+      this.eventsService.onEnterAnswer({ testId: 0, isAnswerRight: false });
     }
   }
 }

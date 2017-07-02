@@ -14,7 +14,6 @@ module.exports = function(app, db) {
 
   app.delete('/words/:id', (req, res) => {
     const wordId = { _id:  new ObjectID(req.params.id) };
-    console.log(wordId);
 
     db.collection('words').remove(wordId, (err, result) => {
       if (err) {
@@ -27,11 +26,9 @@ module.exports = function(app, db) {
   });
 
   app.post('/words', (req, res) => {
-    const word = {
-      english: req.body.english,
-      russian: req.body.russian,
-      time: new Date()
-    };
+    const word = req.body;
+    word.time = new Date;
+    word.knowledge = 1;
 
     db.collection('words').insert(word, (err, result) => {
       if (err) {
@@ -45,16 +42,32 @@ module.exports = function(app, db) {
 
   app.put('/words/:id', (req, res) => {
     const details = { _id:  new ObjectID(req.params.id) };
-    const word = {
-      english: req.body.english,
-      russian: req.body.russian
-    };
 
-    db.collection('words').update(details, word, (err, result) => {
+    // TODO: make find and update in one query
+    db.collection('words').findOne(details, (err, result) => {
       if (err) {
-        res.send({ error: 'An error has occured' });
+        console.log(err);
+        res.send(500);
       } else {
-        res.send(word);
+        const word = result;
+
+        if (word.knowledge !== undefined) {
+          word.knowledge += req.body.points;
+        } else {
+          word.knowledge = 1 + req.body.points;
+        }
+
+        if (word.knowledge > 10) word.knowledge = 10;
+        if (word.knowledge < 1) word.knowledge = 1;
+
+        db.collection('words').update(details, word, (err, result) => {
+          if (err) {
+            console.log(err);
+            res.send(500);
+          } else {
+            res.send(word);
+          }
+        });
       }
     });
   });

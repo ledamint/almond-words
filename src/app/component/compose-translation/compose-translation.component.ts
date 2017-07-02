@@ -81,6 +81,6 @@ export class ComposeTranslation implements OnInit {
       this.checkingLetterIndex += 1;
     }
 
-    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onTranslationCorrect(2);
+    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: true });
   }
 }

@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router'
 
 import { EventsService }  from './events.service';
-import { Word } from './main.service'
+import { MainService, Word } from './main.service'
+
+export interface ResultTestAnswer {
+  testId: number;
+  isAnswerRight: boolean;
+}
 
 @Injectable()
 export class TestWordsService {
@@ -10,37 +16,50 @@ export class TestWordsService {
     english: '',
     russian: ''
   };
-  sumOfPoints: number = 0;
+  pointsForAnswerByTestId: number[] = [1, 2, 3];
 
-  constructor(private eventsService: EventsService) {
-    this.eventsService.translationCorrect$.subscribe((sumOfPoints) => {
-      this.addPoints(sumOfPoints);
-      this.changeTestingWord();
-      this.eventsService.onNewRound();
-    });
-
-    this.eventsService.translationNotCorrect$.subscribe(() => {
-      this.changeTestingWord();
-      this.eventsService.onNewRound();
+  constructor(private mainService: MainService,
+              private eventsService: EventsService,
+              private router: Router) {
+    this.eventsService.enterAnswer$.subscribe((resultTestAnswer) => {
+      this.calculateWordKnowledge(resultTestAnswer);
+      this.onNewRound();
     });
   }
 
-  startTest(card:  Word[]) {
-    this.testingWords = card;
-    this.changeTestingWord();
+  startTest(card: Word[]) {
+    this.testingWords = card.slice();
+    this.onNewRound();
   }
 
-  changeTestingWord() {
+  onNewRound() {
     if (this.testingWords.length > 0) {
-      const randomTestingWordId = Math.floor(Math.random() * this.testingWords.length);
-      this.currentTestingWord = this.testingWords[randomTestingWordId];
-      this.testingWords.splice(randomTestingWordId, 1);
-    } else {
-      alert(this.sumOfPoints);
+      this.onNextTestingWord();
+      this.eventsService.onNewRound();
+    } else {      
+      this.router.navigateByUrl('/');
     }
   }
 
-  addPoints(sumOfPoints) {
-    this.sumOfPoints += sumOfPoints;
+  onNextTestingWord() {
+    const randomTestingWordId = Math.floor(Math.random() * this.testingWords.length);
+    this.currentTestingWord = this.testingWords[randomTestingWordId];
+    this.testingWords.splice(randomTestingWordId, 1);
+  }
+
+  calculateWordKnowledge(resultTestAnswer: ResultTestAnswer) {
+    const wordId = this.currentTestingWord._id;
+    let points = this.pointsForAnswerByTestId[resultTestAnswer.testId];
+
+    if (resultTestAnswer.isAnswerRight) points = points;
+    else points = -points;
+
+    this.mainService.updateWordKnowledge(wordId, points);
+
+    // const wordIndex = this.mainService.words.findIndex((word) => {
+    //   return wordId === word._id;
+    // });
+    //
+    // this.mainService.words[wordIndex]
   }
 }

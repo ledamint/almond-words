@@ -10,6 +10,7 @@ export interface Word {
   russian: string;
   _id?: string;
   time?: Date;
+  knowledge?: number;
 }
 
 @Injectable()
@@ -80,6 +81,18 @@ export class MainService {
         () => {
           this.words = this.words.filter(word => word._id !== deletedWord._id);
           this.distributeWords();
+        },
+        err => this.eventsService.onServerError(err)
+      );
+  }
+
+  updateWordKnowledge(wordId: string, points: number) {
+    this.http.put('words/' + wordId, { points })
+      .subscribe(
+        (word) => {
+          // this.words = this.words.filter(word => word._id !== deletedWord._id);
+          // this.distributeWords();
+          console.log(word);
         },
         err => this.eventsService.onServerError(err)
       );

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
+import { ResultTestAnswer } from './test-words.service'
+
 @Injectable()
 export class EventsService {
-  private newRoundSubject = new Subject<string>();
-  private translationCorrectSubject = new Subject<void>();
-  private translationNotCorrectSubject = new Subject<void>();
+  private newRoundSubject = new Subject<void>();
+  private enterAnswerSubject = new Subject<ResultTestAnswer>();
   private addNewWordSubject = new Subject<void>();
-  private serverErrorSubject = new Subject<void>();
+  private serverErrorSubject = new Subject<any>();
 
   newRound$ = this.newRoundSubject.asObservable();
-  translationCorrect$ = this.translationCorrectSubject.asObservable();
-  translationNotCorrect$ = this.translationNotCorrectSubject.asObservable();
+  enterAnswer$ = this.enterAnswerSubject.asObservable();
   addNewWord$ = this.addNewWordSubject.asObservable();
   serverError$ = this.serverErrorSubject.asObservable();
 
@@ -19,13 +19,8 @@ export class EventsService {
     this.newRoundSubject.next();
   }
 
-  onTranslationCorrect(sumOfPoints) {
-    this.translationCorrectSubject
-        .next(sumOfPoints);
-  }
-
-  onTranslationNotCorrect() {
-    this.translationNotCorrectSubject.next();
+  onEnterAnswer(resultTestAnswer: ResultTestAnswer) {
+    this.enterAnswerSubject.next(resultTestAnswer);
   }
 
   onAddNewWord() {
