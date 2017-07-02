@@ -88,11 +88,11 @@ export class MainService {
 
   updateWordKnowledge(wordId: string, points: number) {
     this.http.put('words/' + wordId, { points })
+      .map((res) => res.json())
       .subscribe(
-        (word) => {
-          // this.words = this.words.filter(word => word._id !== deletedWord._id);
-          // this.distributeWords();
-          console.log(word);
+        (updatedWord) => {
+          const wordIndex = this.words.findIndex(word => word._id === updatedWord._id);          
+          this.words[wordIndex] = updatedWord;
         },
         err => this.eventsService.onServerError(err)
       );

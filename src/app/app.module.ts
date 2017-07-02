@@ -10,6 +10,7 @@ import { Cards } from './component/cards/cards.component';
 import { AddNewWord } from './component/add-new-word/add-new-word.component';
 import { TestChoice } from './component/test-choice/test-choice.component';
 import { TestBlock } from './component/test-block/test-block.component';
+import { AnswersResult } from './component/answers-result/answers-result.component';
 import { ChooseTranslation } from './component/choose-translation/choose-translation.component';
 import { ComposeTranslation } from './component/compose-translation/compose-translation.component';
 import { WriteTranslation } from './component/write-translation/write-translation.component';
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
       { path: 'compose-translation', component: ComposeTranslation },
       { path: 'write-translation', component: WriteTranslation }
     ] },
+  { path: 'answers-result', component: AnswersResult },
   { path: '',
     redirectTo: '/cards',
     pathMatch: 'full'
@@ -40,13 +42,14 @@ const appRoutes: Routes = [
   imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent,
                   Background,
+                  Cards,
+                  AddNewWord,
                   TestChoice,
                   TestBlock,
+                  AnswersResult,
                   ChooseTranslation,
                   ComposeTranslation,
-                  WriteTranslation,
-                  Cards,
-                  AddNewWord ],
+                  WriteTranslation ],
   bootstrap: [ AppComponent ],
   providers: [ MainService, EventsService, TestWordsService ]
 })

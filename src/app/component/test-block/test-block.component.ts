@@ -8,7 +8,7 @@ import { EventsService }  from '../../service/events.service';
   selector: 'test-block',
   template: `
         <span class="origin-word">{{ testWordsService.currentTestingWord[mainService.mainLanguage] }}</span>
-        <router-outlet (activate)="onActivate($event)"></router-outlet>
+        <router-outlet (activate)="onActivate()"></router-outlet>
     `,
   styleUrls: ['./test-block.component.scss']
 })
@@ -21,7 +21,7 @@ export class TestBlock implements OnInit {
 
   }
 
-  onActivate(Component) {
+  onActivate() {
     this.eventsService.onNewRound();
   }
 

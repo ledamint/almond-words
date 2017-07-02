@@ -25,7 +25,6 @@ import { EventsService }  from '../../service/events.service';
   styleUrls: ['./cards.component.scss']
 })
 export class Cards implements OnInit {
-
   constructor(private mainService: MainService,
               private testWordsService: TestWordsService,
               private eventsService: EventsService) { }

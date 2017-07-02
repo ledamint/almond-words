@@ -1,0 +1,19 @@
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.answers {
+  &__answer {
+    display: block;
+    font-size: 20px;
+  }
+
+  &_right {
+    color: green;
+  }
+
+  &_wrong {
+    color: red;
+  }
+}
