@@ -12,18 +12,22 @@ interface WordLetter {
 @Component({
   selector: 'compose-translation',
   template: `<div class="letters letters_main-word">
-                 <div class="letter" [class.checked]="testingWordLetter.checked" *ngFor="let testingWordLetter of testingWordLetters"> {{ testingWordLetter.letter }}</div>
+                 <div class="letter" [class.checked]="testingWordLetter.checked" *ngFor="let testingWordLetter of testingWordLetters">
+                      {{ testingWordLetter.letter }}
+                  </div>
              </div>
              <div class="letters letters_answer">
-                 <div class="letter" [class.selected]="answerLetter.checked" *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">{{ answerLetter.letter }}</div>
+                 <div class="letter" [class.selected]="answerLetter.checked" *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">
+                     {{ answerLetter.letter }}
+                 </div>
              </div>`,
   styleUrls: ['./compose-translation.component.scss']
 })
 export class ComposeTranslation implements OnInit {
-  lettersOftestingWord: string[];
+  lettersOfTestingWord: string[];
   testingWordLetters: WordLetter[] = [];
   answerLetters: WordLetter[] = [];
-  checkingLetterIndex: number;
+  checkingLetterIndex: number = 0;
 
   constructor(private mainService: MainService,
               private testWordsService: TestWordsService,
@@ -36,7 +40,7 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOftestingWord = this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage].split('');
+    this.lettersOfTestingWord = this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage].split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
     this.setUpAnswerLetters();
@@ -45,17 +49,17 @@ export class ComposeTranslation implements OnInit {
   setUptestingWordLetters() {
     this.testingWordLetters = [];
 
-    this.lettersOftestingWord.forEach((letter) => {
+    this.lettersOfTestingWord.forEach((letter) => {
       this.testingWordLetters.push({
         letter: letter,
         checked: false
-      })
+      });
     });
   }
 
   setUpAnswerLetters() {
     this.answerLetters = [];
-    var lettersOfTestingWordRandom = this.lettersOftestingWord.slice();
+    const lettersOfTestingWordRandom = this.lettersOfTestingWord.slice();
 
     // shuffle
     lettersOfTestingWordRandom.forEach((letter, i, answerLetters) => {
@@ -70,7 +74,7 @@ export class ComposeTranslation implements OnInit {
       this.answerLetters.push({
         letter: letter,
         checked: false
-      })
+      });
     });
   }
 
@@ -79,8 +83,12 @@ export class ComposeTranslation implements OnInit {
       this.testingWordLetters[this.checkingLetterIndex]['checked'] = true;
       answerLetter.checked = true;
       this.checkingLetterIndex += 1;
+    } else {
+      this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: false });
     }
 
-    if (this.checkingLetterIndex === this.lettersOftestingWord.length) this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: true });
+    if (this.checkingLetterIndex === this.lettersOfTestingWord.length) {
+      this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: true });
+    }
   }
 }

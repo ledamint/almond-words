@@ -1,5 +1,6 @@
 @import '../../../style/_variables.scss';
 
+// TODO: make scss structure
 :host {
   display: flex;
   flex-direction: column;
@@ -35,7 +36,6 @@
 }
 
 :host-context(.blue-theme) .letters_main-word .letter {
-  /*background-color: darkblue;*/
   color: $blue-theme-second-color;
   border-color: $blue-theme-second-color;
 }
@@ -51,14 +51,10 @@
 
 .letters_answer .letter:hover {
   background-color: #ff00ff;
-  /*color: purple;
-  border-color: purple;*/
 }
 
 :host-context(.blue-theme) .letters_answer .letter:hover {
   background-color: #4d88ff;
-  /*color: darkblue;
-  border-color: darkblue;*/
 }
 
 .letters_answer .letter:active {
