@@ -71,7 +71,13 @@ export class MainService {
           this.distributeWords();
           this.eventsService.onAddNewWord();
         },
-        err => this.eventsService.onServerError(err)
+        (err) => {
+          this.eventsService.onServerError(err);
+
+          setTimeout(() => {
+            this.addNewWord(newWord);
+          }, 600000);
+        }
       );
   }
 
@@ -91,7 +97,7 @@ export class MainService {
       .map((res) => res.json())
       .subscribe(
         (updatedWord) => {
-          const wordIndex = this.words.findIndex(word => word._id === updatedWord._id);          
+          const wordIndex = this.words.findIndex(word => word._id === updatedWord._id);
           this.words[wordIndex] = updatedWord;
         },
         err => this.eventsService.onServerError(err)
