@@ -30,21 +30,6 @@ h1 {
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
 
-.button {
-  margin: 0 auto;
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  font-size: 25px;
-  font-family: $main-font;
-  cursor: pointer;
-
-  &[disabled] {
-    color: grey;
-    cursor: not-allowed;
-  }
-}
-
 @media (max-width: 480px) {
   .text-input {
     width: 100%;

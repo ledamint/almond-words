@@ -34,6 +34,8 @@ export class Cards implements OnInit {
   }
 
   deleteWord(word: Word) {
-    this.mainService.deleteWord(word);
+    if (confirm('Are you sure?')) {
+      this.mainService.deleteWord(word);
+    }
   }
 }

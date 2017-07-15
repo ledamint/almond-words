@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service'
 
+// TODO: think about Word languages property, direct name of languages is not right
 export interface Word {
   english: string;
   russian: string;

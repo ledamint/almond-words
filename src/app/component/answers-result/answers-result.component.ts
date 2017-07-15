@@ -19,6 +19,7 @@ import { TestWordsService } from '../../service/test-words.service';
           </span>
         </div>
       </div>
+      <a routerLink="/cards" class="button">Cards</a>
     `,
     styleUrls: ['./answers-result.component.scss']
 })

@@ -22,6 +22,7 @@ a {
   }
 }
 
+// TODO: divide elements
 .side-panel {
   display: flex;
   flex-direction: column;
@@ -60,8 +61,20 @@ a {
   transform: translate(-50%, -50%);
 }
 
-// TODO: button and hover common style
-.button-animate {
+.button {
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  font-size: 25px;
+  font-family: $main-font;
+  cursor: pointer;
+  background-color: transparent;
+
+  &[disabled] {
+    color: grey !important;
+    cursor: auto !important;
+  }
+
   &:hover {
     color: $pink-theme-second-color;
   }

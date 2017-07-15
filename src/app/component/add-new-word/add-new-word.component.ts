@@ -11,7 +11,7 @@ import { EventsService }  from '../../service/events.service';
           <form class="new-word-form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
             <input class="text-input" type="text" name="main-word" placeholder="{{ mainService.mainLanguage }}" ngModel required>
             <input class="text-input" type="text" name="translation" placeholder="{{ mainService.auxiliaryLanguage }}" ngModel required>
-            <button class="button button-animate" type="submit" [disabled]="!newWordForm.valid">Submit</button>
+            <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">
               <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
@@ -35,20 +35,19 @@ export class AddNewWord implements OnInit {
   }
 
   addNewWord(form: NgForm) {
-    if (form.valid) {
-      const mainWord = form.value['main-word'].trim().toLowerCase();
-      const translation = form.value['translation'].trim().toLowerCase();
+    const mainWord = form.value['main-word'].trim().toLowerCase();
+    const translation = form.value['translation'].trim().toLowerCase();
 
-      const newWord: Word = {
-        english: '',
-        russian: ''
-      };
+    const newWord: Word = {
+      english: '',
+      russian: ''
+    };
 
-      newWord[this.mainService.mainLanguage] = mainWord;
-      newWord[this.mainService.auxiliaryLanguage] = translation;
+    newWord[this.mainService.mainLanguage] = mainWord;
+    newWord[this.mainService.auxiliaryLanguage] = translation;
 
-      this.mainService.addNewWord(newWord);
-    }
+    this.mainService.addNewWord(newWord);
+    form.reset();
   }
 
   showPopUp() {
