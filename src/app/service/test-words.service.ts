@@ -36,6 +36,18 @@ export class TestWordsService {
     this.onNewRound();
   }
 
+  repeatTest() {
+    this.testingWords = this.rightAnswers.concat(this.wrongAnswers);
+    this.clearAnswers();
+    this.onNewRound();
+  }
+
+  repeatWrongAnswersTest() {
+    this.testingWords = this.wrongAnswers;
+    this.clearAnswers();
+    this.onNewRound();
+  }
+
   finishTest() {
     this.mainService.distributeWords();
     this.router.navigateByUrl('/answers-result');

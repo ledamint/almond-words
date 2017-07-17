@@ -3,22 +3,59 @@
   text-align: center;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 .content {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .answers {
+  margin: 0 20px;
+
   &__answer {
     display: block;
+    margin-bottom: 5px;
     font-size: 20px;
   }
 
   &_right {
     color: darkblue;
+    text-align: right;
   }
 
   &_wrong {
     color: red;
+    text-align: left;
+  }
+}
+
+.button {
+  margin: 0 20px;
+
+  &_wrong:hover {
+    color: red;
+  }
+}
+
+@media (max-width: 480px) {
+  .answers {
+    margin: 0 10px;
+
+    h3 {
+      font-size: 17px;
+    }
+
+    &__answer {
+      font-size: 14px;
+    }
+  }
+
+  .button {
+    margin: 0 10px;
+    font-size: 20px;
   }
 }

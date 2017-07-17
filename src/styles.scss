@@ -62,7 +62,6 @@ a {
 }
 
 .button {
-  display: inline-block;
   border: 0;
   outline: 0;
   font-size: 25px;
@@ -103,5 +102,11 @@ a {
 
   .pop-up {
     width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 26px;
   }
 }
