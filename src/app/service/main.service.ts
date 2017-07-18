@@ -7,8 +7,8 @@ import { EventsService } from './events.service'
 
 // TODO: think about Word languages property, direct name of languages is not right
 export interface Word {
-  english: string;
-  russian: string;
+  learningLanguage: string;
+  familiarLanguage: string;
   _id?: string;
   time?: Date;
   knowledge?: number;
@@ -16,16 +16,16 @@ export interface Word {
 
 @Injectable()
 export class MainService {
-  mainLanguage: string = 'english';
-  auxiliaryLanguage: string = 'russian';
+  learningLanguage: string = 'english';
+  familiarLanguage: string = 'russian';
 
   words: Word[] = [];
   cards: Array<Word[]> = [];
 
   testingCard: Word[] = [];
   testingWord: Word = {
-    english: '',
-    russian: ''
+    learningLanguage: '',
+    familiarLanguage: ''
   };
 
   themes: string[] = ['pink', 'blue'];
@@ -103,12 +103,6 @@ export class MainService {
         },
         err => this.eventsService.onServerError(err)
       );
-  }
-
-  changeLanguages() {
-    const temp = this.mainLanguage;
-    this.mainLanguage = this.auxiliaryLanguage;
-    this.auxiliaryLanguage = temp;
   }
 
   changeBackground() {

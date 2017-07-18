@@ -30,7 +30,7 @@ var Background = (function () {
                 left: 0,
                 top: 0
             };
-            var randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['english'];
+            var randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['learningLanguage'];
             backgroundLine.word = randomWord;
             backgroundLine.left = i;
             backgroundLine.top = -Math.floor((Math.random() * 200) + 1);

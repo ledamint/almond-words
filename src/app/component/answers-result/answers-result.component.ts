@@ -8,16 +8,18 @@ import { TestWordsService } from '../../service/test-words.service';
   template: `
       <h1>Results</h1>
       <div class="content">
-        <div class="answers answers_right" [hidden]="testWordsService.rightAnswers.length === 0">
-          <h3 [style.text-align]="testWordsService.wrongAnswers.length === 0 ? 'center' : 'right'">Right</h3>
+        <div class="answers answers_right" [hidden]="testWordsService.rightAnswers.length === 0"
+          [style.text-align]="testWordsService.wrongAnswers.length === 0 ? 'center' : 'right'">
+          <h3>Right</h3>
           <span *ngFor="let rightAnswer of testWordsService.rightAnswers" class="answers__answer">
-            {{ rightAnswer[mainService.mainLanguage] }} - {{ rightAnswer[mainService.auxiliaryLanguage] }}
+            {{ rightAnswer.learningLanguage }} - {{ rightAnswer.familiarLanguage }}
           </span>
         </div>
-        <div class="answers answers_wrong" [hidden]="testWordsService.wrongAnswers.length === 0">
-        <h3 [style.text-align]="testWordsService.rightAnswers.length === 0 ? 'center' : 'left'">Wrong</h3>
+        <div class="answers answers_wrong" [hidden]="testWordsService.wrongAnswers.length === 0"
+          [style.text-align]="testWordsService.rightAnswers.length === 0 ? 'center' : 'left'">
+        <h3>Wrong</h3>
           <span *ngFor="let wrongAnswer of testWordsService.wrongAnswers" class="answers__answer">
-            {{ wrongAnswer[mainService.mainLanguage] }} - {{ wrongAnswer[mainService.auxiliaryLanguage] }}
+            {{ wrongAnswer.learningLanguage }} - {{ wrongAnswer.familiarLanguage }}
           </span>
         </div>
       </div>

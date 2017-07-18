@@ -27,11 +27,11 @@ export class ChooseTranslation implements OnInit {
   setUpOneRound() {
     this.answers = [];
 
-    const realTranslation = this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage];
+    const realTranslation = this.testWordsService.currentTestingWord.learningLanguage;
 
     while (true) {
       const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)];
-      const randomTransaltion = randomWord[this.mainService.auxiliaryLanguage];
+      const randomTransaltion = randomWord.learningLanguage;
 
       if (this.answers.indexOf(randomTransaltion) === -1) {
         if (randomTransaltion !== realTranslation) {
@@ -47,7 +47,7 @@ export class ChooseTranslation implements OnInit {
   }
 
   checkAnswer(answer: string) {
-    if (this.testWordsService.currentTestingWord[this.mainService.auxiliaryLanguage] === answer) {
+    if (this.testWordsService.currentTestingWord.learningLanguage === answer) {
       this.eventsService.onEnterAnswer({ testId: 0, isAnswerRight: true });
     } else {
       this.eventsService.onEnterAnswer({ testId: 0, isAnswerRight: false });

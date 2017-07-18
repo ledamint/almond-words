@@ -13,7 +13,9 @@ module.exports = function(app, db) {
   });
 
   app.delete('/words/:id', (req, res) => {
-    const wordId = { _id:  new ObjectID(req.params.id) };
+    const wordId = {
+      _id: new ObjectID(req.params.id)
+    };
 
     db.collection('words').remove(wordId, (err, result) => {
       if (err) {
@@ -41,7 +43,9 @@ module.exports = function(app, db) {
   });
 
   app.put('/words/:id', (req, res) => {
-    const details = { _id:  new ObjectID(req.params.id) };
+    const details = {
+      _id: new ObjectID(req.params.id)
+    };
 
     // TODO: make find and update in one query
     db.collection('words').findOne(details, (err, result) => {

@@ -38,7 +38,7 @@ export class Background implements OnInit  {
         left: 0,
         top: 0
       };
-      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['english'];
+      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['learningLanguage'];
       backgroundLine.word = randomWord;
       backgroundLine.left = i;
       backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
