@@ -8,7 +8,7 @@ import { EventsService }  from '../../service/events.service';
   selector: 'add-new-word',
   template: `
           <h1>Add a new word</h1>
-          <form class="new-word-form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
+          <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
             <input class="text-input" type="text" name="main-word" placeholder="{{ mainService.learningLanguage }}" ngModel required>
             <input class="text-input" type="text" name="translation" placeholder="{{ mainService.familiarLanguage }}" ngModel required>
             <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>

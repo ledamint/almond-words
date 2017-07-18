@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './component/app/app.component';
+import { Login } from './component/login/login.component';
 import { Background } from './component/background/background.component';
 import { Cards } from './component/cards/cards.component';
 import { AddNewWord } from './component/add-new-word/add-new-word.component';
@@ -21,6 +22,7 @@ import { TestWordsService } from './service/test-words.service';
 
 // TODO move to separate file
 const appRoutes: Routes = [
+  { path: 'login', component: Login },
   { path: 'cards', component: Cards },
   { path: 'add-new-word', component: AddNewWord },
   { path: 'test-choice', component: TestChoice },
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent,
+                  Login,
                   Background,
                   Cards,
                   AddNewWord,
