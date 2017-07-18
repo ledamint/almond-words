@@ -7,7 +7,8 @@ import { EventsService }  from '../../service/events.service';
 @Component({
   selector: 'cards',
   template: `
-      <h1>Your words</h1>
+      <h1>Your {{  mainService.words.length > 0 ? mainService.words.length : '' }} words</h1>
+      <p class="description" [hidden]="mainService.words.length !== 0">You need to add new words</p>
       <div class="cards">
         <div *ngFor="let card of mainService.cards" class="card">
           <span *ngFor="let word of card" title="{{ word.familiarLanguage }}" [style.opacity]="word.knowledge/10" class="word">
@@ -18,7 +19,7 @@ import { EventsService }  from '../../service/events.service';
         </div>
       </div>
       <div class="side-panel">
-          <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>        
+          <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']

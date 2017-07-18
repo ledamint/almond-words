@@ -1,3 +1,5 @@
+@import '../../../style/_variables.scss';
+
 :host {
   display: block;
   text-align: center;
@@ -23,7 +25,7 @@ h1 {
   }
 
   &_right {
-    color: darkblue;  
+    color: $blue-theme-second-color;
   }
 
   &_wrong {

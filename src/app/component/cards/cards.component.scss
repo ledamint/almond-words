@@ -1,5 +1,10 @@
 @import '../../../style/_variables.scss';
 
+.description {
+  margin: 0;
+  text-align: center;
+}
+
 .cards {
   display: flex;
   justify-content: center;
@@ -9,9 +14,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 170px;
   margin: 0 10px 20px;
-  padding: 10px;
+  padding: 10px 0 0;
   border: 2px solid $pink-theme-second-color;
   border-radius: 10px;
   font-size: 20px;
@@ -43,6 +48,14 @@
   transform: translateX(-50%);
   cursor: pointer;
   text-align: center;
+}
+
+.type-of-test {
+  display: inline-block;
+  margin-top: auto;
+  padding: 10px 0;
+  border-top: 2px solid $blue-theme-second-color;
+  border-radius: 0 0 7px 7px;
 }
 
 @media (max-width: 480px) {
