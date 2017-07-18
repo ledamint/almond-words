@@ -92,16 +92,33 @@ export class MainService {
       );
   }
 
-  updateWordKnowledge(wordId: string, points: number) {
-    this.http.put('words/' + wordId, { points })
+  updateWordKnowledge(wordId: string, addingPoints: number) {
+    const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
+    const entirePoints = this.calculateEntirePoints(this.words[updatedWordIndex].knowledge, addingPoints);
+
+    this.words[updatedWordIndex].knowledge = entirePoints;
+
+    this.http.put('words/' + wordId, this.words[updatedWordIndex])
       .map((res) => res.json())
       .subscribe(
         (updatedWord) => {
-          const wordIndex = this.words.findIndex(word => word._id === updatedWord._id);
-          this.words[wordIndex] = updatedWord;
+          
         },
         err => this.eventsService.onServerError(err)
       );
+  }
+
+  calculateEntirePoints(currentKnowledgePoints: number, addingKnowledgePoints: number) {
+    if (currentKnowledgePoints !== undefined) {
+      currentKnowledgePoints += addingKnowledgePoints;
+    } else {
+      currentKnowledgePoints = 1 + addingKnowledgePoints;
+    }
+
+    if (currentKnowledgePoints > 10) currentKnowledgePoints = 10;
+    if (currentKnowledgePoints < 1) currentKnowledgePoints = 1;
+
+    return currentKnowledgePoints;
   }
 
   changeBackground() {

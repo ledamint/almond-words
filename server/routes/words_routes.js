@@ -32,7 +32,7 @@ module.exports = function(app, db) {
     word.time = new Date;
     word.knowledge = 1;
 
-    db.collection('words').insert(word, (err, result) => {
+    db.collection('words').insertOne(word, (err, result) => {
       if (err) {
         console.log(err);
         res.send(500);
@@ -43,36 +43,20 @@ module.exports = function(app, db) {
   });
 
   app.put('/words/:id', (req, res) => {
-    const details = {
-      _id: new ObjectID(req.params.id)
-    };
+      const wordId = {
+        _id: new ObjectID(req.params.id)
+      };
 
-    // TODO: make find and update in one query
-    db.collection('words').findOne(details, (err, result) => {
-      if (err) {
-        console.log(err);
-        res.send(500);
-      } else {
-        const word = result;
+      const word = req.body;
+      delete word._id;
 
-        if (word.knowledge !== undefined) {
-          word.knowledge += req.body.points;
+      db.collection('words').updateOne(wordId, word, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.send(500);
         } else {
-          word.knowledge = 1 + req.body.points;
+          res.send(word);
         }
-
-        if (word.knowledge > 10) word.knowledge = 10;
-        if (word.knowledge < 1) word.knowledge = 1;
-
-        db.collection('words').update(details, word, (err, result) => {
-          if (err) {
-            console.log(err);
-            res.send(500);
-          } else {
-            res.send(word);
-          }
-        });
-      }
-    });
+      });
   });
 };
