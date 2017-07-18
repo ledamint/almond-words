@@ -29,6 +29,7 @@ export class ChooseTranslation implements OnInit {
 
     const realTranslation = this.testWordsService.currentTestingWord.learningLanguage;
 
+    // TODO remove endless cycle
     while (true) {
       const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)];
       const randomTransaltion = randomWord.learningLanguage;
