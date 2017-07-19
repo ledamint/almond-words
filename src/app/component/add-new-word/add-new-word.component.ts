@@ -39,12 +39,12 @@ export class AddNewWord implements OnInit {
     const translation = form.value['translation'].trim().toLowerCase();
 
     const newWord: Word = {
-      learningLanguage: '',
-      familiarLanguage: ''
+      learningWord: '',
+      familiarWord: ''
     };
 
-    newWord.learningLanguage = mainWord;
-    newWord.familiarLanguage = translation;
+    newWord.learningWord = mainWord;
+    newWord.familiarWord = translation;
 
     this.mainService.addNewWord(newWord);
     form.reset();

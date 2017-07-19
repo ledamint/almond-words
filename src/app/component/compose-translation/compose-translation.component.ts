@@ -40,7 +40,7 @@ export class ComposeTranslation implements OnInit {
   }
 
   setUpOneRound() {
-    this.lettersOfTestingWord = this.testWordsService.currentTestingWord.learningLanguage.split('');
+    this.lettersOfTestingWord = this.testWordsService.currentTestingWord.learningWord.split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
     this.setUpAnswerLetters();

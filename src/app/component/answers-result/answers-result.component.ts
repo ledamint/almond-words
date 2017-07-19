@@ -12,14 +12,14 @@ import { TestWordsService } from '../../service/test-words.service';
           [style.text-align]="testWordsService.wrongAnswers.length === 0 ? 'center' : 'right'">
           <h3>Right</h3>
           <span *ngFor="let rightAnswer of testWordsService.rightAnswers" class="answers__answer">
-            {{ rightAnswer.learningLanguage }} - {{ rightAnswer.familiarLanguage }}
+            {{ rightAnswer.learningWord }} - {{ rightAnswer.familiarWord }}
           </span>
         </div>
         <div class="answers answers_wrong" [hidden]="testWordsService.wrongAnswers.length === 0"
           [style.text-align]="testWordsService.rightAnswers.length === 0 ? 'center' : 'left'">
         <h3>Wrong</h3>
           <span *ngFor="let wrongAnswer of testWordsService.wrongAnswers" class="answers__answer">
-            {{ wrongAnswer.learningLanguage }} - {{ wrongAnswer.familiarLanguage }}
+            {{ wrongAnswer.learningWord }} - {{ wrongAnswer.familiarWord }}
           </span>
         </div>
       </div>

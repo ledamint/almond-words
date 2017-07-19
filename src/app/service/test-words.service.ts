@@ -15,8 +15,8 @@ export class TestWordsService {
   rightAnswers: Word[] = [];
   wrongAnswers: Word[] = [];
   currentTestingWord: Word = {
-    learningLanguage: '',
-    familiarLanguage: ''
+    learningWord: '',
+    familiarWord: ''
   };
   pointsForAnswerByTestId: number[] = [1, 2, 3];
 

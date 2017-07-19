@@ -11,8 +11,8 @@ import { EventsService }  from '../../service/events.service';
       <p class="description" [hidden]="mainService.words.length !== 0">You need to add new words</p>
       <div class="cards">
         <div *ngFor="let card of mainService.cards" class="card">
-          <span *ngFor="let word of card" title="{{ word.familiarLanguage }}" [style.opacity]="word.knowledge/10" class="word">
-            {{ word.learningLanguage }}
+          <span *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word">
+            {{ word.learningWord }}
             <span class="delete" (click)="deleteWord(word)">delete</span>
           </span>
           <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test" (click)="testWordsService.startTest(card)">Check it</a>

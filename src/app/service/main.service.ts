@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service'
 
 export interface Word {
-  learningLanguage: string;
-  familiarLanguage: string;
+  learningWord: string;
+  familiarWord: string;
   _id?: string;
   time?: Date;
   knowledge?: number;
@@ -23,8 +23,8 @@ export class MainService {
 
   testingCard: Word[] = [];
   testingWord: Word = {
-    learningLanguage: '',
-    familiarLanguage: ''
+    learningWord: '',
+    familiarWord: ''
   };
 
   themes: string[] = ['pink', 'blue'];
@@ -99,7 +99,7 @@ export class MainService {
       .subscribe(
         (updatedWord) => {
           const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
-          this.words[updatedWordIndex] = updatedWord;        
+          this.words[updatedWordIndex] = updatedWord;
         },
         err => this.eventsService.onServerError(err)
       );
