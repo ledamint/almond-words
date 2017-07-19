@@ -37,12 +37,13 @@ export class MainService {
   setUpWords() {
     this.http.get('words')
       .map(res => res.json())
-      .subscribe((data) => {
-        this.words = data;
-        this.distributeWords();
-      },
-      err => this.eventsService.onServerError(err)
-    );
+      .subscribe(
+        (data) => {
+          this.words = data;
+          this.distributeWords();
+        },
+        err => this.eventsService.onServerError(err)
+      );
   }
 
   distributeWords() {
@@ -92,20 +93,23 @@ export class MainService {
       );
   }
 
+  updateWord(wordId: string, changes: Object) {
+    this.http.put('words/' + wordId, changes)
+      .map((res) => res.json())
+      .subscribe(
+        (updatedWord) => {
+          const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
+          this.words[updatedWordIndex] = updatedWord;        
+        },
+        err => this.eventsService.onServerError(err)
+      );
+  }
+
   updateWordKnowledge(wordId: string, addingPoints: number) {
     const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
     const entirePoints = this.calculateEntirePoints(this.words[updatedWordIndex].knowledge, addingPoints);
 
-    this.words[updatedWordIndex].knowledge = entirePoints;
-
-    this.http.put('words/' + wordId, this.words[updatedWordIndex])
-      .map((res) => res.json())
-      .subscribe(
-        (updatedWord) => {
-          
-        },
-        err => this.eventsService.onServerError(err)
-      );
+    this.updateWord(wordId, { knowledge: entirePoints });
   }
 
   calculateEntirePoints(currentKnowledgePoints: number, addingKnowledgePoints: number) {

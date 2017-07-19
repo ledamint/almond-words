@@ -47,15 +47,15 @@ module.exports = function(app, db) {
         _id: new ObjectID(req.params.id)
       };
 
-      const word = req.body;
-      delete word._id;
+      const changes = req.body;
+      delete changes._id;
 
-      db.collection('words').updateOne(wordId, word, (err, result) => {
+      db.collection('words').findOneAndUpdate(wordId, { $set: changes }, { returnOriginal: false }, (err, result) => {
         if (err) {
           console.log(err);
           res.send(500);
         } else {
-          res.send(word);
+          res.send(result.value);
         }
       });
   });
