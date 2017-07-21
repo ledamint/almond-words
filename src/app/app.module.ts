@@ -33,11 +33,7 @@ const appRoutes: Routes = [
       { path: 'compose-translation', component: ComposeTranslation },
       { path: 'write-translation', component: WriteTranslation }
     ] },
-  { path: 'answers-result', component: AnswersResult },
-  { path: '',
-    redirectTo: '/cards',
-    pathMatch: 'full'
-  }
+  { path: 'answers-result', component: AnswersResult }
 ];
 
 @NgModule({

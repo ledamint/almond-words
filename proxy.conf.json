@@ -1,5 +1,13 @@
 {
+  "/login": {
+    "target": "http://localhost:3000",
+    "secure": false
+  },
   "/words": {
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+  "/users": {
     "target": "http://localhost:3000",
     "secure": false
   }

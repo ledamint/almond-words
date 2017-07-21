@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Router } from '@angular/router'
 
 import 'rxjs/add/operator/map';
 
@@ -31,7 +32,8 @@ export class MainService {
   currentThemeId: number = 1;
 
   constructor(private http: Http,
-              private eventsService: EventsService) {
+              private eventsService: EventsService,
+              private router: Router) {
   }
 
   setUpWords() {
@@ -42,6 +44,30 @@ export class MainService {
           this.words = data;
           this.distributeWords();
         },
+        err => this.eventsService.onServerError(err)
+      );
+  }
+
+  checkLogin(userData: Object = { }) {
+    this.http.post('login', userData)
+      .map(res => res.json())
+      .subscribe(
+        // TODO: divide requests
+        (isLoginDone) => {
+          if (isLoginDone) this.router.navigateByUrl('/cards');
+          else this.router.navigateByUrl('/login');
+        },
+        (err) => {
+          this.eventsService.onServerError(err);
+          this.router.navigateByUrl('/login');
+        }
+      );
+  }
+
+  logout() {
+    this.http.post('logout', { })
+      .subscribe(
+        () => this.router.navigateByUrl('/login'),
         err => this.eventsService.onServerError(err)
       );
   }
@@ -61,10 +87,7 @@ export class MainService {
   }
 
   addNewWord(newWord: Word) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    this.http.post('words', newWord, options)
+    this.http.post('words', newWord)
       .map((res) => res.json())
       .subscribe(
         (newWord) => {

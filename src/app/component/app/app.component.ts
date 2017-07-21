@@ -25,10 +25,10 @@ export class AppComponent implements OnInit {
               private eventService: EventsService) {  }
 
   ngOnInit() {
-    this.mainService.setUpWords();
-
     this.eventService.serverError$
       .subscribe(err => this.showError(err));
+
+    this.mainService.checkLogin();
   }
 
   showError(err) {

@@ -20,6 +20,7 @@ import { EventsService }  from '../../service/events.service';
       </div>
       <div class="side-panel">
           <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>
+          <a class="side-panel__item" (click)="mainService.logout()">logout</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']
@@ -30,7 +31,7 @@ export class Cards implements OnInit {
               private eventsService: EventsService) { }
 
   ngOnInit() {
-
+    this.mainService.setUpWords();
   }
 
   deleteWord(word: Word) {
