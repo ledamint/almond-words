@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['key'],
-  maxAge: 24 * 60 * 60 * 1000
+  keys: ['logarifm'],
+  maxAge: 31 * 24 * 60 * 60 * 1000
 }));
 
 MongoClient.connect(dbCongig.url, (err, db) => {

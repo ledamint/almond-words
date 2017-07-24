@@ -128,6 +128,7 @@ export class MainService {
       );
   }
 
+  // TODO: move to server
   updateWordKnowledge(wordId: string, addingPoints: number) {
     const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
     const entirePoints = this.calculateEntirePoints(this.words[updatedWordIndex].knowledge, addingPoints);
