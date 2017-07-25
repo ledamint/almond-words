@@ -23,6 +23,7 @@ a {
 }
 
 // TODO: divide elements
+
 .side-panel {
   display: flex;
   flex-direction: column;
@@ -118,6 +119,19 @@ a {
   }
 }
 
+// TODO: replace all similar styles
+.theme-color {
+  cursor: pointer;
+
+  &:hover {
+    color: $blue-theme-second-color;
+  }
+
+  &.active {
+    color: $blue-theme-second-color;
+  }
+}
+
 // TODO: make width as variables
 @media (max-width: 1070px) {
   .side-panel {
@@ -139,5 +153,9 @@ a {
 @media (max-width: 480px) {
   h1 {
     font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
   }
 }

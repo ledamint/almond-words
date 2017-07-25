@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
             <a routerLink="/test/compose-translation" routerLinkActive="active" class="test-choice__item">medium</a>
             <a routerLink="/test/write-translation" routerLinkActive="active" class="test-choice__item">hard</a>
         </div>
-    `,
+        <div class="side-panel">
+            <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+        </div>`,
     styleUrls: ['./test-choice.component.scss']
 })
 export class TestChoice { }

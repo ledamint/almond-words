@@ -14,6 +14,16 @@ export interface Word {
   knowledge?: number;
 }
 
+export interface Sort {
+  name: string;
+  value: string;
+  isActive: boolean;
+}
+
+export interface Options {
+  sorts: Sort[];
+}
+
 @Injectable()
 export class MainService {
   learningLanguage: string = 'english';
@@ -21,6 +31,26 @@ export class MainService {
 
   words: Word[] = [];
   cards: Array<Word[]> = [];
+
+  // TODO: move to mongo and init options after login
+  options: Options = {
+    sorts: [
+      {
+        name: 'alphabet',
+        value: 'learningWord',
+        isActive: false
+      },
+      {
+        name: 'time of addition',
+        value: 'time',
+        isActive: false
+      },
+      {
+        name: 'knowledge',
+        value: 'knowledge',
+        isActive: false
+      }
+  ]};
 
   testingCard: Word[] = [];
   testingWord: Word = {
@@ -54,7 +84,10 @@ export class MainService {
       .subscribe(
         // TODO: divide requests
         (isLoginDone) => {
-          if (isLoginDone) this.router.navigateByUrl('/cards');
+          if (isLoginDone) {
+            this.setUpWords();
+            this.router.navigateByUrl('/cards');
+          }
           else this.router.navigateByUrl('/login');
         },
         (err) => {
@@ -84,6 +117,28 @@ export class MainService {
 
       this.cards[cardId].push(word);
     });
+  }
+
+  sortWords(key: string, isInverse: boolean = false) {
+    this.options.sorts.forEach((sort) => {
+      if (sort.value === key) sort.isActive = true;
+      else sort.isActive = false;
+    });
+
+    let a = 1;
+    let b = -1
+
+    if (isInverse) {
+      a = -1;
+      b = 1;
+    }
+
+    this.words.sort((word1, word2) => {
+      if (word1[key] > word2[key]) return a;
+      if (word1[key] < word2[key]) return b;
+    });
+
+    this.distributeWords();
   }
 
   addNewWord(newWord: Word) {

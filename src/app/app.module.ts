@@ -8,6 +8,7 @@ import { AppComponent } from './component/app/app.component';
 import { Login } from './component/login/login.component';
 import { Background } from './component/background/background.component';
 import { Cards } from './component/cards/cards.component';
+import { Options } from './component/options/options.component';
 import { AddNewWord } from './component/add-new-word/add-new-word.component';
 import { TestChoice } from './component/test-choice/test-choice.component';
 import { TestBlock } from './component/test-block/test-block.component';
@@ -24,6 +25,7 @@ import { TestWordsService } from './service/test-words.service';
 const appRoutes: Routes = [
   { path: 'login', component: Login },
   { path: 'cards', component: Cards },
+  { path: 'options', component: Options },
   { path: 'add-new-word', component: AddNewWord },
   { path: 'test-choice', component: TestChoice },
   { path: 'test',
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
                   Background,
                   Cards,
                   AddNewWord,
+                  Options,
                   TestChoice,
                   TestBlock,
                   AnswersResult,

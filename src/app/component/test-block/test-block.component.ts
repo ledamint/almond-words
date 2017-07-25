@@ -8,7 +8,9 @@ import { EventsService }  from '../../service/events.service';
   template: `
         <span class="origin-word">{{ testWordsService.currentTestingWord.familiarWord }}</span>
         <router-outlet (activate)="onActivate()"></router-outlet>
-    `,
+        <div class="side-panel">
+            <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+        </div>`,
   styleUrls: ['./test-block.component.scss']
 })
 export class TestBlock {

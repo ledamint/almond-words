@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MainService, Word }  from '../../service/main.service';
 import { TestWordsService }  from '../../service/test-words.service';
@@ -20,19 +20,16 @@ import { EventsService }  from '../../service/events.service';
       </div>
       <div class="side-panel">
           <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>
+          <a routerLink="/options" routerLinkActive="active" class="side-panel__item">options</a>
           <a class="side-panel__item" (click)="mainService.logout()">logout</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']
 })
-export class Cards implements OnInit {
+export class Cards {
   constructor(private mainService: MainService,
               private testWordsService: TestWordsService,
               private eventsService: EventsService) { }
-
-  ngOnInit() {
-    this.mainService.setUpWords();
-  }
 
   deleteWord(word: Word) {
     if (confirm('Are you sure?')) {

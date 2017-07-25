@@ -6,3 +6,11 @@
     font-size: 32px;
   }
 }
+
+@media (max-width: 480px) {
+  .test-choice {
+    &__item {
+      font-size: 25px;
+    }
+  }
+}
