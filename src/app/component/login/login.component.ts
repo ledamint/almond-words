@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { MainService }  from '../../service/main.service';
+import { AuthorizationService }  from '../../service/authorization.service';
 
 @Component({
   selector: 'login',
@@ -15,7 +15,7 @@ import { MainService }  from '../../service/main.service';
   styleUrls: ['./login.component.scss']
 })
 export class Login {
-  constructor(private mainService: MainService) { }
+  constructor(private authorizationService: AuthorizationService) { }
 
   checkLogin(form: NgForm) {
     const userData = {
@@ -23,6 +23,6 @@ export class Login {
       password: form.value.password
     }
 
-    this.mainService.checkLogin(userData);
+    this.authorizationService.checkLogin(userData);
   }
 }

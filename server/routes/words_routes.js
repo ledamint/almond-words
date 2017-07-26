@@ -34,7 +34,7 @@ module.exports = function(app, db) {
     res.send(true);
   });
 
-  app.get('/words', (req, res) => {
+  app.get('/user', (req, res) => {
     const userId = {
       _id: new ObjectID(req.session._id)
     };
@@ -44,7 +44,7 @@ module.exports = function(app, db) {
         console.log(err);
         res.sendStatus(500);
       } else {
-        res.send(user.boards[user.activeBoard].words);
+        res.send(user);
       }
     });
   });

@@ -28,7 +28,7 @@ export class Background implements OnInit  {
 
   ngOnInit(): void {
     this.setUpBackgroundLines();
-    this.setUpAnimation();  
+    this.setUpAnimation();
   }
 
   setUpBackgroundLines(): void {
@@ -38,7 +38,7 @@ export class Background implements OnInit  {
         left: 0,
         top: 0
       };
-      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)]['learningLanguage'];
+      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)].learningWord;
       backgroundLine.word = randomWord;
       backgroundLine.left = i;
       backgroundLine.top = -Math.floor((Math.random() * 200) + 1);

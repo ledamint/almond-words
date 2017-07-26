@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MainService }  from '../../service/main.service';
+import { AuthorizationService }  from '../../service/authorization.service';
 import { EventsService }  from '../../service/events.service';
+import { OptionsService }  from '../../service/options.service';
 
 @Component({
   selector: 'my-app',
   template: `
-    <div class="wrapper" [class.blue-theme]="mainService.themes[mainService.currentThemeId] === 'blue' ? true : false">
+    <div class="wrapper" [class.blue-theme]="optionsService.themes[optionsService.currentThemeId] === 'blue' ? true : false">
         <main class="content">
           <router-outlet></router-outlet>
         </main>
@@ -21,14 +22,15 @@ export class AppComponent implements OnInit {
   // TODO add type
   err: Object = { };
 
-  constructor(private mainService: MainService,
-              private eventService: EventsService) {  }
+  constructor(private authorizationService: AuthorizationService,
+              private eventsService: EventsService,
+              private optionsService: OptionsService) {  }
 
   ngOnInit() {
-    this.eventService.serverError$
+    this.eventsService.serverError$
       .subscribe(err => this.showError(err));
 
-    this.mainService.checkLogin();
+    this.authorizationService.checkLogin();
   }
 
   showError(err) {

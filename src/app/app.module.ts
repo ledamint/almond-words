@@ -17,8 +17,10 @@ import { ChooseTranslation } from './component/choose-translation/choose-transla
 import { ComposeTranslation } from './component/compose-translation/compose-translation.component';
 import { WriteTranslation } from './component/write-translation/write-translation.component';
 
+import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
 import { EventsService } from './service/events.service';
+import { OptionsService } from './service/options.service';
 import { TestWordsService } from './service/test-words.service';
 
 // TODO move to separate file
@@ -53,6 +55,6 @@ const appRoutes: Routes = [
                   ComposeTranslation,
                   WriteTranslation ],
   bootstrap: [ AppComponent ],
-  providers: [ MainService, EventsService, TestWordsService ]
+  providers: [ AuthorizationService, MainService, EventsService, TestWordsService, OptionsService ]
 })
 export class AppModule { }
