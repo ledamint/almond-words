@@ -5,21 +5,15 @@ import { ResultTestAnswer } from './test-words.service'
 
 @Injectable()
 export class EventsService {
-  private userDataIsReadySubject = new Subject<void>();
   private newRoundSubject = new Subject<void>();
   private enterAnswerSubject = new Subject<ResultTestAnswer>();
   private addNewWordSubject = new Subject<void>();
   private serverErrorSubject = new Subject<any>();
 
-  userDataIsReady$ = this.userDataIsReadySubject.asObservable();
   newRound$ = this.newRoundSubject.asObservable();
   enterAnswer$ = this.enterAnswerSubject.asObservable();
   addNewWord$ = this.addNewWordSubject.asObservable();
   serverError$ = this.serverErrorSubject.asObservable();
-
-  onUserDataIsReady() {
-    this.userDataIsReadySubject.next();
-  }
 
   onNewRound() {
     this.newRoundSubject.next();

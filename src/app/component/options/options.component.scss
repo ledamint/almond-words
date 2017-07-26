@@ -2,19 +2,37 @@
   text-align: center;
 }
 
-.sort {
-  margin-right: 5px;
-  padding-right: 5px;
-  border-right: 1px solid darkblue;
+h1 {
+  border-bottom: 2px solid darkblue;
+  padding-bottom: 10px;
+  border-radius: 10%;
+}
+
+.option-item {
+  margin-right: 15px;
   font-size: 20px;
 
-  &:last-of-type {
-    border-right: 0;
+  &_title {
+    font-size: 15px;
+    font-weight: bold;
   }
 }
 
+.buttons {
+  border-top: 2px solid darkblue;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-radius: 10%;
+}
+
 @media (max-width: 480px) {
-  .sort {
+  .option-item {
     font-size: 16px;
+
+    &_title {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
   }
 }
