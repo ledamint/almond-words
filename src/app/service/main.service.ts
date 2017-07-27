@@ -6,52 +6,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service'
 import { OptionsService } from './options.service'
 
-// TODO: move interfaces to separate file
-
-interface User {
-  _id: string;
-  email: string;
-  password: string;
-  activeBoard: number;
-  registrationTime: Date;
-  boards: Board[];
-  options: Options;
-}
-
-interface Board {
-  learningLanguage: string;
-  familiarLanguage: string;
-  words: Word[];
-}
-
-interface Sort {
-  name: string;
-  value: string;
-  isActive: boolean;
-}
-
-export interface Options {
-  sorts: Sort[];
-  filter: Filter;
-}
-
-interface Filter {
-  knowledge: Knowledge[];
-}
-
-interface Knowledge {
-  name: string;
-  value: number[];
-  isActive: boolean;
-}
-
-export interface Word {
-  _id?: string;
-  learningWord: string;
-  familiarWord: string;
-  time?: Date;
-  knowledge?: number;
-}
+import { User, Word, Knowledge, Sort } from './interface/interfaces'
 
 // TODO: create and move needed part to words service
 @Injectable()
@@ -71,7 +26,7 @@ export class MainService {
     this.http.get('user')
       .map(res => res.json())
       .subscribe(
-        (user) => {
+        (user: User) => {
           this.optionsService.setUp(user.options);
           this.setUpWords(user.boards[user.activeBoard].words);
         },
@@ -147,7 +102,7 @@ export class MainService {
     this.http.post('words', newWord)
       .map((res) => res.json())
       .subscribe(
-        (newWord) => {
+        (newWord: Word) => {
           this.allWords.push(newWord);
           this.updateWords();
           this.eventsService.onAddNewWord();
@@ -177,9 +132,10 @@ export class MainService {
     this.http.put('words/' + wordId, changes)
       .map((res) => res.json())
       .subscribe(
-        (updatedWord) => {
+        (updatedWord: Word) => {
           const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
           this.allWords[updatedWordIndex] = updatedWord;
+          console.log(updatedWord)
         },
         err => this.eventsService.onServerError(err)
       );

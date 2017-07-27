@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 
 import { EventsService }  from './events.service';
-import { MainService, Word } from './main.service'
+import { MainService } from './main.service'
+
+import { Word } from './interface/interfaces'
 
 export interface ResultTestAnswer {
   testId: number;

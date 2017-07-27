@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Options } from './main.service';
+import { Options } from './interface/interfaces';
 
 // TODO move common options data to separate collection
 
