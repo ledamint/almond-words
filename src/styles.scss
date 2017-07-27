@@ -31,6 +31,7 @@ a {
   top: 50%;
   left: 0;
   font-size: 22px;
+  text-align: right;
   background-color: transparent;
   transform: translate(-115%, -50%);
 
@@ -128,12 +129,18 @@ a {
   }
 
   &.active {
-    color: $blue-theme-second-color;
+    color: $blue-theme-second-color !important;
   }
 }
 
 // TODO: make width as variables
-@media (max-width: 1070px) {
+@media (max-width: 1023px) {
+  .theme-color {
+    &:hover {
+      color: inherit;
+    }
+  }
+
   .side-panel {
     position: relative;
     flex-direction: row;

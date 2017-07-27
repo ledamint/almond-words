@@ -49,7 +49,7 @@ export class TestWordsService {
   }
 
   finishTest() {
-    this.mainService.distributeWords();
+    this.mainService.updateWords();
     this.router.navigateByUrl('/answers-result');
   }
 

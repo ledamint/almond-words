@@ -2,6 +2,8 @@
 
 .wrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   width: 100%;
   min-height: 100%;
@@ -21,7 +23,6 @@
   box-sizing: border-box;
   min-width: 50%;
   max-width: 75%;
-  margin: auto;
   padding: 30px;
   border-radius: 5px;
   background-color: $pink-theme-main-color;
@@ -36,15 +37,12 @@
   background-color: $blue-theme-main-color;
 }
 
-@media (max-width: 1070px) {
-  .wrapper {
-      padding: 50px 0;
-  }
-
+@media (max-width: 1023px) {
   .content {
     width: 100%;
     max-width: 100%;
     padding: 12px;
+    margin: 60px 0;
     border-radius: 0;
   }
 }

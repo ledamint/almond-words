@@ -8,7 +8,7 @@ import { TestWordsService }  from '../../service/test-words.service';
   selector: 'cards',
   template: `
       <h1>Your {{  mainService.words.length > 0 ? mainService.words.length : '' }} words</h1>
-      <p class="description" [hidden]="mainService.words.length !== 0">You need to add new words</p>
+      <p class="description" [hidden]="mainService.words.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
         <div *ngFor="let card of mainService.cards" class="card">
           <span *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word">

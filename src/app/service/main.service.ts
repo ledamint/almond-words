@@ -56,7 +56,7 @@ export interface Word {
 // TODO: create and move needed part to words service
 @Injectable()
 export class MainService {
-  user: User;
+  allWords: Word[] = [];
   words: Word[] = [];
   cards: Array<Word[]> = [];
 
@@ -72,8 +72,6 @@ export class MainService {
       .map(res => res.json())
       .subscribe(
         (user) => {
-          this.user = user;
-
           this.optionsService.setUp(user.options);
           this.setUpWords(user.boards[user.activeBoard].words);
         },
@@ -81,45 +79,24 @@ export class MainService {
       );
   }
 
-  setUpWords(words: Word[]) {
-    this.words = words;
+  setUpWords(allWords: Word[]) {
+    this.allWords = allWords;
+    this.words = this.allWords;
 
     if (this.optionsService.options === undefined) this.distributeWords();
-    else {
-      const activeSort = this.optionsService.options.sorts.find(sort => sort.isActive) || { value: 'time' };
-
-      this.sortWords(activeSort.value);
-    }
+    else this.updateWords();
   }
 
-  sortWords(key: string, isInverse: boolean = false) {
-    if (key === 'knowledge') isInverse = true;
-
-    this.optionsService.options.sorts.forEach((sort) => {
-      if (sort.value === key) sort.isActive = true;
-      else sort.isActive = false;
-    });
-
-    let a = 1;
-    let b = -1
-
-    if (isInverse) {
-      a = -1;
-      b = 1;
-    }
-
-    this.words.sort((word1, word2) => {
-      if (word1[key] > word2[key]) return a;
-      if (word1[key] < word2[key]) return b;
-    });
-
+  updateWords() {
+    this.filterKnowledge(this.optionsService.options.filter.knowledge);
+    this.sortWords(this.optionsService.options.sorts);
     this.distributeWords();
   }
 
   filterKnowledge(knowledgeFilter: Knowledge[]) {
     knowledgeFilter = knowledgeFilter.filter(knowlege => knowlege.isActive);
 
-    this.words = this.words.filter((word) => {
+    this.words = this.allWords.filter((word) => {
       let suitableFilter = false;
 
       knowledgeFilter.forEach((knowledge) => {
@@ -130,8 +107,26 @@ export class MainService {
 
       return suitableFilter;
     });
+  }
 
-    this.distributeWords();
+  sortWords(sorts: Sort[], isInverse: boolean = false) {
+    const activeSort = sorts.find(sort => sort.isActive);
+    const activeSortValue = activeSort.value;
+
+    if (activeSortValue === 'knowledge') isInverse = true;
+
+    let a = 1;
+    let b = -1
+
+    if (isInverse) {
+      a = -1;
+      b = 1;
+    }
+
+    this.words.sort((word1, word2) => {
+      if (word1[activeSortValue] > word2[activeSortValue]) return a;
+      if (word1[activeSortValue] < word2[activeSortValue]) return b;
+    });
   }
 
   distributeWords() {
@@ -153,8 +148,8 @@ export class MainService {
       .map((res) => res.json())
       .subscribe(
         (newWord) => {
-          this.words.push(newWord);
-          this.distributeWords();
+          this.allWords.push(newWord);
+          this.updateWords();
           this.eventsService.onAddNewWord();
         },
         (err) => {
@@ -171,8 +166,8 @@ export class MainService {
     this.http.delete('words/' + deletedWord._id)
       .subscribe(
         () => {
-          this.words = this.words.filter(word => word._id !== deletedWord._id);
-          this.distributeWords();
+          this.allWords = this.allWords.filter(word => word._id !== deletedWord._id);
+          this.updateWords();
         },
         err => this.eventsService.onServerError(err)
       );
@@ -183,8 +178,8 @@ export class MainService {
       .map((res) => res.json())
       .subscribe(
         (updatedWord) => {
-          const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
-          this.words[updatedWordIndex] = updatedWord;
+          const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
+          this.allWords[updatedWordIndex] = updatedWord;
         },
         err => this.eventsService.onServerError(err)
       );
@@ -192,8 +187,8 @@ export class MainService {
 
   // TODO: move to server
   updateWordKnowledge(wordId: string, addingPoints: number) {
-    const updatedWordIndex = this.words.findIndex((word) => wordId === word._id);
-    const entirePoints = this.calculateEntirePoints(this.words[updatedWordIndex].knowledge, addingPoints);
+    const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
+    const entirePoints = this.calculateEntirePoints(this.allWords[updatedWordIndex].knowledge, addingPoints);
 
     this.updateWord(wordId, { knowledge: entirePoints });
   }
