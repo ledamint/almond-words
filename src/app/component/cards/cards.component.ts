@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
 import { AuthorizationService }  from '../../service/authorization.service';
-import { MainService, Word }  from '../../service/main.service';
+import { MainService }  from '../../service/main.service';
 import { TestWordsService }  from '../../service/test-words.service';
+
+import { Word } from '../../service/interface/interfaces';
 
 @Component({
   selector: 'cards',
@@ -30,7 +32,6 @@ export class Cards {
   constructor(private authorizationService: AuthorizationService,
               private mainService: MainService,
               private testWordsService: TestWordsService) { }
-
   deleteWord(word: Word) {
     if (confirm('Are you sure to delete this word?')) {
       this.mainService.deleteWord(word);

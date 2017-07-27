@@ -1,3 +1,9 @@
+// TODO make necessary properties after change login service
+export interface LoginData {
+  email?: string;
+  password?: string;
+}
+
 export interface User {
   _id: string;
   email: string;
@@ -36,7 +42,7 @@ export interface Knowledge {
 }
 
 export interface Word {
-  _id?: string;
+  _id: string;
   learningWord: string;
   familiarWord: string;
   time?: Date;

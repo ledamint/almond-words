@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/map';
 
@@ -8,7 +9,7 @@ import { OptionsService } from './options.service'
 
 import { User, Word, Knowledge, Sort } from './interface/interfaces'
 
-// TODO: create and move needed part to words service
+// TODO: create and move needed part to words and word service
 @Injectable()
 export class MainService {
   allWords: Word[] = [];
@@ -19,6 +20,7 @@ export class MainService {
   familiarLanguage: string = 'russian';
 
   constructor(private http: Http,
+              private router: Router,
               private eventsService: EventsService,
               private optionsService: OptionsService) { }
 
@@ -29,6 +31,8 @@ export class MainService {
         (user: User) => {
           this.optionsService.setUp(user.options);
           this.setUpWords(user.boards[user.activeBoard].words);
+
+          this.router.navigateByUrl('/cards');
         },
         err => this.eventsService.onServerError(err)
       );
@@ -38,8 +42,7 @@ export class MainService {
     this.allWords = allWords;
     this.words = this.allWords;
 
-    if (this.optionsService.options === undefined) this.distributeWords();
-    else this.updateWords();
+    this.updateWords();
   }
 
   updateWords() {
@@ -135,7 +138,6 @@ export class MainService {
         (updatedWord: Word) => {
           const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
           this.allWords[updatedWordIndex] = updatedWord;
-          console.log(updatedWord)
         },
         err => this.eventsService.onServerError(err)
       );

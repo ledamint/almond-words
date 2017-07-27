@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { MainService, Word }  from '../../service/main.service';
+import { MainService }  from '../../service/main.service';
 import { EventsService }  from '../../service/events.service';
+
+import { Word } from '../../service/interface/interfaces'
 
 @Component({
   selector: 'add-new-word',
@@ -35,16 +37,14 @@ export class AddNewWord implements OnInit {
   }
 
   addNewWord(form: NgForm) {
-    const mainWord = form.value['main-word'].trim().toLowerCase();
-    const translation = form.value['translation'].trim().toLowerCase();
+    const mainWord: string = form.value['main-word'].trim().toLowerCase();
+    const translation: string = form.value['translation'].trim().toLowerCase();
 
     const newWord: Word = {
-      learningWord: '',
-      familiarWord: ''
+      _id: '0',
+      learningWord: mainWord,
+      familiarWord: translation
     };
-
-    newWord.learningWord = mainWord;
-    newWord.familiarWord = translation;
 
     this.mainService.addNewWord(newWord);
     form.reset();

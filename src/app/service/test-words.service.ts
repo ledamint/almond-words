@@ -16,10 +16,7 @@ export class TestWordsService {
   testingWords: Word[] = [];
   rightAnswers: Word[] = [];
   wrongAnswers: Word[] = [];
-  currentTestingWord: Word = {
-    learningWord: '',
-    familiarWord: ''
-  };
+  currentTestingWord: Word;
   pointsForAnswerByTestId: number[] = [1, 2, 3];
 
   constructor(private mainService: MainService,
@@ -27,7 +24,7 @@ export class TestWordsService {
               private router: Router) {
     this.eventsService.enterAnswer$.subscribe((resultTestAnswer) => {
       this.distributeAnswer(resultTestAnswer);
-      this.calculateWordKnowledge(resultTestAnswer);
+      this.updateWordKnowledge(resultTestAnswer);
       this.onNewRound();
     });
   }
@@ -80,13 +77,18 @@ export class TestWordsService {
     this.wrongAnswers = [];
   }
 
-  calculateWordKnowledge(resultTestAnswer: ResultTestAnswer) {
+  updateWordKnowledge(resultTestAnswer: ResultTestAnswer) {
     const wordId = this.currentTestingWord._id;
-    let points = this.pointsForAnswerByTestId[resultTestAnswer.testId];
-
-    if (resultTestAnswer.isAnswerRight) points = points;
-    else points = -1;
+    const points = this.calculateWordKnowledge(resultTestAnswer);
 
     this.mainService.updateWordKnowledge(wordId, points);
+  }
+
+  calculateWordKnowledge(resultTestAnswer: ResultTestAnswer) {
+    let points = this.pointsForAnswerByTestId[resultTestAnswer.testId];
+
+    if (!resultTestAnswer.isAnswerRight) points = -1;
+
+    return points;
   }
 }

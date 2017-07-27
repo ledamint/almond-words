@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 
 import { AuthorizationService }  from '../../service/authorization.service';
 
+import { LoginData } from '../../service/interface/interfaces';
+
 @Component({
   selector: 'login',
   template: `
@@ -18,11 +20,13 @@ export class Login {
   constructor(private authorizationService: AuthorizationService) { }
 
   checkLogin(form: NgForm) {
-    const userData = {
-      email: form.value.email,
+    const email: string = form.value.email.trim().toLowerCase();
+
+    const loginData: LoginData = {
+      email: email,
       password: form.value.password
     }
 
-    this.authorizationService.checkLogin(userData);
+    this.authorizationService.checkLogin(loginData);
   }
 }

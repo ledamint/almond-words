@@ -14,7 +14,7 @@ import { OptionsService }  from '../../service/options.service';
             <span class="option-item theme-color" [class.active]="sort.isActive"
             *ngFor="let sort of optionsService.options.sorts" (click)="optionsService.updateSorts(sort.value)">{{ sort.name }}</span>
           </div>
-          <h2>Filters</h2>
+          <h2>Filter</h2>
           <div class="knowledge">
           <span class="option-item option-item_title">knowledge:</span>
             <span class="option-item theme-color" [class.active]="knowledge.isActive"

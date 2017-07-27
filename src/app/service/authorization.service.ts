@@ -5,6 +5,8 @@ import { Router } from '@angular/router'
 import { MainService } from './main.service';
 import { EventsService } from './events.service';
 
+import { LoginData } from './interface/interfaces'
+
 @Injectable()
 export class AuthorizationService {
   constructor(private http: Http,
@@ -12,15 +14,14 @@ export class AuthorizationService {
               private mainService: MainService,
               private eventsService: EventsService) { }
 
-  checkLogin(userData: Object = { }) {
-    this.http.post('login', userData)
+  checkLogin(loginData: LoginData = { }) {
+    this.http.post('login', loginData)
       .map(res => res.json())
       .subscribe(
         // TODO: divide requests
         (isLoginDone) => {
           if (isLoginDone) {
             this.mainService.setUpApplication();
-            this.router.navigateByUrl('/cards');
           }
           else this.router.navigateByUrl('/login');
         },
