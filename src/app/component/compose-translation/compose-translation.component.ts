@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MainService }  from '../../service/main.service';
+import { WordsService }  from '../../service/words.service';
 import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
@@ -29,7 +29,7 @@ export class ComposeTranslation implements OnInit {
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number = 0;
 
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private testWordsService: TestWordsService,
               private eventsService: EventsService) {  }
 

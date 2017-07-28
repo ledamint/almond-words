@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { MainService }  from '../../service/main.service';
+import { WordsService }  from '../../service/words.service';
 import { OptionsService }  from '../../service/options.service';
 
 // TODO: refresh words only after submit
@@ -29,7 +29,7 @@ import { OptionsService }  from '../../service/options.service';
   styleUrls: ['./options.component.scss']
 })
 export class Options implements OnInit {
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private optionsService: OptionsService,
               private router: Router) { }
 
@@ -38,7 +38,7 @@ export class Options implements OnInit {
   }
 
   submitOptions() {
-    this.mainService.updateWords();
+    this.wordsService.updateWords();
     this.router.navigateByUrl('/cards');
   }
 }

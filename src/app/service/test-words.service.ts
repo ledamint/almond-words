@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 
 import { EventsService }  from './events.service';
-import { MainService } from './main.service'
+import { WordsService } from './words.service'
 
 import { Word } from './interface/interfaces'
 
@@ -19,7 +19,7 @@ export class TestWordsService {
   currentTestingWord: Word;
   pointsForAnswerByTestId: number[] = [1, 2, 3];
 
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private eventsService: EventsService,
               private router: Router) {
     this.eventsService.enterAnswer$.subscribe((resultTestAnswer) => {
@@ -48,7 +48,7 @@ export class TestWordsService {
   }
 
   finishTest() {
-    this.mainService.updateWords();
+    this.wordsService.updateWords();
     this.router.navigateByUrl('/answers-result');
   }
 
@@ -81,7 +81,7 @@ export class TestWordsService {
     const wordId = this.currentTestingWord._id;
     const points = this.calculateWordKnowledge(resultTestAnswer);
 
-    this.mainService.updateWordKnowledge(wordId, points);
+    this.wordsService.updateWordKnowledge(wordId, points);
   }
 
   calculateWordKnowledge(resultTestAnswer: ResultTestAnswer) {

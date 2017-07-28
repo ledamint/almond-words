@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { MainService }  from '../../service/main.service';
+import { WordsService }  from '../../service/words.service';
 import { EventsService }  from '../../service/events.service';
 
 import { Word } from '../../service/interface/interfaces'
@@ -11,8 +11,8 @@ import { Word } from '../../service/interface/interfaces'
   template: `
           <h1>Add a new word</h1>
           <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
-            <input class="text-input" type="text" name="main-word" placeholder="{{ mainService.learningLanguage }}" ngModel required>
-            <input class="text-input" type="text" name="translation" placeholder="{{ mainService.familiarLanguage }}" ngModel required>
+            <input class="text-input" type="text" name="main-word" placeholder="{{ wordsService.learningLanguage }}" ngModel required>
+            <input class="text-input" type="text" name="translation" placeholder="{{ wordsService.familiarLanguage }}" ngModel required>
             <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">
@@ -26,7 +26,7 @@ import { Word } from '../../service/interface/interfaces'
 export class AddNewWord implements OnInit {
   isPopUpHidden: boolean = true;
 
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private eventsService: EventsService) { }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class AddNewWord implements OnInit {
       familiarWord: translation
     };
 
-    this.mainService.addNewWord(newWord);
+    this.wordsService.addNewWord(newWord);
     form.reset();
   }
 

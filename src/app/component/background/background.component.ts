@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MainService }  from '../../service/main.service';
+import { OptionsService }  from '../../service/options.service';
 
 interface BackgroundLine {
   word: string;
@@ -14,7 +14,7 @@ interface BackgroundLine {
       <div class="background">
           <div *ngFor="let backgroundLine of backgroundLines" class="background-line" (click)="restartBackgroundLine(backgroundLine)"
           [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'" [hidden]="disableBackground">{{ backgroundLine.word }}</div>
-          <div class="change-theme" (click)="mainService.changeBackground()">O</div>
+          <div class="change-theme" (click)="optionsService.changeBackground()">O</div>
       </div>`,
   styleUrls: [ './background.component.scss' ]
 })
@@ -24,7 +24,7 @@ export class Background implements OnInit  {
   sumOfLineClick: number = 0;
   backgroundInterval = null;
 
-  constructor(private mainService: MainService) {  }
+  constructor(private optionsService: OptionsService) {  }
 
   ngOnInit(): void {
     this.setUpBackgroundLines();
@@ -32,19 +32,19 @@ export class Background implements OnInit  {
   }
 
   setUpBackgroundLines(): void {
-    for (let i = 5; i < 95; i += 3) {
-      const backgroundLine: BackgroundLine = {
-        word: '',
-        left: 0,
-        top: 0
-      };
-      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)].learningWord;
-      backgroundLine.word = randomWord;
-      backgroundLine.left = i;
-      backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
-
-      this.backgroundLines.push(backgroundLine);
-    }
+    // for (let i = 5; i < 95; i += 3) {
+    //   const backgroundLine: BackgroundLine = {
+    //     word: '',
+    //     left: 0,
+    //     top: 0
+    //   };
+    //   const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)].learningWord;
+    //   backgroundLine.word = randomWord;
+    //   backgroundLine.left = i;
+    //   backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
+    //
+    //   this.backgroundLines.push(backgroundLine);
+    // }
   }
 
   setUpAnimation() {

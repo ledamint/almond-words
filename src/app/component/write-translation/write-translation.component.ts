@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { MainService }  from '../../service/main.service';
+import { WordsService }  from '../../service/words.service';
 import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
@@ -14,7 +14,7 @@ export class WriteTranslation implements OnInit {
   answer: string = '';
   isAnswerIncorrect: boolean = false;
 
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private testWordsService: TestWordsService,
               private eventsService: EventsService,
               private elementRef: ElementRef) {  }

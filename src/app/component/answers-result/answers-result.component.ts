@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MainService } from '../../service/main.service';
+import { WordsService } from '../../service/words.service';
 import { TestWordsService } from '../../service/test-words.service';
 
 @Component({
@@ -33,6 +33,5 @@ import { TestWordsService } from '../../service/test-words.service';
     styleUrls: ['./answers-result.component.scss']
 })
 export class AnswersResult {
-  constructor(private testWordsService: TestWordsService,
-              private mainService: MainService) { }
+  constructor(private testWordsService: TestWordsService) { }
 }

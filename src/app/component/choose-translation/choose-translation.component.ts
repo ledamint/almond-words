@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MainService }  from '../../service/main.service';
+import { WordsService }  from '../../service/words.service';
 import { TestWordsService }  from '../../service/test-words.service';
 import { EventsService }  from '../../service/events.service';
 
@@ -14,7 +14,7 @@ import { EventsService }  from '../../service/events.service';
 export class ChooseTranslation implements OnInit {
   answers: string[] = [];
 
-  constructor(private mainService: MainService,
+  constructor(private wordsService: WordsService,
               private testWordsService: TestWordsService,
               private eventsService: EventsService) {  }
 
@@ -31,7 +31,7 @@ export class ChooseTranslation implements OnInit {
 
     // TODO remove endless cycle
     while (true) {
-      const randomWord = this.mainService.words[Math.floor(Math.random() * this.mainService.words.length)];
+      const randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
       const randomTransaltion = randomWord.learningWord;
 
       if (this.answers.indexOf(randomTransaltion) === -1) {

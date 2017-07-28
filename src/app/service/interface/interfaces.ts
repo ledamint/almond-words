@@ -32,10 +32,10 @@ export interface Options {
 }
 
 export interface Filter {
-  knowledge: Knowledge[];
+  knowledge: KnowledgeFilter[];
 }
 
-export interface Knowledge {
+export interface KnowledgeFilter {
   name: string;
   value: number[];
   isActive: boolean;
