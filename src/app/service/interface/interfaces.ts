@@ -20,6 +20,14 @@ export interface Board {
   words: Word[];
 }
 
+export interface Word {
+  _id: string;
+  learningWord: string;
+  familiarWord: string;
+  time: Date;
+  knowledge: number;
+}
+
 export interface Sort {
   name: string;
   value: string;
@@ -39,12 +47,4 @@ export interface KnowledgeFilter {
   name: string;
   value: number[];
   isActive: boolean;
-}
-
-export interface Word {
-  _id: string;
-  learningWord: string;
-  familiarWord: string;
-  time?: Date;
-  knowledge?: number;
 }

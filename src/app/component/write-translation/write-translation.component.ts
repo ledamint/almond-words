@@ -1,16 +1,16 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
-import { TestWordsService }  from '../../service/test-words.service';
-import { EventsService }  from '../../service/events.service';
+import { WordsService } from '../../service/words.service';
+import { TestWordsService } from '../../service/test-words.service';
+import { EventsService } from '../../service/events.service';
 
 @Component({
   selector: 'write-translation',
   template: `<input class="precise-answer" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
-             [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" >`,
+               [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" >`,
   styleUrls: ['./write-translation.component.scss']
 })
-export class WriteTranslation implements OnInit {
+export class WriteTranslationComponent implements OnInit {
   answer: string = '';
   isAnswerIncorrect: boolean = false;
 

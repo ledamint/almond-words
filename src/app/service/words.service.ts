@@ -3,16 +3,16 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
-import { EventsService } from './events.service'
-import { OptionsService } from './options.service'
+import { EventsService } from './events.service';
+import { OptionsService } from './options.service';
 
-import { Word, KnowledgeFilter, Sort } from './interface/interfaces'
+import { Word, KnowledgeFilter, Sort } from './interface/interfaces';
 
 @Injectable()
 export class WordsService {
   learningLanguage: string = 'english';
   familiarLanguage: string = 'russian';
-  
+
   allWords: Word[] = [];
   words: Word[] = [];
   cards: Array<Word[]> = [];
@@ -58,7 +58,7 @@ export class WordsService {
     if (activeSortValue === 'knowledge') isInverse = true;
 
     let a = 1;
-    let b = -1
+    let b = -1;
 
     if (isInverse) {
       a = -1;
@@ -85,12 +85,13 @@ export class WordsService {
     });
   }
 
-  addNewWord(newWord: Word) {
+  // TODO add type
+  addNewWord(newWord) {
     this.http.post('words', newWord)
       .map((res) => res.json())
       .subscribe(
-        (newWord: Word) => {
-          this.allWords.push(newWord);
+        (addedWord: Word) => {
+          this.allWords.push(addedWord);
           this.updateWords();
           this.eventsService.onAddNewWord();
         },

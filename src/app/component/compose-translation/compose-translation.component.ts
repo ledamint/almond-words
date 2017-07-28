@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
-import { TestWordsService }  from '../../service/test-words.service';
-import { EventsService }  from '../../service/events.service';
+import { WordsService } from '../../service/words.service';
+import { TestWordsService } from '../../service/test-words.service';
+import { EventsService } from '../../service/events.service';
 
 interface WordLetter {
   letter: string;
@@ -17,13 +17,14 @@ interface WordLetter {
                   </div>
              </div>
              <div class="letters letters_answer">
-                 <div class="letter" [class.selected]="answerLetter.checked" *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">
+                 <div class="letter" [class.selected]="answerLetter.checked"
+                   *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">
                      {{ answerLetter.letter }}
                  </div>
              </div>`,
   styleUrls: ['./compose-translation.component.scss']
 })
-export class ComposeTranslation implements OnInit {
+export class ComposeTranslationComponent implements OnInit {
   lettersOfTestingWord: string[];
   testingWordLetters: WordLetter[] = [];
   answerLetters: WordLetter[] = [];

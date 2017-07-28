@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OptionsService }  from '../../service/options.service';
+import { OptionsService } from '../../service/options.service';
 
 interface BackgroundLine {
   word: string;
@@ -13,12 +13,13 @@ interface BackgroundLine {
   template: `
       <div class="background">
           <div *ngFor="let backgroundLine of backgroundLines" class="background-line" (click)="restartBackgroundLine(backgroundLine)"
-          [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'" [hidden]="disableBackground">{{ backgroundLine.word }}</div>
+            [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'"
+            [hidden]="disableBackground">{{ backgroundLine.word }}</div>
           <div class="change-theme" (click)="optionsService.changeBackground()">O</div>
       </div>`,
   styleUrls: [ './background.component.scss' ]
 })
-export class Background implements OnInit  {
+export class BackgroundComponent implements OnInit  {
   backgroundLines: BackgroundLine[] = [];
   disableBackground: boolean = false;
   sumOfLineClick: number = 0;

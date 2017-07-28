@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
-import { EventsService }  from './events.service';
-import { WordsService } from './words.service'
+import { EventsService } from './events.service';
+import { WordsService } from './words.service';
 
-import { Word } from './interface/interfaces'
+import { Word } from './interface/interfaces';
 
 export interface ResultTestAnswer {
   testId: number;

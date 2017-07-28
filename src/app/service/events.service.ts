@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { ResultTestAnswer } from './test-words.service'
+import { ResultTestAnswer } from './test-words.service';
 
 @Injectable()
 export class EventsService {

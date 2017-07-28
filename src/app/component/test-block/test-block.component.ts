@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { TestWordsService }  from '../../service/test-words.service';
-import { EventsService }  from '../../service/events.service';
+import { TestWordsService } from '../../service/test-words.service';
+import { EventsService } from '../../service/events.service';
 
 @Component({
   selector: 'test-block',
@@ -13,7 +13,7 @@ import { EventsService }  from '../../service/events.service';
         </div>`,
   styleUrls: ['./test-block.component.scss']
 })
-export class TestBlock {
+export class TestBlockComponent {
   constructor(private testWordsService: TestWordsService,
               private eventsService: EventsService) {  }
 

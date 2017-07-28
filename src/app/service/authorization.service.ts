@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 import { MainService } from './main.service';
 import { EventsService } from './events.service';
 
-import { LoginData } from './interface/interfaces'
+import { LoginData } from './interface/interfaces';
 
 @Injectable()
 export class AuthorizationService {
@@ -22,8 +22,7 @@ export class AuthorizationService {
         (isLoginDone) => {
           if (isLoginDone) {
             this.mainService.setUpApplication();
-          }
-          else this.router.navigateByUrl('/login');
+          } else this.router.navigateByUrl('/login');
         },
         (err) => {
           this.eventsService.onServerError(err);

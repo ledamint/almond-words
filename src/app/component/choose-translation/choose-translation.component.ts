@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WordsService }  from '../../service/words.service';
-import { TestWordsService }  from '../../service/test-words.service';
-import { EventsService }  from '../../service/events.service';
+import { WordsService } from '../../service/words.service';
+import { TestWordsService } from '../../service/test-words.service';
+import { EventsService } from '../../service/events.service';
 
 @Component({
   selector: 'choose-translation',
   template: `<div class="answers">
-                <button class="answer" *ngFor="let answer of answers" (click)="checkAnswer(answer)">{{ answer }}</button>
+                 <button class="answer" *ngFor="let answer of answers" (click)="checkAnswer(answer)">{{ answer }}</button>
              </div>`,
   styleUrls: ['./choose-translation.component.scss']
 })
-export class ChooseTranslation implements OnInit {
+export class ChooseTranslationComponent implements OnInit {
   answers: string[] = [];
 
   constructor(private wordsService: WordsService,

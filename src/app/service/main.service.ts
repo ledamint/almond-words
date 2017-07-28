@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 import 'rxjs/add/operator/map';
 
-import { WordsService } from './words.service'
-import { EventsService } from './events.service'
-import { OptionsService } from './options.service'
+import { WordsService } from './words.service';
+import { EventsService } from './events.service';
+import { OptionsService } from './options.service';
 
-import { User } from './interface/interfaces'
+import { User } from './interface/interfaces';
 
 @Injectable()
 export class MainService {

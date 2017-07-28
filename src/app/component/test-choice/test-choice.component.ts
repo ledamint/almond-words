@@ -13,4 +13,4 @@ import { Component } from '@angular/core';
         </div>`,
     styleUrls: ['./test-choice.component.scss']
 })
-export class TestChoice { }
+export class TestChoiceComponent { }
