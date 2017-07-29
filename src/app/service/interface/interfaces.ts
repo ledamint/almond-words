@@ -1,3 +1,5 @@
+// TODO divide interfaces
+
 // TODO make necessary properties after change login service
 export interface LoginData {
   email?: string;
@@ -11,7 +13,7 @@ export interface User {
   activeBoard: number;
   registrationTime: Date;
   boards: Board[];
-  options: Options;
+  activeOptions: ActiveOptions;
 }
 
 export interface Board {
@@ -28,15 +30,23 @@ export interface Word {
   knowledge: number;
 }
 
-export interface Sort {
-  name: string;
-  value: string;
-  isActive: boolean;
+export interface ActiveOptions {
+  sort: string;
+  filter: ActiveFilter;
+}
+
+export interface ActiveFilter {
+  knowledge: KnowledgeFilter[];
 }
 
 export interface Options {
   sorts: Sort[];
   filter: Filter;
+}
+
+export interface Sort {
+  name: string;
+  value: string;
 }
 
 export interface Filter {
@@ -46,5 +56,4 @@ export interface Filter {
 export interface KnowledgeFilter {
   name: string;
   value: number[];
-  isActive: boolean;
 }

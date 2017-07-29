@@ -30,32 +30,29 @@ export class WordsService {
   }
 
   updateWords() {
-    this.filterKnowledge(this.optionsService.options.filter.knowledge);
-    this.sortWords(this.optionsService.options.sorts);
+    this.filterKnowledge(this.optionsService.activeOptions.filter.knowledge);
+    this.sortWords(this.optionsService.activeOptions.sort);
     this.distributeWords();
   }
 
-  filterKnowledge(knowledgeFilter: KnowledgeFilter[]) {
-    knowledgeFilter = knowledgeFilter.filter(knowlege => knowlege.isActive);
+  filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
+    if (activeKnowledge.length > 0 && activeKnowledge !== undefined) {
+      this.words = this.allWords.filter((word) => {
+        let suitableFilter = false;
 
-    this.words = this.allWords.filter((word) => {
-      let suitableFilter = false;
+        activeKnowledge.forEach((knowledge) => {
+          if (word.knowledge >= knowledge.value[0] && word.knowledge <= knowledge.value[1]) {
+            suitableFilter = true;
+          }
+        });
 
-      knowledgeFilter.forEach((knowledge) => {
-        if (word.knowledge >= knowledge.value[0] && word.knowledge <= knowledge.value[1]) {
-          suitableFilter = true;
-        }
+        return suitableFilter;
       });
-
-      return suitableFilter;
-    });
+    } else this.words = this.allWords;
   }
 
-  sortWords(sorts: Sort[], isInverse: boolean = false) {
-    const activeSort = sorts.find(sort => sort.isActive);
-    const activeSortValue = activeSort.value;
-
-    if (activeSortValue === 'knowledge') isInverse = true;
+  sortWords(activeSort: string = 'time', isInverse: boolean = false) {
+    if (activeSort === 'knowledge') isInverse = true;
 
     let a = 1;
     let b = -1;
@@ -66,8 +63,8 @@ export class WordsService {
     }
 
     this.words.sort((word1, word2) => {
-      if (word1[activeSortValue] > word2[activeSortValue]) return a;
-      if (word1[activeSortValue] < word2[activeSortValue]) return b;
+      if (word1[activeSort] > word2[activeSort]) return a;
+      if (word1[activeSort] < word2[activeSort]) return b;
     });
   }
 

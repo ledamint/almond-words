@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-
 import 'rxjs/add/operator/map';
 
 import { WordsService } from './words.service';
@@ -23,7 +22,7 @@ export class MainService {
       .map(res => res.json())
       .subscribe(
         (user: User) => {
-          this.optionsService.setUp(user.options);
+          this.optionsService.setUp(user.activeOptions);
           this.wordsService.setUp(user.boards[user.activeBoard].words);
 
           this.router.navigateByUrl('/cards');

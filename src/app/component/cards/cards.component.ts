@@ -23,7 +23,7 @@ import { Word } from '../../service/interface/interfaces';
       </div>
       <div class="side-panel">
           <a routerLink="/add-new-word" routerLinkActive="active" class="side-panel__item">add new word</a>
-          <a routerLink="/options" routerLinkActive="active" class="side-panel__item">options</a>
+          <a routerLink="/user-options" routerLinkActive="active" class="side-panel__item">options</a>
           <a class="side-panel__item" (click)="logout()">logout</a>
       </div>
     `,

@@ -1,41 +1,61 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
-import { Options } from './interface/interfaces';
+import { Options, ActiveOptions, KnowledgeFilter } from './interface/interfaces';
 
 // TODO move common options data to separate collection
 
 @Injectable()
 export class OptionsService {
   options: Options;
-  optionsCopy: Options;
+  activeOptions: ActiveOptions;
+  activeOptionsCopy: ActiveOptions;
 
   // TODO: move to options
   themes: string[] = ['pink', 'blue'];
   currentThemeId: number = 1;
 
-  setUp(options: Options) {
-    this.options = options;
+  constructor(private http: Http) { }
+
+  setUp(activeOptions: ActiveOptions) {
+    this.activeOptions = activeOptions;
+
+    this.http.get('options')
+      .map(res => res.json())
+      .subscribe((options: Options) => {
+        this.options = options;
+      });
   }
 
   saveOptionsCopy() {
-    this.optionsCopy = JSON.parse(JSON.stringify(this.options));
+    this.activeOptionsCopy = JSON.parse(JSON.stringify(this.activeOptions));
   }
 
   resetChanges() {
-    this.options = this.optionsCopy;
+    this.activeOptions = this.activeOptionsCopy;
   }
 
-  updateSorts(sortValue: string) {
-    this.options.sorts.forEach((sort) => {
-      if (sort.value === sortValue) sort.isActive = true;
-      else sort.isActive = false;
-    });
+  updateSorts(sort: string) {
+    this.activeOptions.sort = sort;
   }
 
-  updateKnowledge(knowledgeName: string) {
-    this.options.filter.knowledge.forEach((knowledgeItem) => {
-      if (knowledgeItem.name === knowledgeName) knowledgeItem.isActive = !knowledgeItem.isActive;
+  updateKnowledge(selectedKnowledge: KnowledgeFilter) {
+    let selectedKnowledgeIsActive = false;
+
+    this.activeOptions.filter.knowledge = this.activeOptions.filter.knowledge.filter((knowledge) => {
+      if (knowledge.name === selectedKnowledge.name) {
+        selectedKnowledgeIsActive = true;
+
+        return false;
+      }
+
+      return true;
     });
+
+    if (!selectedKnowledgeIsActive) {
+      this.activeOptions.filter.knowledge.push(selectedKnowledge);
+    }
   }
 
   changeBackground() {

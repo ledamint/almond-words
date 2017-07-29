@@ -28,7 +28,7 @@ import { TestWordsService } from './service/test-words.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cards', component: CardsComponent },
-  { path: 'options', component: OptionsComponent },
+  { path: 'user-options', component: OptionsComponent },
   { path: 'add-new-word', component: AddNewWordComponent },
   { path: 'test-choice', component: TestChoiceComponent },
   { path: 'test',
