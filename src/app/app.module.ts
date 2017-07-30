@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './component/app/app.component';
+import { RegistrationComponent } from './component/registration/registration.component';
 import { LoginComponent } from './component/login/login.component';
 import { BackgroundComponent } from './component/background/background.component';
 import { CardsComponent } from './component/cards/cards.component';
@@ -26,6 +27,7 @@ import { TestWordsService } from './service/test-words.service';
 
 // TODO move to separate file
 const appRoutes: Routes = [
+  { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'user-options', component: OptionsComponent },
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
   declarations: [ AppComponent,
+                  RegistrationComponent,
                   LoginComponent,
                   BackgroundComponent,
                   CardsComponent,

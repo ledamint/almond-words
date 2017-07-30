@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MainService } from './main.service';
 import { EventsService } from './events.service';
 
-import { LoginData } from './interface/interfaces';
+import { LoginData, RegistrationData } from './interface/interfaces';
 
 @Injectable()
 export class AuthorizationService {
@@ -13,6 +13,19 @@ export class AuthorizationService {
               private router: Router,
               private mainService: MainService,
               private eventsService: EventsService) { }
+
+  registerUser(registrationData: RegistrationData) {
+    this.http.post('registration', registrationData)
+      .map(res => res.json())
+      .subscribe(
+        (isLoginDone) => {
+          this.mainService.setUpApplication();
+        },
+        (err) => {
+          this.eventsService.onServerError(err);
+        }
+      );
+  }
 
   checkLogin(loginData: LoginData = { }) {
     this.http.post('login', loginData)

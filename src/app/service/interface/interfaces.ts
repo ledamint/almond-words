@@ -6,6 +6,13 @@ export interface LoginData {
   password?: string;
 }
 
+export interface RegistrationData {
+  email: string;
+  password: string;
+  learningLanguage: string;
+  familiarLanguage: string;
+}
+
 export interface User {
   _id: string;
   email: string;

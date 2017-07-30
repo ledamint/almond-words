@@ -27,7 +27,10 @@ export class MainService {
 
           this.router.navigateByUrl('/cards');
         },
-        err => this.eventsService.onServerError(err)
+        (err) => {
+          this.eventsService.onServerError(err);
+          this.router.navigateByUrl('/login');
+        }
       );
   }
 }

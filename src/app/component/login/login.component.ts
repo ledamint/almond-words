@@ -10,10 +10,13 @@ import { LoginData } from '../../service/interface/interfaces';
   template: `
           <h1>Login</h1>
           <form class="form" #loginForm="ngForm" action="" method="post" (ngSubmit)="checkLogin(loginForm)">
-              <input class="text-input" type="text" name="email" placeholder="email" ngModel required>
+              <input class="text-input" type="email" name="email" placeholder="email" ngModel required>
               <input class="text-input" type="password" name="password" placeholder="password" ngModel required>
               <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
-          </form>`,
+          </form>
+          <div class="side-panel">
+              <a routerLink="/registration" routerLinkActive="active" class="side-panel__item">registration</a>
+          </div>`,
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
