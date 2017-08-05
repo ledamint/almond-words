@@ -56,6 +56,7 @@ export class OptionsComponent implements OnInit {
   }
 
   submitOptions() {
+    this.optionsService.updateActiveOptions();
     this.wordsService.updateWords();
     this.router.navigateByUrl('/cards');
   }

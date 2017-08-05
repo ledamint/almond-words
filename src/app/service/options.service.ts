@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { EventsService } from './events.service';
+
 import { Options, ActiveOptions, KnowledgeFilter } from './interface/interfaces';
 
 // TODO move common options data to separate collection
@@ -16,16 +18,35 @@ export class OptionsService {
   themes: string[] = ['pink', 'blue'];
   currentThemeId: number = 1;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private eventsService: EventsService) { }
 
   setUp(activeOptions: ActiveOptions) {
     this.activeOptions = activeOptions;
 
     this.http.get('options')
       .map(res => res.json())
-      .subscribe((options: Options) => {
-        this.options = options;
-      });
+      .subscribe(
+        (options: Options) => {          
+          this.options = options;
+        },
+        (err) => {
+          this.eventsService.onServerError(err);
+        }
+      );
+  }
+
+  updateActiveOptions() {
+    this.http.post('active-options', this.activeOptions)
+      .map(res => res.json())
+      .subscribe(
+        () => {
+
+        },
+        (err) => {
+          this.eventsService.onServerError(err);
+        }
+      );
   }
 
   saveOptionsCopy() {

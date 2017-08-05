@@ -4,17 +4,6 @@ const ObjectID = require('mongodb').ObjectID;
 module.exports = function(app, db) {
   const usersCollection = db.collection('users');
 
-  app.get('/options', (req, res) => {
-    db.collection('options').findOne({}, (err, result) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      } else {
-        res.send(result.options);
-      }
-    });
-  });
-
   app.put('/words/:id', (req, res) => {
     const userId = {
       _id: new ObjectID(req.session._id)
