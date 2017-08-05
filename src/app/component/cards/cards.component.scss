@@ -1,5 +1,3 @@
-@import '../../../style/_variables.scss';
-
 .description {
   margin: 0;
   text-align: center;
@@ -17,14 +15,10 @@
   width: 170px;
   margin: 0 10px 20px;
   padding: 10px 0 0;
-  border: 2px solid $pink-theme-second-color;
+  border: 2px solid black;
   border-radius: 10px;
   font-size: 20px;
   text-align: center;
-}
-
-:host-context(.blue-theme) .card {
-  border-color: $blue-theme-second-color;
 }
 
 .word {
@@ -54,7 +48,7 @@
   display: inline-block;
   margin-top: auto;
   padding: 10px 0;
-  border-top: 2px solid $blue-theme-second-color;
+  border-top: 2px solid black;
   border-radius: 0 0 7px 7px;
 }
 

@@ -12,12 +12,12 @@ import { Word } from '../../service/interface/interfaces';
       <h1>Your {{  wordsService.words.length > 0 ? wordsService.words.length : '' }} words</h1>
       <p class="description" [hidden]="wordsService.words.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
-          <div *ngFor="let card of wordsService.cards" class="card">
+          <div *ngFor="let card of wordsService.cards" class="card theme-color-border">
               <span *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word">
                   {{ word.learningWord }}
                   <span class="delete" (click)="deleteWord(word)">delete</span>
               </span>
-              <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test"
+              <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test theme-color-border"
                 (click)="testWordsService.startTest(card)">Test it</a>
           </div>
       </div>

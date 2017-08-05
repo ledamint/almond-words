@@ -1,4 +1,5 @@
 @import 'style/_variables.scss';
+@import 'style/colors.scss';
 
 body {
   font-family: $main-font;
@@ -80,12 +81,20 @@ a {
     color: $pink-theme-second-color;
   }
 
-  &:active {
-    transform: translate(1px, 1px);
+  &.active {
+    color: $pink-theme-second-color;
   }
 
   .blue-theme &:hover {
     color: $blue-theme-second-color;
+  }
+
+  .blue-theme &.active {
+    color: $blue-theme-second-color;
+  }
+
+  &:active {
+    transform: translate(1px, 1px);
   }
 }
 
@@ -120,22 +129,9 @@ a {
   }
 }
 
-// TODO: replace all similar styles
-.theme-color {
-  cursor: pointer;
-
-  &:hover {
-    color: $blue-theme-second-color;
-  }
-
-  &.active {
-    color: $blue-theme-second-color !important;
-  }
-}
-
 // TODO: make width as variables
 @media (max-width: 1023px) {
-  .theme-color {
+  .theme-color-hover {
     &:hover {
       color: inherit;
     }

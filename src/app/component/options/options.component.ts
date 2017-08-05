@@ -10,21 +10,21 @@ import { KnowledgeFilter } from '../../service/interface/interfaces';
 @Component({
   selector: 'options',
   template: `
-          <h1>Options</h1>
+          <h1 class="theme-color-border">Options</h1>
           <h2>Sort</h2>
           <div class="sorts">
-              <span class="option-item theme-color" [class.active]="optionsService.activeOptions.sort === sort.value"
+              <span class="option-item button" [class.active]="optionsService.activeOptions.sort === sort.value"
                 *ngFor="let sort of optionsService.options.sorts" (click)="updateSort(sort.value)">{{ sort.name }}</span>
           </div>
           <h2>Filter</h2>
           <div class="knowledge">
               <span class="option-item option-item_title">knowledge:</span>
-              <span class="option-item theme-color"
+              <span class="option-item button"
                 *ngFor="let knowledgeFilter of optionsService.options.filter.knowledge"
                 [class.active]="checkKnowledgeActive(knowledgeFilter.name)"
                 (click)="updateKnowledge(knowledgeFilter)">{{ knowledgeFilter.name }}</span>
           </div>
-          <div class="buttons">
+          <div class="buttons theme-color-border">
               <button class="button" (click)="submitOptions()">Submit</button>
           </div>
           <div class="side-panel">

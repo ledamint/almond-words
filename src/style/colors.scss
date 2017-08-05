@@ -1,0 +1,16 @@
+// TODO: replace all similar styles
+.theme-color-border {
+  border-color: $pink-theme-second-color !important;
+
+  .blue-theme & {
+    border-color: $blue-theme-second-color !important;
+  }
+}
+
+.theme-color-text {
+  color: $pink-theme-second-color !important;
+
+  .blue-theme & {
+    color: $blue-theme-second-color !important;
+  }
+}

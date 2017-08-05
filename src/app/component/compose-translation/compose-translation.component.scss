@@ -32,17 +32,10 @@
 .letters_main-word .letter {
   visibility: hidden;
   font-weight: bold;
-  border-color: $pink-theme-second-color;
-}
-
-:host-context(.blue-theme) .letters_main-word .letter {
-  color: $blue-theme-second-color;
-  border-color: $blue-theme-second-color;
 }
 
 .letters_main-word .letter.checked {
-  visibility: visible;
-  color: $pink-theme-second-color;
+  visibility: visible;  
 }
 
 .letters_answer .letter {

@@ -1,5 +1,3 @@
-@import '../../../style/_variables.scss';
-
 :host {
   display: block;
   text-align: center;
@@ -22,10 +20,6 @@ h1 {
     display: block;
     margin-bottom: 5px;
     font-size: 20px;
-  }
-
-  &_right {
-    color: $blue-theme-second-color;
   }
 
   &_wrong {

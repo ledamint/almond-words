@@ -13,13 +13,8 @@
     background-color: transparent;
     text-align: center;
     outline: 0;
-    color: $pink-theme-second-color;
     border: 2px solid black;
     border-radius: 5px;
-}
-
-:host-context(.blue-theme) .precise-answer {
-    color: $blue-theme-second-color;
 }
 
 .incorrect {

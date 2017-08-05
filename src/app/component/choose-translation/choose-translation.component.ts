@@ -7,7 +7,7 @@ import { EventsService } from '../../service/events.service';
 @Component({
   selector: 'choose-translation',
   template: `<div class="answers">
-                 <button class="answer" *ngFor="let answer of answers" (click)="checkAnswer(answer)">{{ answer }}</button>
+                 <button class="answer button" *ngFor="let answer of answers" (click)="checkAnswer(answer)">{{ answer }}</button>
              </div>`,
   styleUrls: ['./choose-translation.component.scss']
 })

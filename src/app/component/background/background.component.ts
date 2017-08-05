@@ -12,10 +12,10 @@ interface BackgroundLine {
   selector: 'background',
   template: `
       <div class="background">
-          <div *ngFor="let backgroundLine of backgroundLines" class="background-line" (click)="restartBackgroundLine(backgroundLine)"
+          <div *ngFor="let backgroundLine of backgroundLines" class="background-line theme-color-text"
+            (click)="restartBackgroundLine(backgroundLine)"
             [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'"
             [hidden]="disableBackground">{{ backgroundLine.word }}</div>
-          <div class="change-theme" (click)="optionsService.changeBackground()">O</div>
       </div>`,
   styleUrls: [ './background.component.scss' ]
 })

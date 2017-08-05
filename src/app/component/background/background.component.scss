@@ -3,29 +3,11 @@
 .background-line {
   position: absolute;
   height: 15px;
-  width:0.8em;
-  color: $pink-theme-main-color;
+  width:0.8em;  
   word-wrap: break-word;
   font-size:1em;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-.change-theme {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
-  font-size: 30px;
-  color: $pink-theme-main-color;
-}
-
-:host-context(.blue-theme) .change-theme {
-  color: $blue-theme-main-color;
-}
-
-:host-context(.blue-theme) .background-line {
-  color: $blue-theme-main-color;
 }
 
 @media (max-width: 1023px) {
