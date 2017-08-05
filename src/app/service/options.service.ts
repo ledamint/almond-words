@@ -6,8 +6,6 @@ import { EventsService } from './events.service';
 
 import { Options, ActiveOptions, KnowledgeFilter } from './interface/interfaces';
 
-// TODO move common options data to separate collection
-
 @Injectable()
 export class OptionsService {
   options: Options;
@@ -27,7 +25,7 @@ export class OptionsService {
     this.http.get('options')
       .map(res => res.json())
       .subscribe(
-        (options: Options) => {          
+        (options: Options) => {
           this.options = options;
         },
         (err) => {
