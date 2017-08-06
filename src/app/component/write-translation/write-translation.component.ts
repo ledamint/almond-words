@@ -7,7 +7,7 @@ import { EventsService } from '../../service/events.service';
 @Component({
   selector: 'write-translation',
   template: `<input class="precise-answer theme-color-text-second-color" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
-               [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" >`,
+               [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" focus="true">`,
   styleUrls: ['./write-translation.component.scss']
 })
 export class WriteTranslationComponent implements OnInit {
@@ -40,11 +40,5 @@ export class WriteTranslationComponent implements OnInit {
   setUpOneRound() {
     this.isAnswerIncorrect = false;
     this.answer = '';
-    this.focusPreciseAnswer();
-  }
-
-  focusPreciseAnswer() {
-    const preciseAnswerInput = this.elementRef.nativeElement.querySelector('.precise-answer');
-    preciseAnswerInput.focus();
   }
 }

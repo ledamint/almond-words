@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FocusModule } from 'angular2-focus';
 
 import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/registration/registration.component';
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
+  imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), FocusModule.forRoot() ],
   declarations: [ AppComponent,
                   RegistrationComponent,
                   LoginComponent,

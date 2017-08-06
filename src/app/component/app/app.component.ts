@@ -13,7 +13,7 @@ import { OptionsService } from '../../service/options.service';
         </main>
         <background></background>
         <div class="pop-up error" [hidden]="!err.status">
-            <h2>A {{ err.status }} {{ err.statusText }} error has occured</h2>
+            <h2>{{ err.status }} {{ err._body || err.statusText }}</h2>
         </div>
     </div>`,
   styleUrls: [ './app.component.scss' ]

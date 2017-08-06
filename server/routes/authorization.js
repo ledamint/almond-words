@@ -1,19 +1,23 @@
 const ObjectID = require('mongodb').ObjectID;
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(app, db) {
   app.post('/registration', (req, res) => {
     const registrationData = req.body;
 
-    db.collection('users').findOne({ email: registrationData.email }, (err, user) => {
+    db.collection('users').findOne({
+      email: registrationData.email
+    }, (err, user) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
       } else {
         if (user !== null) res.sendStatus(403);
         else {
+          const cryptPassword = bcrypt.hashSync(registrationData.password);
           const newUser = {
             email: registrationData.email,
-            password: registrationData.password,
+            password: cryptPassword,
             registrationTime: new Date(),
             activeOptions: {
               sort: "time",
@@ -62,13 +66,20 @@ module.exports = function(app, db) {
         res.send(false);
       }
     } else {
-      db.collection('users').findOne(req.body, (err, user) => {
+      const loginData = req.body;
+
+      db.collection('users').findOne({
+        email: loginData.email
+      }, (err, user) => {
         if (err) {
           console.log(err);
           res.sendStatus(500);
         } else {
-          if (user === null) res.sendStatus(403);
-          else {
+          if (user === null) {
+            res.status(404).send('Email doesn\'t exist');
+          } else if (!bcrypt.compareSync(loginData.password, user.password)) {            
+            res.status(403).send('Password is incorrect');
+          } else {
             req.session._id = user._id;
             req.session.activeBoard = user.activeBoard;
             res.send(true);

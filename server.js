@@ -3,19 +3,21 @@ const MongoClient = require('mongodb').MongoClient;
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
+const helmet = require('helmet');
 const app = express();
 const port = process.env.PORT || '3000';
 const dbCongig = require('./config/db');
 
-app.disable('x-powered-by');
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(cookieSession({
+  httpOnly: true,
   name: 'session',
-  keys: ['logarifm'],
-  maxAge: 31 * 24 * 60 * 60 * 1000
+  keys: ['logarifm', 'mediana'],
+  maxAge: 365 * 24 * 60 * 60 * 1000
 }));
 
 MongoClient.connect(dbCongig.url, (err, db) => {
