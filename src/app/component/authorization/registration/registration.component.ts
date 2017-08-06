@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AuthorizationService } from '../../service/authorization.service';
+import { AuthorizationService } from 'app/service/authorization.service';
 
-import { RegistrationData } from '../../service/interface/interfaces';
+import { RegistrationData } from 'app/service/interface/interfaces';
 
 @Component({
   selector: 'registration',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { TestWordsService } from '../../service/test-words.service';
-import { EventsService } from '../../service/events.service';
+import { TestWordsService } from 'app/service/test-words.service';
+import { EventsService } from 'app/service/events.service';
 
 @Component({
   selector: 'test-block',

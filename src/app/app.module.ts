@@ -6,18 +6,19 @@ import { HttpModule } from '@angular/http';
 import { FocusModule } from 'angular2-focus';
 
 import { AppComponent } from './component/app/app.component';
-import { RegistrationComponent } from './component/registration/registration.component';
-import { LoginComponent } from './component/login/login.component';
+import { RegistrationComponent } from './component/authorization/registration/registration.component';
+import { LoginComponent } from './component/authorization/login/login.component';
 import { BackgroundComponent } from './component/background/background.component';
 import { CardsComponent } from './component/cards/cards.component';
-import { OptionsComponent } from './component/options/options.component';
+import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
+import { WordsOptionsComponent } from './component/options/words-options/words-options.component';
 import { AddNewWordComponent } from './component/add-new-word/add-new-word.component';
-import { TestChoiceComponent } from './component/test-choice/test-choice.component';
-import { TestBlockComponent } from './component/test-block/test-block.component';
-import { AnswersResultComponent } from './component/answers-result/answers-result.component';
-import { ChooseTranslationComponent } from './component/choose-translation/choose-translation.component';
-import { ComposeTranslationComponent } from './component/compose-translation/compose-translation.component';
-import { WriteTranslationComponent } from './component/write-translation/write-translation.component';
+import { TestChoiceComponent } from './component/test/test-choice/test-choice.component';
+import { TestBlockComponent } from './component/test/test-block/test-block.component';
+import { AnswersResultComponent } from './component/test/answers-result/answers-result.component';
+import { ChooseTranslationComponent } from './component/test/choose-translation/choose-translation.component';
+import { ComposeTranslationComponent } from './component/test/compose-translation/compose-translation.component';
+import { WriteTranslationComponent } from './component/test/write-translation/write-translation.component';
 
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
@@ -32,41 +33,51 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cards', component: CardsComponent },
-  { path: 'user-options', component: OptionsComponent },
+  {
+    path: 'user-options',
+    component: OptionsBlockComponent,
+    children: [
+      { path: 'words', component: WordsOptionsComponent },
+      { path: '', redirectTo: 'words', pathMatch: 'full' },
+    ],
+  },
   { path: 'add-new-word', component: AddNewWordComponent },
   { path: 'test-choice', component: TestChoiceComponent },
-  { path: 'test',
+  {
+    path: 'test',
     component: TestBlockComponent,
     children: [
       { path: 'choose-translation', component: ChooseTranslationComponent },
       { path: 'compose-translation', component: ComposeTranslationComponent },
       { path: 'write-translation', component: WriteTranslationComponent }
-    ] },
+    ]
+  },
   { path: 'answers-result', component: AnswersResultComponent }
 ];
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), FocusModule.forRoot() ],
-  declarations: [ AppComponent,
-                  RegistrationComponent,
-                  LoginComponent,
-                  BackgroundComponent,
-                  CardsComponent,
-                  AddNewWordComponent,
-                  OptionsComponent,
-                  TestChoiceComponent,
-                  TestBlockComponent,
-                  AnswersResultComponent,
-                  ChooseTranslationComponent,
-                  ComposeTranslationComponent,
-                  WriteTranslationComponent ],
-  bootstrap: [ AppComponent ],
-  providers: [ AuthorizationService,
-               MainService,
-               EventsService,
-               WordsService,
-               OptionsService,
-               TestWordsService,
-               BackgroundService ]
+  imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), FocusModule.forRoot()],
+  declarations: [AppComponent,
+    RegistrationComponent,
+    LoginComponent,
+    BackgroundComponent,
+    CardsComponent,
+    AddNewWordComponent,
+    OptionsBlockComponent,
+    WordsOptionsComponent,
+    TestChoiceComponent,
+    TestBlockComponent,
+    AnswersResultComponent,
+    ChooseTranslationComponent,
+    ComposeTranslationComponent,
+    WriteTranslationComponent],
+  bootstrap: [AppComponent],
+  providers: [AuthorizationService,
+    MainService,
+    EventsService,
+    WordsService,
+    OptionsService,
+    TestWordsService,
+    BackgroundService]
 })
 export class AppModule { }

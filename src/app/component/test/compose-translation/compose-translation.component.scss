@@ -1,4 +1,4 @@
-@import '../../../style/_variables.scss';
+@import '../../../../style/_variables.scss';
 
 // TODO: make scss structure
 :host {
@@ -35,7 +35,7 @@
 }
 
 .letters_main-word .letter.checked {
-  visibility: visible;  
+  visibility: visible;
 }
 
 .letters_answer .letter {

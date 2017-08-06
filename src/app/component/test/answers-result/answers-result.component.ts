@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { WordsService } from '../../service/words.service';
-import { TestWordsService } from '../../service/test-words.service';
+import { WordsService } from 'app/service/words.service';
+import { TestWordsService } from 'app/service/test-words.service';
 
 @Component({
   selector: 'answers-result',

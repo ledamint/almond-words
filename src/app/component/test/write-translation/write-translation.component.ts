@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { WordsService } from '../../service/words.service';
-import { TestWordsService } from '../../service/test-words.service';
-import { EventsService } from '../../service/events.service';
+import { WordsService } from 'app/service/words.service';
+import { TestWordsService } from 'app/service/test-words.service';
+import { EventsService } from 'app/service/events.service';
 
 @Component({
   selector: 'write-translation',

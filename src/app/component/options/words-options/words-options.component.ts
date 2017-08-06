@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { WordsService } from '../../service/words.service';
-import { OptionsService } from '../../service/options.service';
-import { BackgroundService } from '../../service/background.service';
+import { OptionsService } from 'app/service/options.service';
 
-import { KnowledgeFilter } from '../../service/interface/interfaces';
+import { KnowledgeFilter } from 'app/service/interface/interfaces';
 
 // TODO: do background checkbox
 @Component({
-  selector: 'options',
+  selector: 'words-options',
   template: `
-          <h1 class="theme-color-border">Options</h1>
           <h3>Sort</h3>
           <div class="sorts">
               <span class="option-item button" [class.active]="optionsService.activeOptions.sort === sort.value"
@@ -35,20 +31,11 @@ import { KnowledgeFilter } from '../../service/interface/interfaces';
               <span class="option-item option-item_title">background:</span>
               <span class="option-item button" [class.active]="optionsService.activeOptions.isBackgroundActive"
                 (click)="toggleBackground()">active</span>
-          </div>
-          <div class="buttons theme-color-border">
-              <button class="button" (click)="submitOptions()">Submit</button>
-          </div>
-          <div class="side-panel">
-              <a routerLink="/cards" routerLinkActive="active" class="side-panel__item" (click)="optionsService.resetChanges()">cards</a>
           </div>`,
-  styleUrls: ['./options.component.scss']
+  styleUrls: ['./words-options.component.scss']
 })
-export class OptionsComponent implements OnInit {
-  constructor(private wordsService: WordsService,
-              private optionsService: OptionsService,
-              private backgroundService: BackgroundService,
-              private router: Router) { }
+export class WordsOptionsComponent implements OnInit {
+  constructor(private optionsService: OptionsService) { }
 
   ngOnInit() {
     this.optionsService.saveOptionsCopy();
@@ -74,16 +61,5 @@ export class OptionsComponent implements OnInit {
     return -1 < this.optionsService.activeOptions.filter.knowledge.findIndex((knowledge) => {
       return knowledge.name === knowledgeFilterName;
     });
-  }
-
-  submitOptions() {
-    this.wordsService.updateWords();
-    this.router.navigateByUrl('/cards');
-    this.optionsService.updateActiveOptions();
-
-    if (this.optionsService.activeOptions.isBackgroundActive !== this.optionsService.activeOptionsCopy.isBackgroundActive) {
-      if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
-      else this.backgroundService.reset();
-    }
   }
 }
