@@ -1,11 +1,11 @@
 .background-line {
   position: absolute;
   height: 15px;
-  width:0.8em;
-  word-wrap: break-word;
+  width:0.5em;
   font-size:1em;
-  // text-transform: uppercase;
-  cursor: pointer;
+  word-wrap: break-word;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1023px) {

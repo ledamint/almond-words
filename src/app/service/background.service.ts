@@ -23,6 +23,11 @@ export class BackgroundService {
     this.setUpAnimation();
   }
 
+  reset() {
+    clearInterval(this.backgroundInterval);
+    this.backgroundLines = [];
+  }
+
   setUpBackgroundLines() {
     if (this.wordsService.allWords.length !== 0) {
       for (let i = 5; i < 95; i += 3) {
@@ -46,9 +51,9 @@ export class BackgroundService {
   setUpAnimation() {
     this.backgroundInterval = setInterval(() => {
       this.backgroundLines.forEach((backgroundLine) => {
-        backgroundLine.top += 0.1;
+        backgroundLine.top += 0.02;
         if (backgroundLine.top > 100) backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
       });
-    }, 50);
+    }, 10);
   }
 }

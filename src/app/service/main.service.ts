@@ -26,12 +26,13 @@ export class MainService {
         (user: User) => {
           this.optionsService.setUp(user.activeOptions);
           this.wordsService.setUp(user.boards[user.activeBoard].words);
-          this.backgroundService.setUp();
+          if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
 
           this.router.navigateByUrl('/cards');
         },
         (err) => {
           this.eventsService.onServerError(err);
+
           this.router.navigateByUrl('/login');
         }
       );

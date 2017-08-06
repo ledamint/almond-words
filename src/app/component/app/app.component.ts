@@ -7,7 +7,7 @@ import { OptionsService } from '../../service/options.service';
 @Component({
   selector: 'my-app',
   template: `
-    <div class="wrapper" [class.blue-theme]="optionsService.themes[optionsService.currentThemeId] === 'blue' ? true : false">
+    <div class="wrapper" [className]="getCurrentTheme()">
         <main class="content">
             <router-outlet></router-outlet>
         </main>
@@ -31,6 +31,18 @@ export class AppComponent implements OnInit {
       .subscribe(err => this.showError(err));
 
     this.authorizationService.checkLogin();
+  }
+
+  getCurrentTheme() {
+    let currentTheme: string;
+
+    if (this.optionsService.activeOptions === undefined || this.optionsService.activeOptions.theme === undefined) {
+      currentTheme = 'blue-theme';
+    } else {
+      currentTheme = `${this.optionsService.activeOptions.theme}-theme`;
+    }
+
+    return `wrapper ${currentTheme}`;
   }
 
   showError(err) {

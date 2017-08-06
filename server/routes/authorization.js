@@ -17,6 +17,8 @@ module.exports = function(app, db) {
             registrationTime: new Date(),
             activeOptions: {
               sort: "time",
+              theme: "blue",
+              isBackgroundActive: true,
               filter: {
                 knowledge: [{
                     name: 'weak',

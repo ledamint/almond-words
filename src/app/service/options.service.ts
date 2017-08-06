@@ -12,10 +12,6 @@ export class OptionsService {
   activeOptions: ActiveOptions;
   activeOptionsCopy: ActiveOptions;
 
-  // TODO: move to options
-  themes: string[] = ['pink', 'blue'];
-  currentThemeId: number = 1;
-
   constructor(private http: Http,
               private eventsService: EventsService) { }
 
@@ -59,6 +55,14 @@ export class OptionsService {
     this.activeOptions.sort = sort;
   }
 
+  updateTheme(theme: string) {
+    this.activeOptions.theme = theme;
+  }
+
+  toggleBackground() {
+    this.activeOptions.isBackgroundActive = !this.activeOptions.isBackgroundActive;
+  }
+
   updateKnowledge(selectedKnowledge: KnowledgeFilter) {
     let selectedKnowledgeIsActive = false;
 
@@ -75,10 +79,5 @@ export class OptionsService {
     if (!selectedKnowledgeIsActive) {
       this.activeOptions.filter.knowledge.push(selectedKnowledge);
     }
-  }
-
-  changeBackground() {
-    if (this.currentThemeId !== this.themes.length - 1) this.currentThemeId += 1;
-    else this.currentThemeId = 0;
   }
 }

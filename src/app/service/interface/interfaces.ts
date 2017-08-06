@@ -39,6 +39,8 @@ export interface Word {
 
 export interface ActiveOptions {
   sort: string;
+  theme: string;
+  isBackgroundActive: boolean;
   filter: ActiveFilter;
 }
 
@@ -48,6 +50,7 @@ export interface ActiveFilter {
 
 export interface Options {
   sorts: Sort[];
+  theme: string[];
   filter: Filter;
 }
 

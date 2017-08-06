@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { MainService } from './main.service';
 import { EventsService } from './events.service';
+import { BackgroundService } from './background.service';
 
 import { LoginData, RegistrationData } from './interface/interfaces';
 
@@ -12,7 +13,8 @@ export class AuthorizationService {
   constructor(private http: Http,
               private router: Router,
               private mainService: MainService,
-              private eventsService: EventsService) { }
+              private eventsService: EventsService,
+              private backgroundService: BackgroundService) { }
 
   registerUser(registrationData: RegistrationData) {
     this.http.post('registration', registrationData)
@@ -47,7 +49,10 @@ export class AuthorizationService {
   logout() {
     this.http.post('logout', { })
       .subscribe(
-        () => this.router.navigateByUrl('/login'),
+        () => {
+          this.router.navigateByUrl('/login');
+          this.backgroundService.reset();
+        },
         err => this.eventsService.onServerError(err)
       );
   }
