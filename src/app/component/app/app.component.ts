@@ -11,7 +11,7 @@ import { OptionsService } from '../../service/options.service';
         <main class="content">
             <router-outlet></router-outlet>
         </main>
-        <!-- <background></background> -->
+        <background></background>
         <div class="pop-up error" [hidden]="!err.status">
             <h2>A {{ err.status }} {{ err.statusText }} error has occured</h2>
         </div>

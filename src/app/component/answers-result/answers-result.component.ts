@@ -8,7 +8,7 @@ import { TestWordsService } from '../../service/test-words.service';
   template: `
       <h1>Results</h1>
       <div class="content">
-          <div class="answers answers_right theme-color-text" [hidden]="testWordsService.rightAnswers.length === 0"
+          <div class="answers answers_right theme-color-text-second-color" [hidden]="testWordsService.rightAnswers.length === 0"
             [style.text-align]="testWordsService.wrongAnswers.length === 0 ? 'center' : 'right'">
               <h3>Right</h3>
               <span *ngFor="let rightAnswer of testWordsService.rightAnswers" class="answers__answer">

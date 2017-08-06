@@ -6,7 +6,15 @@
   }
 }
 
-.theme-color-text {
+.theme-color-text-main-color {
+  color: $pink-theme-main-color !important;
+
+  .blue-theme & {
+    color: $blue-theme-main-color !important;
+  }
+}
+
+.theme-color-text-second-color {
   color: $pink-theme-second-color !important;
 
   .blue-theme & {

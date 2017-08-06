@@ -1,12 +1,10 @@
-@import '../../../style/_variables.scss';
-
 .background-line {
   position: absolute;
   height: 15px;
-  width:0.8em;  
+  width:0.8em;
   word-wrap: break-word;
   font-size:1em;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   cursor: pointer;
 }
 

@@ -20,9 +20,10 @@ import { WriteTranslationComponent } from './component/write-translation/write-t
 
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
-import { WordsService } from './service/words.service';
 import { EventsService } from './service/events.service';
+import { WordsService } from './service/words.service';
 import { OptionsService } from './service/options.service';
+import { BackgroundService } from './service/background.service';
 import { TestWordsService } from './service/test-words.service';
 
 // TODO move to separate file
@@ -61,9 +62,10 @@ const appRoutes: Routes = [
   bootstrap: [ AppComponent ],
   providers: [ AuthorizationService,
                MainService,
-               WordsService,
                EventsService,
+               WordsService,
+               OptionsService,
                TestWordsService,
-               OptionsService ]
+               BackgroundService ]
 })
 export class AppModule { }

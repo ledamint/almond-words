@@ -6,7 +6,7 @@ import { EventsService } from '../../service/events.service';
 
 @Component({
   selector: 'write-translation',
-  template: `<input class="precise-answer theme-color-text" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
+  template: `<input class="precise-answer theme-color-text-second-color" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
                [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" >`,
   styleUrls: ['./write-translation.component.scss']
 })
