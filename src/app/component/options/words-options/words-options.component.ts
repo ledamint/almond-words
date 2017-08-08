@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { OptionsService } from 'app/service/options.service';
 
@@ -34,12 +34,8 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
           </div>`,
   styleUrls: ['./words-options.component.scss']
 })
-export class WordsOptionsComponent implements OnInit {
+export class WordsOptionsComponent {
   constructor(private optionsService: OptionsService) { }
-
-  ngOnInit() {
-    this.optionsService.saveOptionsCopy();
-  }
 
   updateSort(sortValue: string) {
     this.optionsService.updateSorts(sortValue);

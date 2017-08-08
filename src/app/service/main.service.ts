@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { WordsService } from './words.service';
 import { OptionsService } from './options.service';
+import { AccountInformationService } from './account-information.service';
 import { BackgroundService } from './background.service';
 
 import { User } from './interface/interfaces';
@@ -17,6 +18,7 @@ export class MainService {
               private eventsService: EventsService,
               private wordsService: WordsService,
               private optionsService: OptionsService,
+              private accountInformationService: AccountInformationService,
               private backgroundService: BackgroundService) { }
 
   setUpApplication() {
@@ -25,6 +27,7 @@ export class MainService {
       .subscribe(
         (user: User) => {
           this.optionsService.setUp(user.activeOptions);
+          this.accountInformationService.setUp(user.email);
           this.wordsService.setUp(user.boards[user.activeBoard].words);
           if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
 

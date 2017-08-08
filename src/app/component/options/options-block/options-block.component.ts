@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WordsService } from 'app/service/words.service';
@@ -21,11 +21,15 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
           </div>`,
   styleUrls: ['./options-block.component.scss']
 })
-export class OptionsBlockComponent {
+export class OptionsBlockComponent implements OnInit {
   constructor(private wordsService: WordsService,
               private optionsService: OptionsService,
               private backgroundService: BackgroundService,
               private router: Router) { }
+
+  ngOnInit() {
+    this.optionsService.saveOptionsCopy();
+  }
 
   submitOptions() {
     this.wordsService.updateWords();

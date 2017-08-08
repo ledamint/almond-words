@@ -1,58 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { WordsService } from 'app/service/words.service';
-import { EventsService } from 'app/service/events.service';
+import { AccountInformationService } from 'app/service/account-information.service';
 
 @Component({
-  selector: 'add-new-word',
+  selector: 'account-information',
   template: `
-          <h1>Add a new word</h1>
-          <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
-              <input class="text-input" type="text" name="main-word" placeholder="{{ wordsService.learningLanguage }}"
-                focus="true" ngModel required>
-              <input class="text-input" type="text" name="translation" placeholder="{{ wordsService.familiarLanguage }}" ngModel required>
-              <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
-          </form>
-          <div class="side-panel">
-              <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
-          </div>
-          <div class="pop-up" [hidden]="isPopUpHidden">
-              <h2>Added!</h2>
-          </div>`,
-  styleUrls: ['./add-new-word.component.scss']
+        <h3>Account Information</h3>
+        <form class="form" #emailForm="ngForm" action="" method="post" (ngSubmit)="updateEmail(emailForm.value.email)">
+            <input class="text-input" type="email" name="email" placeholder="email" focus="true"
+              [ngModel]="accountInformationService.email" required>
+            <button class="button" type="submit" [disabled]="!emailForm.valid">Change email</button>
+        </form>
+        <form class="form" #passwordForm="ngForm" action="" method="post" (ngSubmit)="changePassword()">
+            <input class="text-input" type="password" name="password" placeholder="password" ngModel required>
+            <input class="text-input" type="password" name="confirm-password" placeholder="confirm-password" ngModel required>
+            <button class="button" type="submit" [disabled]="!passwordForm.valid">Change password</button>
+        </form>
+          `,
+  styleUrls: ['./account-information.component.scss']
 })
-export class AddNewWordComponent implements OnInit {
-  isPopUpHidden: boolean = true;
+export class AccountInformationComponent {
+  constructor(private accountInformationService: AccountInformationService) { }
 
-  constructor(private wordsService: WordsService,
-              private eventsService: EventsService) { }
+  updateEmail(email: string) {
+    email = email.trim().toLowerCase();
 
-  ngOnInit() {
-    this.eventsService.addNewWord$
-      .subscribe(() => {
-        this.showPopUp();
-      });
+    this.accountInformationService.updateEmail(email);
   }
 
-  addNewWord(form: NgForm) {
-    const mainWord: string = form.value['main-word'].trim().toLowerCase();
-    const translation: string = form.value['translation'].trim().toLowerCase();
+  changePassword() {
 
-    const newWord = {
-      learningWord: mainWord,
-      familiarWord: translation
-    };
-
-    this.wordsService.addNewWord(newWord);
-    form.reset();
-  }
-
-  showPopUp() {
-    this.isPopUpHidden = false;
-
-    setTimeout(() => {
-      this.isPopUpHidden = true;
-    }, 2000);
   }
 }

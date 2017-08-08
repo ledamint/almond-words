@@ -12,6 +12,7 @@ import { BackgroundComponent } from './component/background/background.component
 import { CardsComponent } from './component/cards/cards.component';
 import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
 import { WordsOptionsComponent } from './component/options/words-options/words-options.component';
+import { AccountInformationComponent } from './component/options/account-information/account-information.component';
 import { AddNewWordComponent } from './component/add-new-word/add-new-word.component';
 import { TestChoiceComponent } from './component/test/test-choice/test-choice.component';
 import { TestBlockComponent } from './component/test/test-block/test-block.component';
@@ -25,6 +26,7 @@ import { MainService } from './service/main.service';
 import { EventsService } from './service/events.service';
 import { WordsService } from './service/words.service';
 import { OptionsService } from './service/options.service';
+import { AccountInformationService } from './service/account-information.service';
 import { BackgroundService } from './service/background.service';
 import { TestWordsService } from './service/test-words.service';
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     component: OptionsBlockComponent,
     children: [
       { path: 'words', component: WordsOptionsComponent },
-      { path: '', redirectTo: 'words', pathMatch: 'full' },
+      { path: 'account', component: AccountInformationComponent },
+      { path: '', redirectTo: 'account', pathMatch: 'full' },
     ],
   },
   { path: 'add-new-word', component: AddNewWordComponent },
@@ -65,6 +68,7 @@ const appRoutes: Routes = [
     AddNewWordComponent,
     OptionsBlockComponent,
     WordsOptionsComponent,
+    AccountInformationComponent,
     TestChoiceComponent,
     TestBlockComponent,
     AnswersResultComponent,
@@ -77,6 +81,7 @@ const appRoutes: Routes = [
     EventsService,
     WordsService,
     OptionsService,
+    AccountInformationService,
     TestWordsService,
     BackgroundService]
 })

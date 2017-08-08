@@ -20,7 +20,7 @@ export class AuthorizationService {
     this.http.post('registration', registrationData)
       .map(res => res.json())
       .subscribe(
-        (isLoginDone) => {
+        (isLoginDone: boolean) => {
           this.mainService.setUpApplication();
         },
         (err) => {
@@ -34,7 +34,7 @@ export class AuthorizationService {
       .map(res => res.json())
       .subscribe(
         // TODO: divide requests
-        (isLoginDone) => {
+        (isLoginDone: boolean) => {
           if (isLoginDone) {
             this.mainService.setUpApplication();
           } else this.router.navigateByUrl('/registration');
