@@ -63,6 +63,7 @@ export interface Filter {
   knowledge: KnowledgeFilter[];
 }
 
+// TODO: simplify KnowledgeFilter
 export interface KnowledgeFilter {
   name: string;
   value: number[];
