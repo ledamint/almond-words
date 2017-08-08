@@ -11,9 +11,9 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
 @Component({
   selector: 'options',
   template: `
-          <h1 class="theme-color-border">Options</h1>
+          <h1>Options</h1>
           <router-outlet></router-outlet>
-          <div class="buttons theme-color-border">
+          <div class="buttons">
               <button class="button" (click)="submitOptions()">Submit</button>
           </div>
           <div class="side-panel">

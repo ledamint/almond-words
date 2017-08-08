@@ -37,7 +37,7 @@ export class AuthorizationService {
         (isLoginDone) => {
           if (isLoginDone) {
             this.mainService.setUpApplication();
-          } else this.router.navigateByUrl('/login');
+          } else this.router.navigateByUrl('/registration');
         },
         (err) => {
           this.eventsService.onServerError(err);

@@ -6,8 +6,9 @@ import { EventsService } from 'app/service/events.service';
 
 @Component({
   selector: 'write-translation',
-  template: `<input class="precise-answer theme-color-text-second-color" [class.incorrect]="isAnswerIncorrect" name="precise-answer"
-               [(ngModel)]="answer" #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" focus="true">`,
+  template: `<input class="precise-answer text-input theme-color-text-second-color"
+               [class.incorrect]="isAnswerIncorrect" name="precise-answer" [(ngModel)]="answer"
+               #preciseAnswer="ngModel" (keyup.enter)="checkAnswer(preciseAnswer.value)" focus="true">`,
   styleUrls: ['./write-translation.component.scss']
 })
 export class WriteTranslationComponent implements OnInit {
