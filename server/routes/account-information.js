@@ -3,7 +3,7 @@ const ObjectID = require('mongodb').ObjectID;
 module.exports = (app, db) => {
   app.post('/email', (req, res) => {
     const userId = {
-      _id: new ObjectID(req.session._id)
+      _id: new ObjectID(req.session._id),
     };
     const email = req.body;
 
