@@ -13,6 +13,7 @@ import { PopUpComponent } from './component/pop-up/pop-up.component';
 import { CardsComponent } from './component/cards/cards.component';
 import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
 import { WordsOptionsComponent } from './component/options/words-options/words-options.component';
+import { ThemeOptionsComponent } from './component/options/theme-options/theme-options.component';
 import { AccountInformationComponent } from './component/options/account-information/account-information.component';
 import { AddNewWordComponent } from './component/add-new-word/add-new-word.component';
 import { TestChoiceComponent } from './component/test/test-choice/test-choice.component';
@@ -41,8 +42,9 @@ const appRoutes: Routes = [
     component: OptionsBlockComponent,
     children: [
       { path: 'words', component: WordsOptionsComponent },
+      { path: 'theme', component: ThemeOptionsComponent },
       { path: 'account', component: AccountInformationComponent },
-      { path: '', redirectTo: 'account', pathMatch: 'full' },
+      { path: '', redirectTo: 'words', pathMatch: 'full' },
     ],
   },
   { path: 'add-new-word', component: AddNewWordComponent },
@@ -70,6 +72,7 @@ const appRoutes: Routes = [
     AddNewWordComponent,
     OptionsBlockComponent,
     WordsOptionsComponent,
+    ThemeOptionsComponent,
     AccountInformationComponent,
     TestChoiceComponent,
     TestBlockComponent,

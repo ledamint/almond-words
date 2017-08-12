@@ -22,6 +22,14 @@ a {
   .blue-theme &:hover {
     color: $blue-theme-second-color;
   }
+
+  &.active {
+    color: $pink-theme-second-color !important;
+  }
+
+  .blue-theme &.active {
+    color: $blue-theme-second-color !important;
+  }
 }
 
 // TODO: divide elements
@@ -71,16 +79,16 @@ a {
     color: $pink-theme-second-color;
   }
 
-  &.active {
-    color: $pink-theme-second-color;
-  }
-
   .blue-theme &:hover {
     color: $blue-theme-second-color;
   }
 
+  &.active {
+    color: $pink-theme-second-color !important;
+  }
+
   .blue-theme &.active {
-    color: $blue-theme-second-color;
+    color: $blue-theme-second-color !important;
   }
 
   &:active {
@@ -113,6 +121,28 @@ a {
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
 
+.top-nav-menu {
+  margin: 0 auto;
+
+  a {
+    padding: 0 20px;
+  }
+}
+
+.option-item {
+  margin-right: 15px;
+  font-size: 20px;
+
+  &_title {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 480px) {
   .text-input {
     width: 100%;
@@ -136,6 +166,18 @@ a {
     width: 100%;
     transform: none;
   }
+
+  a {
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  .button {
+    &:hover {
+      color: inherit;
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -145,5 +187,15 @@ a {
 
   h2 {
     font-size: 20px;
+  }
+
+  .option-item {
+    font-size: 16px;
+
+    &_title {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
   }
 }

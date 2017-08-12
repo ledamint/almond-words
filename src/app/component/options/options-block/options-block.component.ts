@@ -12,6 +12,11 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
   selector: 'options',
   template: `
           <h1>Options</h1>
+          <div class="top-nav-menu">
+              <a class="button" routerLink="/user-options/words/" routerLinkActive="active">words</a>
+              <a class="button" routerLink="/user-options/theme/" routerLinkActive="active">theme</a>
+              <a class="button" routerLink="/user-options/account/" routerLinkActive="active">account</a>
+          </div>
           <router-outlet></router-outlet>
           <div class="buttons">
               <button class="button" (click)="submitOptions()">Submit</button>
