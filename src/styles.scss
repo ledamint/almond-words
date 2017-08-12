@@ -54,18 +54,6 @@ a {
   }
 }
 
-.pop-up {
-  position: fixed;
-  z-index: 100;
-  top: 10%;
-  left: 50%;
-  padding: 0 15px;;
-  border-radius: 5px;
-  text-align: center;
-  color: white;
-  transform: translate(-50%, -50%);
-}
-
 .button {
   border: 0;
   outline: 0;
@@ -147,10 +135,6 @@ a {
     bottom: -45px;
     width: 100%;
     transform: none;
-  }
-
-  .pop-up {
-    width: 80%;
   }
 }
 

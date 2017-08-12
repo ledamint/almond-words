@@ -9,6 +9,7 @@ import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
 import { LoginComponent } from './component/authorization/login/login.component';
 import { BackgroundComponent } from './component/background/background.component';
+import { PopUpComponent } from './component/pop-up/pop-up.component';
 import { CardsComponent } from './component/cards/cards.component';
 import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
 import { WordsOptionsComponent } from './component/options/words-options/words-options.component';
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     RegistrationComponent,
     LoginComponent,
     BackgroundComponent,
+    PopUpComponent,
     CardsComponent,
     AddNewWordComponent,
     OptionsBlockComponent,

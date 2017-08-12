@@ -25,12 +25,16 @@ export class AccountInformationComponent {
   constructor(private accountInformationService: AccountInformationService) { }
 
   updateEmail(email: string) {
-    email = email.trim().toLowerCase();
+    if (confirm('Are you sure to change email?')) {
+      email = email.trim().toLowerCase();
 
-    this.accountInformationService.updateEmail(email);
+      this.accountInformationService.updateEmail(email);
+    }
   }
 
   changePassword(password: string) {
-    this.accountInformationService.changePassword(password);
+    if (confirm('Are you sure to change password?')) {
+      this.accountInformationService.changePassword(password);
+    }
   }
 }

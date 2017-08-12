@@ -68,3 +68,8 @@ export interface KnowledgeFilter {
   name: string;
   value: number[];
 }
+
+export interface Message {
+  text: string;
+  isActive?: boolean;
+}

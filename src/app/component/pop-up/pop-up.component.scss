@@ -1,0 +1,21 @@
+.pop-up {
+  position: fixed;
+  z-index: 100;
+  top: 10%;
+  left: 50%;
+  padding: 0 15px;;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  transform: translate(-50%, -50%);
+
+  &_error {
+    background-color: #ff4d4d;
+  }
+}
+
+@media (max-width: 1023px) {
+  .pop-up {
+    width: 80%;
+  }
+}

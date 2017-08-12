@@ -16,9 +16,6 @@ import { EventsService } from '../../service/events.service';
           </form>
           <div class="side-panel">
               <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
-          </div>
-          <div class="pop-up" [hidden]="isPopUpHidden">
-              <h2>Added!</h2>
           </div>`,
   styleUrls: ['./add-new-word.component.scss']
 })
@@ -31,7 +28,7 @@ export class AddNewWordComponent implements OnInit {
   ngOnInit() {
     this.eventsService.addNewWord$
       .subscribe(() => {
-        this.showPopUp();
+        this.eventsService.onShowMessage({ text: 'Added!' });
       });
   }
 
@@ -46,13 +43,5 @@ export class AddNewWordComponent implements OnInit {
 
     this.wordsService.addNewWord(newWord);
     form.reset();
-  }
-
-  showPopUp() {
-    this.isPopUpHidden = false;
-
-    setTimeout(() => {
-      this.isPopUpHidden = true;
-    }, 2000);
   }
 }

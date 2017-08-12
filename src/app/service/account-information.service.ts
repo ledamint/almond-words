@@ -19,8 +19,8 @@ export class AccountInformationService {
       .map((res) => res.text())
       .subscribe(
         (updatedEmail: string) => {
-          // TODO: show pop-up
           this.email = updatedEmail;
+          this.eventsService.onShowMessage({ text: 'Changed!' });
         },
         (err) => this.eventsService.onServerError(err)
       );
@@ -31,7 +31,7 @@ export class AccountInformationService {
       .map((res) => res.text())
       .subscribe(
         () => {
-          // TODO: show pop-up
+          this.eventsService.onShowMessage({ text: 'Changed!' });
         },
         (err) => this.eventsService.onServerError(err)
       );
