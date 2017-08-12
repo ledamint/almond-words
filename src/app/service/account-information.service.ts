@@ -25,4 +25,15 @@ export class AccountInformationService {
         (err) => this.eventsService.onServerError(err)
       );
   }
+
+  changePassword(password: string) {
+    this.http.post('password', { password })
+      .map((res) => res.text())
+      .subscribe(
+        () => {
+          // TODO: show pop-up
+        },
+        (err) => this.eventsService.onServerError(err)
+      );
+  }
 }

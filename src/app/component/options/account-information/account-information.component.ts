@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgForm, EmailValidator } from '@angular/forms';
 
 import { AccountInformationService } from 'app/service/account-information.service';
 
@@ -9,13 +9,14 @@ import { AccountInformationService } from 'app/service/account-information.servi
         <h3>Account Information</h3>
         <form class="form" #emailForm="ngForm" action="" method="post" (ngSubmit)="updateEmail(emailForm.value.email)">
             <input class="text-input" type="email" name="email" placeholder="email" focus="true"
-              [ngModel]="accountInformationService.email" required>
+              [ngModel]="accountInformationService.email" required email>
             <button class="button" type="submit" [disabled]="!emailForm.valid">Change email</button>
         </form>
-        <form class="form" #passwordForm="ngForm" action="" method="post" (ngSubmit)="changePassword()">
-            <input class="text-input" type="password" name="password" placeholder="password" ngModel required>
+        <form class="form" #passwordForm="ngForm" action="" method="post" (ngSubmit)="changePassword(passwordForm.value.password)">
+            <input class="text-input" type="password" name="password" placeholder="password" ngModel required minlength="6">
             <input class="text-input" type="password" name="confirm-password" placeholder="confirm-password" ngModel required>
-            <button class="button" type="submit" [disabled]="!passwordForm.valid">Change password</button>
+            <button class="button" type="submit" [disabled]="!passwordForm.valid ||
+              passwordForm.value.password !== passwordForm.value['confirm-password']">Change password</button>
         </form>
           `,
   styleUrls: ['./account-information.component.scss']
@@ -29,7 +30,7 @@ export class AccountInformationComponent {
     this.accountInformationService.updateEmail(email);
   }
 
-  changePassword() {
-
+  changePassword(password: string) {
+    this.accountInformationService.changePassword(password);
   }
 }
