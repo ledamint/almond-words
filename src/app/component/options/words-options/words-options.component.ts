@@ -8,13 +8,13 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
 @Component({
   selector: 'words-options',
   template: `
-          <h3>Sort</h3>
           <div class="sorts">
+              <h3>Sort</h3>
               <span class="option-item button" [class.active]="optionsService.activeOptions.sort === sort.value"
                 *ngFor="let sort of optionsService.options.sorts" (click)="updateSort(sort.value)">{{ sort.name }}</span>
           </div>
-          <h3>Filter</h3>
           <div class="knowledge">
+              <h3>Filter</h3>
               <span class="option-item option-item_title">knowledge:</span>
               <span class="option-item button"
                 *ngFor="let knowledgeFilter of optionsService.options.filter.knowledge"

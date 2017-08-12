@@ -1,4 +1,11 @@
-.themes {
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div {
+  margin: 0 20px;
   margin-top: 20px;
   margin-bottom: 10px;
 }

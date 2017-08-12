@@ -12,7 +12,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <input class="text-input" type="email" name="email" placeholder="email" focus="true" ngModel required email>
               <input class="text-input" type="password" name="password" placeholder="password" ngModel required required minlength="6">
-              <input class="text-input" type="password" name="confirm-password" placeholder="confirm-password" ngModel required>
+              <input class="text-input" type="password" name="confirm-password" placeholder="confirm password" ngModel required>
               <input class="text-input" type="text" name="learning-language" placeholder="learning language" ngModel required>
               <input class="text-input" type="text" name="familiar-language" placeholder="familiar language" ngModel required>
               <button class="button" type="submit" [disabled]="!registrationForm.valid ||
