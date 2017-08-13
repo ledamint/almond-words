@@ -1,6 +1,5 @@
 @import 'variables';
 
-// TODO: make scss structure
 :host {
   display: flex;
   flex-direction: column;
@@ -11,10 +10,41 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
 
-.letters_main-word {
-  margin-bottom: 20px;
+  &_main-word {
+    margin-bottom: 20px;
+
+    .letter {
+      visibility: hidden;
+      font-weight: bold;
+
+      &.checked {
+        visibility: visible;
+      }
+    }
+  }
+
+  &_answer {
+    .letter {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ff00ff;
+
+        :host-context(.blue-theme) & {
+          background-color: #4d88ff;
+        }
+      }
+
+      &:active {
+        transform: translate(1px, 1px);
+      }
+
+      &.selected {
+        visibility: hidden;
+      }
+    }
+  }
 }
 
 .letter {
@@ -32,43 +62,17 @@
     margin-right: 0;
   }
 }
-
-.letters_main-word .letter {
-  visibility: hidden;
-  font-weight: bold;
-}
-
-.letters_main-word .letter.checked {
-  visibility: visible;
-}
-
-.letters_answer .letter {
-  cursor: pointer;
-}
-
-.letters_answer .letter:hover {
-  background-color: #ff00ff;
-}
-
-:host-context(.blue-theme) .letters_answer .letter:hover {
-  background-color: #4d88ff;
-}
-
-.letters_answer .letter:active {
-  transform: translate(1px, 1px);
-}
-
-.letters_answer .letter.selected {
-  visibility: hidden;
-}
-
 @media (max-width: $mobile-width) {
-  .letters_main-word .letter {
-    width: 25px;
-    height: 25px;
-    margin-right: 3px;
-    margin-bottom: 3px;
-    font-size: 16px;
-    line-height: 1.5;
+  .letters {
+    &_main-word {
+      .letter {
+        width: 25px;
+        height: 25px;
+        margin-right: 3px;
+        margin-bottom: 3px;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
   }
 }
