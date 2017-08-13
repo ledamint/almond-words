@@ -7,7 +7,6 @@ import { BackgroundService } from 'app/service/background.service';
 
 import { KnowledgeFilter } from 'app/service/interface/interfaces';
 
-// TODO: do background checkbox
 @Component({
   selector: 'options',
   template: `

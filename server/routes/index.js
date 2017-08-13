@@ -5,7 +5,6 @@ const optionsRoutes = require('./options');
 const accountInformationRoutes = require('./account-information');
 
 module.exports = (app, db) => {
-  // TODO: add behavior after not found in db
   authorizationRoutes(app, db);
   usersRoutes(app, db);
   wordsRoutes(app, db);

@@ -4,7 +4,6 @@ import { OptionsService } from 'app/service/options.service';
 
 import { KnowledgeFilter } from 'app/service/interface/interfaces';
 
-// TODO: do background checkbox
 @Component({
   selector: 'words-options',
   template: `

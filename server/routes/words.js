@@ -1,6 +1,5 @@
 const ObjectID = require('mongodb').ObjectID;
 
-// TODO: divide and improve
 module.exports = (app, db) => {
   const usersCollection = db.collection('users');
 
@@ -17,7 +16,7 @@ module.exports = (app, db) => {
         res.sendStatus(500);
       } else {
         const updatingWordIndex = user.boards[user.activeBoard].words
-          .findIndex(word => word._id == req.params.id);
+          .findIndex(word => word._id.toString() === req.params.id);
 
         const query = { $set: { } };
 
@@ -86,7 +85,7 @@ module.exports = (app, db) => {
         res.sendStatus(404);
       } else {
         const deletingWord = user.boards[user.activeBoard].words
-          .find(word => word._id == req.params.id);
+          .find(word => word._id.toString() === req.params.id);
 
         const wordsSelector = `boards.${user.activeBoard}.words`;
         const query = {
