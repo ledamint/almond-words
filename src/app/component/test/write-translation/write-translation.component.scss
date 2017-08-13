@@ -1,3 +1,5 @@
+@import 'variables';
+
 :host {
     min-width: 50%;
 }
@@ -14,7 +16,7 @@
     border-color: rgba(255, 0, 0, 0.8) !important;
 }
 
-@media (max-width:480px) {
+@media (max-width: $mobile-width) {
     .precise-answer {
         font-size: 35px;
     }

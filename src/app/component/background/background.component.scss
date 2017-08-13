@@ -1,3 +1,5 @@
+@import 'variables';
+
 .background-line {
   position: absolute;
   height: 15px;
@@ -8,7 +10,7 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: $tablet-width) {
   .background-line {
     font-size: 10px;
   }

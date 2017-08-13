@@ -1,4 +1,4 @@
-@import '../../../style/_variables.scss';
+@import 'variables';
 
 .wrapper {
   display: flex;
@@ -28,7 +28,7 @@
   background-color: $blue-theme-main-color;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: $tablet-width) {
   .content {
     width: 100%;
     max-width: 100%;
@@ -38,7 +38,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: $mobile-width) {
   .error {
     h2 {
       font-size: 15px;

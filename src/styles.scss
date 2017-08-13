@@ -32,8 +32,6 @@ a {
   }
 }
 
-// TODO: divide elements
-
 .side-panel {
   display: flex;
   flex-direction: column;
@@ -135,14 +133,7 @@ a {
   }
 }
 
-@media (max-width: 480px) {
-  .text-input {
-    width: 100%;
-  }
-}
-
-// TODO: make width as variables
-@media (max-width: 1023px) {
+@media (max-width: $tablet-width) {
   .theme-color-hover {
     &:hover {
       color: inherit;
@@ -172,13 +163,17 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: $mobile-width) {
   h1 {
     font-size: 26px;
   }
 
   h2 {
     font-size: 20px;
+  }
+
+  .text-input {
+    width: 100%;
   }
 
   .option-item {
