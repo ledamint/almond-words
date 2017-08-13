@@ -11,3 +11,9 @@
 input {
   border-radius: 5%;
 }
+
+@media (max-width: 480px) {
+  :host {
+    display: block;
+  }
+}

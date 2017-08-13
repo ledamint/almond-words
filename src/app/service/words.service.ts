@@ -14,6 +14,7 @@ export class WordsService {
   familiarLanguage: string = 'russian';
 
   allWords: Word[] = [];
+  // TODO: change to active words
   words: Word[] = [];
   cards: Array<Word[]> = [];
 
