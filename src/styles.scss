@@ -17,6 +17,7 @@ a {
 
   &:hover {
     color: $pink-theme-second-color;
+    opacity: 1 !important;
   }
 
   .blue-theme &:hover {

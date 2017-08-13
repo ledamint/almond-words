@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../service/authorization.service';
 import { WordsService } from '../../service/words.service';
@@ -15,8 +14,8 @@ import { Word } from '../../service/interface/interfaces';
       <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
           <div *ngFor="let card of wordsService.cards" class="card theme-color-border">
-              <span *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word"
-                (click)="goToWordOptions(word._id)">{{ word.learningWord }}</span>
+              <a *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word"
+                routerLink="/word/{{ word._id }}">{{ word.learningWord }}</a>
               <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test theme-color-border"
                 (click)="testWordsService.startTest(card)">Test it</a>
           </div>
@@ -32,16 +31,11 @@ import { Word } from '../../service/interface/interfaces';
 export class CardsComponent {
   constructor(private authorizationService: AuthorizationService,
               private wordsService: WordsService,
-              private testWordsService: TestWordsService,
-              private router: Router) { }
+              private testWordsService: TestWordsService) { }
 
   logout() {
     if (confirm('Are you sure to logout?')) {
       this.authorizationService.logout();
     }
-  }
-
-  goToWordOptions(id: string) {
-    this.router.navigateByUrl(`/word/${id}`);
   }
 }
