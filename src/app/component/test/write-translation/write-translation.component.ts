@@ -26,6 +26,11 @@ export class WriteTranslationComponent implements OnInit {
     });
   }
 
+  setUpOneRound() {
+    this.isAnswerIncorrect = false;
+    this.answer = '';
+  }
+
   checkAnswer(answer: string) {
     answer = answer.trim().toLowerCase();
 
@@ -36,10 +41,5 @@ export class WriteTranslationComponent implements OnInit {
       this.isAnswerIncorrect = true;
       this.eventsService.onEnterAnswer({ testId: 2, isAnswerRight: false });
     }
-  }
-
-  setUpOneRound() {
-    this.isAnswerIncorrect = false;
-    this.answer = '';
   }
 }

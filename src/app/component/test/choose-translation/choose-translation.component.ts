@@ -4,6 +4,10 @@ import { WordsService } from 'app/service/words.service';
 import { TestWordsService } from 'app/service/test-words.service';
 import { EventsService } from 'app/service/events.service';
 
+import { Word } from 'app/service/interface/interfaces';
+
+import { VariantOfAnswer, defaultAnswers } from './default-answers';
+
 @Component({
   selector: 'choose-translation',
   template: `<div class="answers">
@@ -13,6 +17,7 @@ import { EventsService } from 'app/service/events.service';
 })
 export class ChooseTranslationComponent implements OnInit {
   answers: string[] = [];
+  variantsOfAnswers: VariantOfAnswer[];
 
   constructor(private wordsService: WordsService,
               private testWordsService: TestWordsService,
@@ -25,26 +30,8 @@ export class ChooseTranslationComponent implements OnInit {
   }
 
   setUpOneRound() {
-    this.answers = [];
-
-    const realTranslation = this.testWordsService.currentTestingWord.learningWord;
-
-    // TODO remove endless cycle
-    while (true) {
-      const randomWord = this.wordsService.activeWords[Math.floor(Math.random() * this.wordsService.activeWords.length)];
-      const randomTransaltion = randomWord.learningWord;
-
-      if (this.answers.indexOf(randomTransaltion) === -1) {
-        if (randomTransaltion !== realTranslation) {
-          this.answers.push(randomTransaltion);
-        }
-      }
-
-      if (this.answers.length === 4) break;
-    }
-
-    // insert real translation
-    this.answers[Math.floor(Math.random() * 4)] = realTranslation;
+    this.updateVariantsOfAnswers();
+    this.updateAnswers();
   }
 
   checkAnswer(answer: string) {
@@ -53,5 +40,43 @@ export class ChooseTranslationComponent implements OnInit {
     } else {
       this.eventsService.onEnterAnswer({ testId: 0, isAnswerRight: false });
     }
+  }
+
+  updateVariantsOfAnswers() {
+    if (this.wordsService.activeWords.length > 3) {
+      this.variantsOfAnswers = this.wordsService.activeWords.slice(-30);
+    } else if (this.wordsService.allWords.length > 3) {
+      this.variantsOfAnswers = this.wordsService.allWords.slice(-30);
+    } else {
+      this.variantsOfAnswers = defaultAnswers;
+    }
+
+    this.variantsOfAnswers = this.variantsOfAnswers.filter((variant) => {
+      return variant._id !== this.testWordsService.currentTestingWord._id;
+    });
+  }
+
+  updateAnswers() {
+    this.answers = [];
+
+    for (let i = 0; i < 3; i++) {
+      const randomIndex = Math.floor(Math.random() * this.variantsOfAnswers.length);
+      const randomWord = this.variantsOfAnswers[randomIndex];
+
+      this.answers.push(randomWord.learningWord);
+      this.variantsOfAnswers.splice(randomIndex, 1);
+    }
+
+    const realTranslation = this.testWordsService.currentTestingWord.learningWord;
+    this.answers.push(realTranslation);
+
+    // shuffle
+    this.answers.forEach((letter, i, answer) => {
+      const randomNumber = Math.floor(Math.random() * answer.length);
+      const randomLetter = answer[randomNumber];
+
+      answer[randomNumber] = letter;
+      answer[i] = randomLetter;
+    });
   }
 }
