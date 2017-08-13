@@ -28,22 +28,7 @@
   padding: 2px 0 10px;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &:hover .delete{
-    display: block;;
-  }
-}
-
-.delete {
-  display: none;
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  font-size: 12px;
-  color: red;
-  transform: translateX(-50%);
   cursor: pointer;
-  text-align: center;
 }
 
 .type-of-test {

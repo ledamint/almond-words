@@ -11,6 +11,7 @@ import { LoginComponent } from './component/authorization/login/login.component'
 import { BackgroundComponent } from './component/background/background.component';
 import { PopUpComponent } from './component/pop-up/pop-up.component';
 import { CardsComponent } from './component/cards/cards.component';
+import { WordComponent } from './component/word/word.component';
 import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
 import { WordsOptionsComponent } from './component/options/words-options/words-options.component';
 import { ThemeOptionsComponent } from './component/options/theme-options/theme-options.component';
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cards', component: CardsComponent },
+  { path: 'word/:id', component: WordComponent },
   {
     path: 'user-options',
     component: OptionsBlockComponent,
@@ -69,6 +71,7 @@ const appRoutes: Routes = [
     BackgroundComponent,
     PopUpComponent,
     CardsComponent,
+    WordComponent,
     AddNewWordComponent,
     OptionsBlockComponent,
     WordsOptionsComponent,

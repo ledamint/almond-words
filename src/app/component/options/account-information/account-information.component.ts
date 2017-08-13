@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm, EmailValidator } from '@angular/forms';
 
 import { AccountInformationService } from 'app/service/account-information.service';
