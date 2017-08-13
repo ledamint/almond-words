@@ -123,6 +123,8 @@ export class WordsService {
         (updatedWord: Word) => {
           const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
           this.allWords[updatedWordIndex] = updatedWord;
+
+          this.updateWords();
         },
         err => this.eventsService.onServerError(err)
       );

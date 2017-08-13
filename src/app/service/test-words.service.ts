@@ -48,7 +48,6 @@ export class TestWordsService {
   }
 
   finishTest() {
-    this.wordsService.updateWords();
     this.router.navigateByUrl('/answers-result');
   }
 
