@@ -31,7 +31,7 @@ export class ChooseTranslationComponent implements OnInit {
 
     // TODO remove endless cycle
     while (true) {
-      const randomWord = this.wordsService.words[Math.floor(Math.random() * this.wordsService.words.length)];
+      const randomWord = this.wordsService.activeWords[Math.floor(Math.random() * this.wordsService.activeWords.length)];
       const randomTransaltion = randomWord.learningWord;
 
       if (this.answers.indexOf(randomTransaltion) === -1) {

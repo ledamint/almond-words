@@ -9,9 +9,9 @@ import { Word } from '../../service/interface/interfaces';
 @Component({
   selector: 'cards',
   template: `
-      <h1>Your {{ wordsService.words.length > 0 ? wordsService.words.length : '' }}
-        word{{ wordsService.words.length === 1 ? '' : 's' }}</h1>
-      <p class="description" [hidden]="wordsService.words.length !== 0">You need to add new words or extend filter</p>
+      <h1>Your {{ wordsService.activeWords.length > 0 ? wordsService.activeWords.length : '' }}
+        word{{ wordsService.activeWords.length === 1 ? '' : 's' }}</h1>
+      <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
           <div *ngFor="let card of wordsService.cards" class="card theme-color-border">
               <span *ngFor="let word of card" title="{{ word.familiarWord }}" [style.opacity]="word.knowledge/10" class="word">

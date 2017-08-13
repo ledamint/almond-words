@@ -14,8 +14,7 @@ export class WordsService {
   familiarLanguage: string = 'russian';
 
   allWords: Word[] = [];
-  // TODO: change to active words
-  words: Word[] = [];
+  activeWords: Word[] = [];
   cards: Array<Word[]> = [];
 
   constructor(private http: Http,
@@ -25,7 +24,7 @@ export class WordsService {
 
   setUp(allWords: Word[]) {
     this.allWords = allWords;
-    this.words = this.allWords;
+    this.activeWords = this.allWords;
 
     this.updateWords();
   }
@@ -38,7 +37,7 @@ export class WordsService {
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
     if (activeKnowledge.length > 0 && activeKnowledge !== undefined) {
-      this.words = this.allWords.filter((word) => {
+      this.activeWords = this.allWords.filter((word) => {
         let suitableFilter = false;
 
         activeKnowledge.forEach((knowledge) => {
@@ -49,7 +48,7 @@ export class WordsService {
 
         return suitableFilter;
       });
-    } else this.words = this.allWords;
+    } else this.activeWords = this.allWords;
   }
 
   sortWords(activeSort: string = 'time', isInverse: boolean = false) {
@@ -63,7 +62,7 @@ export class WordsService {
       b = 1;
     }
 
-    this.words.sort((word1, word2) => {
+    this.activeWords.sort((word1, word2) => {
       if (word1[activeSort] > word2[activeSort]) return a;
       if (word1[activeSort] < word2[activeSort]) return b;
     });
@@ -73,7 +72,7 @@ export class WordsService {
     this.cards = [];
     let cardId: number = -1;
 
-    this.words.forEach((word, i) => {
+    this.activeWords.forEach((word, i) => {
       if (i % 10 === 0) {
         cardId += 1;
         this.cards[cardId] = [];
