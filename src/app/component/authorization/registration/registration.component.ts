@@ -5,6 +5,8 @@ import { AuthorizationService } from 'app/service/authorization.service';
 
 import { RegistrationData } from 'app/service/interface/interfaces';
 
+// TODO: make visual validation
+// TODO: make language as select
 @Component({
   selector: 'registration',
   template: `
