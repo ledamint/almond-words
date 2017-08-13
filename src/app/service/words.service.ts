@@ -6,12 +6,12 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { OptionsService } from './options.service';
 
-import { Word, KnowledgeFilter, Sort } from './interface/interfaces';
+import { Board, Word, KnowledgeFilter, Sort } from './interface/interfaces';
 
 @Injectable()
 export class WordsService {
-  learningLanguage: string = 'english';
-  familiarLanguage: string = 'russian';
+  learningLanguage: string;
+  familiarLanguage: string;
 
   allWords: Word[] = [];
   activeWords: Word[] = [];
@@ -22,8 +22,11 @@ export class WordsService {
               private optionsService: OptionsService) { }
 
 
-  setUp(allWords: Word[]) {
-    this.allWords = allWords;
+  setUp(board: Board) {
+    this.learningLanguage = board.learningLanguage;
+    this.familiarLanguage = board.familiarLanguage;
+
+    this.allWords = board.words;
     this.activeWords = this.allWords;
 
     this.updateWords();

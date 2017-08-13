@@ -20,8 +20,6 @@ import { EventsService } from '../../service/events.service';
   styleUrls: ['./add-new-word.component.scss']
 })
 export class AddNewWordComponent implements OnInit {
-  isPopUpHidden: boolean = true;
-
   constructor(private wordsService: WordsService,
               private eventsService: EventsService) { }
 

@@ -28,7 +28,7 @@ export class MainService {
         (user: User) => {
           this.optionsService.setUp(user.activeOptions);
           this.accountInformationService.setUp(user.email);
-          this.wordsService.setUp(user.boards[user.activeBoard].words);
+          this.wordsService.setUp(user.boards[user.activeBoard]);
           if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
 
           this.router.navigateByUrl('/cards');

@@ -27,18 +27,15 @@ export class RegistrationComponent {
   constructor(private authorizationService: AuthorizationService) { }
 
   registerUser(form: NgForm) {
-    if (form.value.password !== form.value['confirm-password']) alert('passwords don\'t match');
-    else {
-      const email: string = form.value.email.trim().toLowerCase();
+    const email: string = form.value.email.trim().toLowerCase();
 
-      const registrationData: RegistrationData = {
-        email: email,
-        password: form.value.password,
-        learningLanguage: form.value['learning-language'],
-        familiarLanguage: form.value['familiar-language']
-      };
+    const registrationData: RegistrationData = {
+      email: email,
+      password: form.value.password,
+      learningLanguage: form.value['learning-language'],
+      familiarLanguage: form.value['familiar-language']
+    };
 
-      this.authorizationService.registerUser(registrationData);
-    }
+    this.authorizationService.registerUser(registrationData);
   }
 }
