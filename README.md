@@ -8,8 +8,9 @@ The tech stack contains Angular 4, Node.js, Express, MongoDB.
 git clone https://ledamint@bitbucket.org/ledamint/language-words.git  
 cd language-words/  
 npm i --production  
-npm run build  
-http://localhost:3000  
+ng build  
+PORT=3535 node server  
+http://localhost:3535  
   
 login: heresliker@gmail.com  
 password: 123456  
