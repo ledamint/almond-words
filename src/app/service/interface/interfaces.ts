@@ -13,6 +13,7 @@ export interface RegistrationData {
   familiarLanguage: string;
 }
 
+
 export interface User {
   _id: string;
   email: string;
@@ -37,15 +38,10 @@ export interface Word {
   knowledge: number;
 }
 
-export interface ActiveOptions {
-  sort: string;
-  theme: string;
-  isBackgroundActive: boolean;
-  filter: ActiveFilter;
-}
 
-export interface ActiveFilter {
-  knowledge: KnowledgeFilter[];
+export interface MainApplicationInfo {
+  languages: string[];
+  options: Options;
 }
 
 export interface Options {
@@ -68,6 +64,19 @@ export interface KnowledgeFilter {
   name: string;
   value: number[];
 }
+
+
+export interface ActiveOptions {
+  sort: string;
+  theme: string;
+  isBackgroundActive: boolean;
+  filter: ActiveFilter;
+}
+
+export interface ActiveFilter {
+  knowledge: KnowledgeFilter[];
+}
+
 
 export interface Message {
   text: string;

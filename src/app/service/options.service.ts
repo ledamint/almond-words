@@ -15,19 +15,12 @@ export class OptionsService {
   constructor(private http: Http,
               private eventsService: EventsService) { }
 
-  setUp(activeOptions: ActiveOptions) {
-    this.activeOptions = activeOptions;
+  setUp(options: Options) {
+    this.options = options;
+  }
 
-    this.http.get('options')
-      .map(res => res.json())
-      .subscribe(
-        (options: Options) => {
-          this.options = options;
-        },
-        (err) => {
-          this.eventsService.onServerError(err);
-        }
-      );
+  setActiveOptions(activeOptions: ActiveOptions) {
+    this.activeOptions = activeOptions;
   }
 
   updateActiveOptions() {

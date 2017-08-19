@@ -21,7 +21,7 @@ export class AuthorizationService {
       .map(res => res.json())
       .subscribe(
         (isLoginDone: boolean) => {
-          this.mainService.setUpApplication();
+          this.mainService.setUpUser();
         },
         (err) => {
           this.eventsService.onServerError(err);
@@ -36,7 +36,7 @@ export class AuthorizationService {
         // TODO: divide requests
         (isLoginDone: boolean) => {
           if (isLoginDone) {
-            this.mainService.setUpApplication();
+            this.mainService.setUpUser();
           } else this.router.navigateByUrl('/registration');
         },
         (err) => {

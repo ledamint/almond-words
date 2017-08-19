@@ -1,19 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (app, db) => {
-  app.get('/options', (req, res) => {
-    db.collection('options').findOne({ }, (err, result) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      } else if (result === null) {
-        res.send(404);
-      } else {
-        res.send(result.options);
-      }
-    });
-  });
-
   app.post('/active-options', (req, res) => {
     const userId = {
       _id: new ObjectID(req.session._id),

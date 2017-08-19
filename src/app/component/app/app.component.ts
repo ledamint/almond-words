@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MainService } from '../../service/main.service';
 import { AuthorizationService } from '../../service/authorization.service';
 import { OptionsService } from '../../service/options.service';
 
@@ -16,10 +17,12 @@ import { OptionsService } from '../../service/options.service';
   styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent implements OnInit {
-  constructor(private authorizationService: AuthorizationService,
+  constructor(private mainService: MainService,
+              private authorizationService: AuthorizationService,
               private optionsService: OptionsService) {  }
 
   ngOnInit() {
+    this.mainService.setUpApplication();
     this.authorizationService.checkLogin();
   }
 

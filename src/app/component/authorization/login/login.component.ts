@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, EmailValidator } from '@angular/forms';
 
 import { AuthorizationService } from 'app/service/authorization.service';
 
@@ -10,7 +10,7 @@ import { LoginData } from 'app/service/interface/interfaces';
   template: `
           <h1>Login</h1>
           <form class="form" #loginForm="ngForm" action="" method="post" (ngSubmit)="checkLogin(loginForm)">
-              <input class="text-input" type="email" name="email" placeholder="email" focus="true" ngModel required>
+              <input class="text-input" type="email" name="email" placeholder="email" focus="true" ngModel email required>
               <input class="text-input" type="password" name="password" placeholder="password" ngModel required>
               <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
           </form>

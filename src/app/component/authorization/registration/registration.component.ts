@@ -1,22 +1,31 @@
 import { Component } from '@angular/core';
 import { NgForm, EmailValidator } from '@angular/forms';
 
+import { MainService } from 'app/service/main.service';
 import { AuthorizationService } from 'app/service/authorization.service';
 
 import { RegistrationData } from 'app/service/interface/interfaces';
 
 // TODO: make visual validation
-// TODO: make language as select
 @Component({
   selector: 'registration',
   template: `
           <h1>Registration</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
-              <input class="text-input" type="email" name="email" placeholder="email" focus="true" ngModel required email>
-              <input class="text-input" type="password" name="password" placeholder="password" ngModel required required minlength="6">
-              <input class="text-input" type="password" name="confirm-password" placeholder="confirm password" ngModel required>
-              <input class="text-input" type="text" name="learning-language" placeholder="learning language" ngModel required>
-              <input class="text-input" type="text" name="familiar-language" placeholder="familiar language" ngModel required>
+              <h4>Email</h4>
+              <input class="text-input" type="email" name="email" focus="true" ngModel required email>
+              <h4>Password</h4>
+              <input class="text-input" type="password" name="password" ngModel required required minlength="6">
+              <h4>Confirm password</h4>
+              <input class="text-input" type="password" name="confirm-password" ngModel required>
+              <h4>Familiar language</h4>
+              <select class="text-input" name="learning-language" ngModel required>
+                  <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
+              </select>
+              <h4>Learning language</h4>
+              <select class="text-input" type="text" name="familiar-language" ngModel required>
+                  <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
+              </select>
               <button class="button" type="submit" [disabled]="!registrationForm.valid ||
                 registrationForm.value.password !== registrationForm.value['confirm-password']">Submit</button>
           </form>
@@ -26,7 +35,8 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor(private mainService: MainService,
+              private authorizationService: AuthorizationService) { }
 
   registerUser(form: NgForm) {
     const email: string = form.value.email.trim().toLowerCase();
