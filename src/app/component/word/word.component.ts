@@ -14,13 +14,13 @@ import { Word } from 'app/service/interface/interfaces';
   template: `
         <h1>Word</h1>
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
-            <input class="text-input" type="text" name="learning-word" placeholder="learning word"
-              [ngModel]="word.learningWord" required>
-            <input class="text-input" type="text" name="familiar-word" placeholder="familiar word"
-              [ngModel]="word.familiarWord" required>
+            <h4 class="input-title">{{ wordsService.learningLanguage }}</h4>
+            <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
+            <h4 class="input-title">{{ wordsService.familiarLanguage }}</h4>
+            <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
             <span class="time">{{ time }}</span>
             <div class="buttons">
-                <button class="button" type="submit">Change</button>
+                <button class="button" type="submit" [disabled]="!wordForm.valid">Change</button>
                 <button class="button" (click)="deleteWord(word)">Delete</button>
             </div>
             <div class="side-panel">
@@ -49,10 +49,13 @@ export class WordComponent implements OnInit {
   updateWord(wordForm: NgForm) {
     this.router.navigateByUrl('/cards');
 
+    const learningWord: string = wordForm.value['learning-word'].trim().toLowerCase();
+    const familiarWord: string = wordForm.value['familiar-word'].trim().toLowerCase();
+
     const wordId = this.route.snapshot.params.id;
     const updatedData = {
-      learningWord: wordForm.value['learning-word'],
-      familiarWord: wordForm.value['familiar-word']
+      learningWord,
+      familiarWord
     };
 
     this.wordsService.updateWord(wordId, updatedData);

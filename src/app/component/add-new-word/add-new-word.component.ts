@@ -10,9 +10,9 @@ import { EventsService } from '../../service/events.service';
           <h1>Add a new word</h1>
           <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
               <h4 class="input-title">{{ wordsService.learningLanguage }}</h4>
-              <input class="text-input" type="text" name="main-word" focus="true" ngModel required>
+              <input class="text-input" type="text" name="learning-word" focus="true" ngModel required>
               <h4 class="input-title">{{ wordsService.familiarLanguage }}</h4>
-              <input class="text-input" type="text" name="translation" ngModel required>
+              <input class="text-input" type="text" name="familiar-word" ngModel required>
               <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">
@@ -31,16 +31,16 @@ export class AddNewWordComponent implements OnInit {
       });
   }
 
-  addNewWord(form: NgForm) {
-    const mainWord: string = form.value['main-word'].trim().toLowerCase();
-    const translation: string = form.value['translation'].trim().toLowerCase();
+  addNewWord(newWordForm: NgForm) {
+    const learningWord: string = newWordForm.value['learning-word'].trim().toLowerCase();
+    const familiarWord: string = newWordForm.value['familiar-word'].trim().toLowerCase();
 
     const newWord = {
-      learningWord: mainWord,
-      familiarWord: translation
+      learningWord,
+      familiarWord
     };
 
     this.wordsService.addNewWord(newWord);
-    form.reset();
+    newWordForm.reset();
   }
 }
