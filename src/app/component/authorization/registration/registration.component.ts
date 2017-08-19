@@ -12,17 +12,17 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   template: `
           <h1>Registration</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
-              <h4>Email</h4>
+              <h4 class="input-title">email</h4>
               <input class="text-input" type="email" name="email" focus="true" ngModel required email>
-              <h4>Password</h4>
+              <h4 class="input-title">password</h4>
               <input class="text-input" type="password" name="password" ngModel required required minlength="6">
-              <h4>Confirm password</h4>
+              <h4 class="input-title">confirm password</h4>
               <input class="text-input" type="password" name="confirm-password" ngModel required>
-              <h4>Familiar language</h4>
+              <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="learning-language" ngModel required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
-              <h4>Learning language</h4>
+              <h4 class="input-title">learning language</h4>
               <select class="text-input" type="text" name="familiar-language" ngModel required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
