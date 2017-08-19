@@ -1,4 +1,7 @@
+const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt-nodejs');
+const sendEmail = require('../email');
+const getRandomString = require('../uti/getRandomString');
 
 module.exports = (app, db) => {
   app.post('/registration', (req, res) => {
@@ -63,9 +66,7 @@ module.exports = (app, db) => {
     } else {
       const loginData = req.body;
 
-      db.collection('users').findOne({
-        email: loginData.email,
-      }, (err, user) => {
+      db.collection('users').findOne({ email: loginData.email }, (err, user) => {
         if (err) {
           console.log(err);
           res.sendStatus(500);
@@ -80,6 +81,39 @@ module.exports = (app, db) => {
         }
       });
     }
+  });
+
+  app.post('/forget-password', (req, res) => {
+    const email = req.body.email;
+
+    db.collection('users').findOne({ email }, (err, user) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else if (user === null) {
+        res.status(404).send('Email doesn\'t exist');
+      } else {
+        const userId = {
+          _id: new ObjectID(user._id),
+        };
+        const randomPassword = getRandomString();
+        const cryptPassword = bcrypt.hashSync(randomPassword);
+        const resolve = () => {
+          db.collection('users').findOneAndUpdate(userId, { $set: { password: cryptPassword } }, (err, result) => {
+            if (err) {
+              console.log(err);
+              res.sendStatus(500);
+            } else if (result.value === null) {
+              res.sendStatus(404);
+            } else {
+              res.send(true);
+            }
+          });
+        };
+
+        sendEmail(email, 'Your new password', randomPassword, () => res.sendStatus(500), resolve);
+      }
+    });
   });
 
   app.post('/logout', (req, res) => {

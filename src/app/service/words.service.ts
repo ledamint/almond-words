@@ -125,8 +125,6 @@ export class WordsService {
           this.allWords[updatedWordIndex] = updatedWord;
 
           this.updateWords();
-
-          this.eventsService.onShowMessage({ text: 'Changed!' });
         },
         err => this.eventsService.onServerError(err)
       );

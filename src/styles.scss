@@ -108,6 +108,15 @@ a {
   font-weight: normal;
 }
 
+.input-wrapper {
+  position: relative;
+  width: 80%;
+
+  .text-input {
+    width: 100%;
+  }
+}
+
 .text-input {
   height: 30px;
   width: 80%;
@@ -124,6 +133,7 @@ a {
   &::-moz-placeholder          { color: rgba(0, 0, 0, 0.5); }
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
+
 
 .option-item {
   margin-right: 15px;

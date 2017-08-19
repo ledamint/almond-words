@@ -46,6 +46,18 @@ export class AuthorizationService {
       );
   }
 
+  sendNewPassword(email: string) {
+    this.http.post('forget-password', { email })
+      .subscribe(
+        () => {
+          this.eventsService.onShowMessage({ text: 'Sent!' });
+        },
+        (err) => {
+          this.eventsService.onServerError(err);
+        }
+      );
+  }
+
   logout() {
     this.http.post('logout', { })
       .subscribe(

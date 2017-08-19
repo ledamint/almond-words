@@ -11,7 +11,10 @@ import { LoginData } from 'app/service/interface/interfaces';
           <h1>Login</h1>
           <form class="form" #loginForm="ngForm" action="" method="post" (ngSubmit)="checkLogin(loginForm)">
               <h4 class="input-title">email</h4>
-              <input class="text-input" type="email" name="email" focus="true" ngModel email required>
+              <div class="input-wrapper">
+                  <input class="text-input" type="email" name="email" focus="true" ngModel email required>
+                  <button class="button" type="button" (click)="sendNewPassword(loginForm.value.email)">Send new password</button>
+              </div>
               <h4 class="input-title">password</h4>
               <input class="text-input" type="password" name="password" ngModel required>
               <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
@@ -24,14 +27,20 @@ import { LoginData } from 'app/service/interface/interfaces';
 export class LoginComponent {
   constructor(private authorizationService: AuthorizationService) { }
 
-  checkLogin(form: NgForm) {
-    const email: string = form.value.email.trim().toLowerCase();
+  checkLogin(loginForm: NgForm) {
+    const email: string = loginForm.value.email.trim().toLowerCase();
 
     const loginData: LoginData = {
       email: email,
-      password: form.value.password
+      password: loginForm.value.password
     };
 
     this.authorizationService.checkLogin(loginData);
+  }
+
+  sendNewPassword(email: string) {
+    email = email.trim().toLowerCase();
+
+    this.authorizationService.sendNewPassword(email);
   }
 }
