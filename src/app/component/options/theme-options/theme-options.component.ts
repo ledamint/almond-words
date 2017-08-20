@@ -24,7 +24,7 @@ import { OptionsService } from 'app/service/options.service';
   styleUrls: ['./theme-options.component.scss']
 })
 export class ThemeOptionsComponent {
-  constructor(private optionsService: OptionsService) { }
+  constructor(public optionsService: OptionsService) { }
 
   updateTheme(theme: string) {
     this.optionsService.updateTheme(theme);

@@ -21,8 +21,8 @@ import { EventsService } from '../../service/events.service';
   styleUrls: ['./add-new-word.component.scss']
 })
 export class AddNewWordComponent implements OnInit {
-  constructor(private wordsService: WordsService,
-              private eventsService: EventsService) { }
+  constructor(public wordsService: WordsService,
+              public eventsService: EventsService) { }
 
   ngOnInit() {
     this.eventsService.addNewWord$

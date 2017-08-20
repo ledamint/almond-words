@@ -42,8 +42,8 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  constructor(private mainService: MainService,
-              private authorizationService: AuthorizationService) { }
+  constructor(public mainService: MainService,
+              public authorizationService: AuthorizationService) { }
 
   registerUser(form: NgForm) {
     const email: string = form.value.email.trim().toLowerCase();

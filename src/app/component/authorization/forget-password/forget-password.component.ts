@@ -19,7 +19,7 @@ import { AuthorizationService } from 'app/service/authorization.service';
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent {
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor(public authorizationService: AuthorizationService) { }
 
   sendNewPassword(email: string) {
     email = email.trim().toLowerCase();

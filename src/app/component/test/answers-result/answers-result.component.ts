@@ -33,5 +33,5 @@ import { TestWordsService } from 'app/service/test-words.service';
     styleUrls: ['./answers-result.component.scss']
 })
 export class AnswersResultComponent {
-  constructor(private testWordsService: TestWordsService) { }
+  constructor(public testWordsService: TestWordsService) { }
 }

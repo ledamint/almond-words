@@ -27,9 +27,9 @@ export class ComposeTranslationComponent implements OnInit {
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number = 0;
 
-  constructor(private wordsService: WordsService,
-              private testWordsService: TestWordsService,
-              private eventsService: EventsService) {  }
+  constructor(public wordsService: WordsService,
+              public testWordsService: TestWordsService,
+              public eventsService: EventsService) {  }
 
   ngOnInit() {
     this.setUpOneRound();

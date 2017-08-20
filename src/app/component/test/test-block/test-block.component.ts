@@ -13,5 +13,5 @@ import { TestWordsService } from 'app/service/test-words.service';
   styleUrls: ['./test-block.component.scss']
 })
 export class TestBlockComponent {
-  constructor(private testWordsService: TestWordsService) { }
+  constructor(public testWordsService: TestWordsService) { }
 }

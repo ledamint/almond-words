@@ -23,7 +23,7 @@ import { LoginData } from 'app/service/interface/interfaces';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor(public authorizationService: AuthorizationService) { }
 
   checkLogin(loginForm: NgForm) {
     const email: string = loginForm.value.email.trim().toLowerCase();

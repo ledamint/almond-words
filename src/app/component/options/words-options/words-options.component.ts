@@ -23,7 +23,7 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
   styleUrls: ['./words-options.component.scss']
 })
 export class WordsOptionsComponent {
-  constructor(private optionsService: OptionsService) { }
+  constructor(public optionsService: OptionsService) { }
 
   updateSort(sortValue: string) {
     this.optionsService.updateSorts(sortValue);

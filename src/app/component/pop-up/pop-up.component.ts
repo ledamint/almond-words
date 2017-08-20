@@ -17,10 +17,15 @@ import { Message } from 'app/service/interface/interfaces';
 })
 export class PopUpComponent implements OnInit {
   // TODO add type
-  err = { status: '', isActive: false };
+  err = {
+    status: '',
+    statusText: '',
+    _body: '',
+    isActive: false,
+  };
   message: Message = { text: '', isActive: false };
 
-  constructor(private eventsService: EventsService) {  }
+  constructor(public eventsService: EventsService) {  }
 
   ngOnInit() {
     this.eventsService.serverError$

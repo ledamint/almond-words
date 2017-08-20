@@ -15,10 +15,10 @@ export class WriteTranslationComponent implements OnInit {
   answer: string = '';
   isAnswerIncorrect: boolean = false;
 
-  constructor(private wordsService: WordsService,
-              private testWordsService: TestWordsService,
-              private eventsService: EventsService,
-              private elementRef: ElementRef) {  }
+  constructor(public wordsService: WordsService,
+              public testWordsService: TestWordsService,
+              public eventsService: EventsService,
+              public elementRef: ElementRef) {  }
 
   ngOnInit() {
     this.setUpOneRound();

@@ -26,10 +26,10 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
   styleUrls: ['./options-block.component.scss']
 })
 export class OptionsBlockComponent implements OnInit {
-  constructor(private wordsService: WordsService,
-              private optionsService: OptionsService,
-              private backgroundService: BackgroundService,
-              private router: Router) { }
+  constructor(public wordsService: WordsService,
+              public optionsService: OptionsService,
+              public backgroundService: BackgroundService,
+              public router: Router) { }
 
   ngOnInit() {
     this.optionsService.saveOptionsCopy();

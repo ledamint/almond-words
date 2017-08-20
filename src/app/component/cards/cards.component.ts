@@ -31,10 +31,10 @@ import { Word } from '../../service/interface/interfaces';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent {
-  constructor(private authorizationService: AuthorizationService,
-              private wordsService: WordsService,
-              private optionsService: OptionsService,
-              private testWordsService: TestWordsService) { }
+  constructor(public authorizationService: AuthorizationService,
+              public wordsService: WordsService,
+              public optionsService: OptionsService,
+              public testWordsService: TestWordsService) { }
 
   logout() {
     if (confirm('Are you sure to logout?')) {

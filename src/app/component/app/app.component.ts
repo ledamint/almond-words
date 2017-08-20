@@ -17,9 +17,9 @@ import { OptionsService } from '../../service/options.service';
   styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent implements OnInit {
-  constructor(private mainService: MainService,
-              private authorizationService: AuthorizationService,
-              private optionsService: OptionsService) {  }
+  constructor(public mainService: MainService,
+              public authorizationService: AuthorizationService,
+              public optionsService: OptionsService) {  }
 
   ngOnInit() {
     this.mainService.setUpApplication();

@@ -34,9 +34,9 @@ export class WordComponent implements OnInit {
   word: Word;
   time: string;
 
-  constructor(private wordsService: WordsService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(public wordsService: WordsService,
+              public route: ActivatedRoute,
+              public router: Router) { }
 
   ngOnInit() {
     this.route.paramMap

@@ -26,7 +26,7 @@ import { AccountInformationService } from 'app/service/account-information.servi
   styleUrls: ['./account-information.component.scss']
 })
 export class AccountInformationComponent {
-  constructor(private accountInformationService: AccountInformationService) { }
+  constructor(public accountInformationService: AccountInformationService) { }
 
   updateEmail(email: string) {
     if (confirm('Are you sure to change email?')) {

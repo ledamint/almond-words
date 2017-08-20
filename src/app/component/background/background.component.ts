@@ -13,5 +13,5 @@ import { BackgroundService } from '../../service/background.service';
   styleUrls: [ './background.component.scss' ]
 })
 export class BackgroundComponent {
-  constructor(private backgroundService: BackgroundService) { }
+  constructor(public backgroundService: BackgroundService) { }
 }
