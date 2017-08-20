@@ -16,6 +16,7 @@ export class WordsService {
   allWords: Word[] = [];
   activeWords: Word[] = [];
   cards: Array<Word[]> = [];
+  overallKnowledgePercent: number;
 
   constructor(private http: Http,
               private eventsService: EventsService,
@@ -36,6 +37,7 @@ export class WordsService {
     this.filterKnowledge(this.optionsService.activeOptions.filter.knowledge);
     this.sortWords(this.optionsService.activeOptions.sort);
     this.distributeWords();
+    this.calculateOverallKnowledge();
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
@@ -83,6 +85,23 @@ export class WordsService {
 
       this.cards[cardId].push(word);
     });
+  }
+
+  calculateOverallKnowledge() {
+    if (this.activeWords.length !== 0) {
+      let overallKnowledge: number = 0;
+
+      this.activeWords.forEach((word, i) => {
+        overallKnowledge += word.knowledge;
+      });
+
+      // TODO: change 10 to max word knowledge from db
+      const overallKnowledgePercent = overallKnowledge / this.activeWords.length * 10;
+
+      this.overallKnowledgePercent = +overallKnowledgePercent.toFixed(1);
+    } else {
+      this.overallKnowledgePercent = 0;
+    }
   }
 
   // TODO add type
