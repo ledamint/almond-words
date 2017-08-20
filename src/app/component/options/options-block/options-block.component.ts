@@ -12,12 +12,12 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
   template: `
           <h1>Options</h1>
           <div class="top-nav-menu">
-              <a class="button" routerLink="/user-options/words/" routerLinkActive="active">words</a>
-              <a class="button" routerLink="/user-options/theme/" routerLinkActive="active">theme</a>
-              <a class="button" routerLink="/user-options/account/" routerLinkActive="active">account</a>
+              <a class="button" routerLink="/user-options/words" routerLinkActive="active">words</a>
+              <a class="button" routerLink="/user-options/theme" routerLinkActive="active">theme</a>
+              <a class="button" routerLink="/user-options/account" routerLinkActive="active">account</a>
           </div>
           <router-outlet></router-outlet>
-          <div class="buttons">
+          <div class="buttons" [hidden]="this.router.url === '/user-options/account'">
               <button class="button" (click)="submitOptions()">Submit</button>
           </div>
           <div class="side-panel">
