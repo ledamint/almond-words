@@ -22,6 +22,7 @@ module.exports = (app, db) => {
             sort: 'time',
             theme: 'blue',
             isBackgroundActive: false,
+            isWordsOpacityActive: true,
             filter: {
               knowledge: [{
                 name: 'weak',

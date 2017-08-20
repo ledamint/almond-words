@@ -56,6 +56,10 @@ export class OptionsService {
     this.activeOptions.isBackgroundActive = !this.activeOptions.isBackgroundActive;
   }
 
+  toggleWordsOpacity() {
+    this.activeOptions.isWordsOpacityActive = !this.activeOptions.isWordsOpacityActive;
+  }
+
   updateKnowledge(selectedKnowledge: KnowledgeFilter) {
     let selectedKnowledgeIsActive = false;
 

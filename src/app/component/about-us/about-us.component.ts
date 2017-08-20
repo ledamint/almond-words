@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
         </p>
         <p>
             Words are divided into cards and you can sort and filter all of them.
-            Every word has a own level of knowledge which is calculated after every test.
+            Every word has an own level of knowledge which is calculated after every test.
             So you can work only with words which have not reached a high level.
         </p>
         <a class="button" routerLink="/registration">Enjoy!</a>

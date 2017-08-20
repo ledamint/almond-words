@@ -6,14 +6,19 @@ import { OptionsService } from 'app/service/options.service';
   selector: 'theme-options',
   template: `
             <div class="themes">
-                <h3>Color</h3>                
+                <h3>Color</h3>
                 <span class="option-item button" [class.active]="optionsService.activeOptions.theme === theme"
                   *ngFor="let theme of optionsService.options.themes" (click)="updateTheme(theme)">{{ theme }}</span>
             </div>
-            <div class="background">
+            <div class="background" title="Falling words">
                 <h3>Background</h3>
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isBackgroundActive"
                   (click)="toggleBackground()">active</span>
+            </div>
+            <div class="opacity" title="Turn off this option if you want words have different opacity depending of level of knowledge">
+                <h3>Words opacity</h3>
+                <span class="option-item button" [class.active]="optionsService.activeOptions.isWordsOpacityActive"
+                  (click)="toggleWordsOpacity()">active</span>
             </div>
           `,
   styleUrls: ['./theme-options.component.scss']
@@ -27,5 +32,9 @@ export class ThemeOptionsComponent {
 
   toggleBackground() {
     this.optionsService.toggleBackground();
+  }
+
+  toggleWordsOpacity() {
+    this.optionsService.toggleWordsOpacity();
   }
 }

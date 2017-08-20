@@ -70,6 +70,7 @@ export interface ActiveOptions {
   sort: string;
   theme: string;
   isBackgroundActive: boolean;
+  isWordsOpacityActive: boolean;
   filter: ActiveFilter;
 }
 
