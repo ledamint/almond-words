@@ -32,6 +32,8 @@ export class ComposeTranslationComponent implements OnInit {
               private eventsService: EventsService) {  }
 
   ngOnInit() {
+    this.setUpOneRound();
+
     this.eventsService.newRound$.subscribe(() => {
       this.setUpOneRound();
     });

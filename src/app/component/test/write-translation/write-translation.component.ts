@@ -21,6 +21,8 @@ export class WriteTranslationComponent implements OnInit {
               private elementRef: ElementRef) {  }
 
   ngOnInit() {
+    this.setUpOneRound();
+
     this.eventsService.newRound$.subscribe(() => {
       this.setUpOneRound();
     });
