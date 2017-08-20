@@ -8,7 +8,7 @@ const dbCongig = require('./config/db');
 const routes = require('./server/routes');
 
 const app = express();
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '8080';
 
 app.use(helmet());
 app.use(bodyParser.json());
