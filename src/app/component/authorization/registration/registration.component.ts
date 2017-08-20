@@ -15,12 +15,12 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <h4 class="input-title">email</h4>
               <div class="input-wrapper">
                   <input class="text-input" type="email" name="email" focus="true" ngModel required email>
-                  <span class="prompt">verification is not needed</span>
+                  <span class="prompt theme-color-text-second-color">verification is not needed</span>
               </div>
               <h4 class="input-title">password</h4>
               <div class="input-wrapper">
                   <input class="text-input" type="password" name="password" ngModel required required minlength="6">
-                  <span class="prompt">min 6 symbols</span>
+                  <span class="prompt theme-color-text-second-color">min 6 symbols</span>
               </div>
               <h4 class="input-title">confirm password</h4>
               <input class="text-input" type="password" name="confirm-password" ngModel required>
