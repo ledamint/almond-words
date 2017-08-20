@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgForm, EmailValidator } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthorizationService } from 'app/service/authorization.service';
 
@@ -20,12 +19,9 @@ import { AuthorizationService } from 'app/service/authorization.service';
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent {
-  constructor(private authorizationService: AuthorizationService,
-              private router: Router) { }
+  constructor(private authorizationService: AuthorizationService) { }
 
   sendNewPassword(email: string) {
-    this.router.navigateByUrl('/login');
-
     email = email.trim().toLowerCase();
 
     this.authorizationService.sendNewPassword(email);

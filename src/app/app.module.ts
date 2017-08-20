@@ -24,6 +24,7 @@ import { AnswersResultComponent } from './component/test/answers-result/answers-
 import { ChooseTranslationComponent } from './component/test/choose-translation/choose-translation.component';
 import { ComposeTranslationComponent } from './component/test/compose-translation/compose-translation.component';
 import { WriteTranslationComponent } from './component/test/write-translation/write-translation.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
@@ -62,12 +63,14 @@ const appRoutes: Routes = [
       { path: 'write-translation', component: WriteTranslationComponent }
     ]
   },
-  { path: 'answers-result', component: AnswersResultComponent }
+  { path: 'answers-result', component: AnswersResultComponent },
+  { path: 'about-us', component: AboutUsComponent },
 ];
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), FocusModule.forRoot()],
-  declarations: [AppComponent,
+  declarations: [
+    AppComponent,
     RegistrationComponent,
     LoginComponent,
     ForgetPasswordComponent,
@@ -85,15 +88,19 @@ const appRoutes: Routes = [
     AnswersResultComponent,
     ChooseTranslationComponent,
     ComposeTranslationComponent,
-    WriteTranslationComponent],
+    WriteTranslationComponent,
+    AboutUsComponent
+  ],
   bootstrap: [AppComponent],
-  providers: [AuthorizationService,
+  providers: [
+    AuthorizationService,
     MainService,
     EventsService,
     WordsService,
     OptionsService,
     AccountInformationService,
     TestWordsService,
-    BackgroundService]
+    BackgroundService
+  ]
 })
 export class AppModule { }

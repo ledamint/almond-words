@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+p {
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 20px;;
+  text-indent: 1.5em;
+  text-align: justify;
+  font-size: 18px;
+}

@@ -36,7 +36,8 @@ import { RegistrationData } from 'app/service/interface/interfaces';
                 registrationForm.value.password !== registrationForm.value['confirm-password']">Submit</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/login" routerLinkActive="active" class="side-panel__item">login</a>
+              <a routerLink="/login" class="side-panel__item">login</a>
+              <a routerLink="/about-us" class="side-panel__item">about us</a>
           </div>`,
   styleUrls: ['./registration.component.scss']
 })
