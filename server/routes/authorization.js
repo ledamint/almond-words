@@ -1,7 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt-nodejs');
 const sendEmail = require('../email');
-const getRandomString = require('../uti/getRandomString');
 
 module.exports = (app, db) => {
   app.post('/registration', (req, res) => {
@@ -96,7 +95,7 @@ module.exports = (app, db) => {
         const userId = {
           _id: new ObjectID(user._id),
         };
-        const randomPassword = getRandomString();
+        const randomPassword = Math.random().toString(36).slice(2, 12);
         const cryptPassword = bcrypt.hashSync(randomPassword);
         const resolve = () => {
           db.collection('users').findOneAndUpdate(userId, { $set: { password: cryptPassword } }, (err, result) => {
