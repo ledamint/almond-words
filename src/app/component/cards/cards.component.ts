@@ -11,7 +11,11 @@ import { Word } from '../../service/interface/interfaces';
   selector: 'cards',
   template: `
       <h1>Your {{ wordsService.activeWords.length > 0 ? wordsService.activeWords.length : '' }}
-        word{{ wordsService.activeWords.length === 1 ? '' : 's' }}</h1>
+        word{{ wordsService.activeWords.length === 1 ? '' : 's' }}
+        <span class="percent theme-color-text-second-color" [hidden]="wordsService.overallKnowledgePercent === 0"
+        title="level of words knowledge">
+          {{ wordsService.overallKnowledgePercent }}%</span>
+      </h1>
       <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
           <div *ngFor="let card of wordsService.cards" class="card theme-color-border">

@@ -14,7 +14,6 @@ import { Component } from '@angular/core';
             So you can work only with words which have not reached a high level.
         </p>
         <a class="button" routerLink="/registration">Enjoy!</a>
-
         `,
   styleUrls: [ './about-us.component.scss' ]
 })
