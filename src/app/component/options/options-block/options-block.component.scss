@@ -26,6 +26,7 @@
 @media (max-width: $mobile-width) {
   .top-nav-menu {
     a {
+      border-bottom: 0;
       font-size: 15px;
     }
   }
