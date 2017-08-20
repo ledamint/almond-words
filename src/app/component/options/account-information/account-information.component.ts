@@ -14,7 +14,10 @@ import { AccountInformationService } from 'app/service/account-information.servi
         </form>
         <form class="form" #passwordForm="ngForm" action="" method="post" (ngSubmit)="changePassword(passwordForm.value.password)">
             <h3>Password</h3>
-            <input class="text-input" type="password" name="password" placeholder="password" ngModel required minlength="6">
+            <div class="input-wrapper">
+                <input class="text-input" type="password" name="password" placeholder="password" ngModel required minlength="6">
+                <span class="prompt">min 6 symbols</span>
+            </div>
             <input class="text-input" type="password" name="confirm-password" placeholder="confirm password" ngModel required>
             <button class="button" type="submit" [disabled]="!passwordForm.valid ||
               passwordForm.value.password !== passwordForm.value['confirm-password']">Change password</button>

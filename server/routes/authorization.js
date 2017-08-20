@@ -21,7 +21,7 @@ module.exports = (app, db) => {
           activeOptions: {
             sort: 'time',
             theme: 'blue',
-            isBackgroundActive: true,
+            isBackgroundActive: false,
             filter: {
               knowledge: [{
                 name: 'weak',

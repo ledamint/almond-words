@@ -109,6 +109,25 @@ a {
   font-weight: normal;
 }
 
+.input-wrapper {
+  position: relative;
+  width: 80%;
+  margin-bottom: 20px;
+
+  .text-input {
+    width: 100%;
+  }
+
+  .prompt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
 .text-input {
   height: 30px;
   width: 80%;
@@ -125,7 +144,6 @@ a {
   &::-moz-placeholder          { color: rgba(0, 0, 0, 0.5); }
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
-
 
 .option-item {
   margin-right: 15px;
