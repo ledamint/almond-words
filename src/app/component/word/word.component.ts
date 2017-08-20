@@ -26,11 +26,14 @@ import { Word } from 'app/service/interface/interfaces';
             <div class="side-panel">
                 <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
             </div>
+            <a class="direction right" (click)="goToWord('next')">next</a>
+            <a class="direction left" (click)="goToWord('previous')">previous</a>
         </form>
           `,
   styleUrls: ['./word.component.scss']
 })
 export class WordComponent implements OnInit {
+  wordIndex: number;
   word: Word;
   time: string;
 
@@ -41,7 +44,9 @@ export class WordComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap
       .subscribe((params: ParamMap) => {
-        this.word = this.wordsService.activeWords.find(word => word._id === params.get('id'));
+        this.wordIndex = this.wordsService.activeWords.findIndex(word => word._id === params.get('id'));
+        this.word = this.wordsService.activeWords[this.wordIndex];
+
         this.formatDate(this.word.time);
       });
   }
@@ -65,6 +70,19 @@ export class WordComponent implements OnInit {
     if (confirm('Are you sure to delete this word?')) {
       this.router.navigateByUrl('/cards');
       this.wordsService.deleteWord(word);
+    }
+  }
+
+  goToWord(direction: string) {
+    let nextWordIndex = this.wordIndex;
+
+    if (direction === 'next') nextWordIndex += 1;
+    if (direction === 'previous') nextWordIndex -= 1;
+
+    if (this.wordsService.activeWords.length > nextWordIndex && nextWordIndex > -1) {
+      const nextWordId = this.wordsService.activeWords[nextWordIndex]._id;
+
+      this.router.navigateByUrl(`word/${nextWordId}`);
     }
   }
 

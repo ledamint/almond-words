@@ -1,3 +1,25 @@
+@import 'variables';
+
 .buttons {
   margin-top: 20px;
+}
+
+.direction {
+  position: absolute;
+  top: 10%;
+  cursor: pointer;
+
+  &.left {
+    left: 5%;
+  }
+
+  &.right {
+    right: 5%;
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .direction {
+    top: 5%;
+  }
 }
