@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { WordsService } from 'app/service/words.service';
 import { TestWordsService } from 'app/service/test-words.service';
@@ -17,8 +17,7 @@ export class WriteTranslationComponent implements OnInit {
 
   constructor(public wordsService: WordsService,
               public testWordsService: TestWordsService,
-              public eventsService: EventsService,
-              public elementRef: ElementRef) {  }
+              public eventsService: EventsService) { }
 
   ngOnInit() {
     this.setUpOneRound();
