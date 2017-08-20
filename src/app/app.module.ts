@@ -8,6 +8,7 @@ import { FocusModule } from 'angular2-focus';
 import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
 import { LoginComponent } from './component/authorization/login/login.component';
+import { ForgetPasswordComponent } from './component/authorization/forget-password/forget-password.component';
 import { BackgroundComponent } from './component/background/background.component';
 import { PopUpComponent } from './component/pop-up/pop-up.component';
 import { CardsComponent } from './component/cards/cards.component';
@@ -37,6 +38,7 @@ import { TestWordsService } from './service/test-words.service';
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'word/:id', component: WordComponent },
   {
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
   declarations: [AppComponent,
     RegistrationComponent,
     LoginComponent,
+    ForgetPasswordComponent,
     BackgroundComponent,
     PopUpComponent,
     CardsComponent,

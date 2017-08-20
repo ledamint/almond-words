@@ -11,16 +11,14 @@ import { LoginData } from 'app/service/interface/interfaces';
           <h1>Login</h1>
           <form class="form" #loginForm="ngForm" action="" method="post" (ngSubmit)="checkLogin(loginForm)">
               <h4 class="input-title">email</h4>
-              <div class="input-wrapper">
-                  <input class="text-input" type="email" name="email" focus="true" ngModel email required>
-                  <button class="button" type="button" (click)="sendNewPassword(loginForm.value.email)">Send new password</button>
-              </div>
+              <input class="text-input" type="email" name="email" focus="true" ngModel email required>
               <h4 class="input-title">password</h4>
               <input class="text-input" type="password" name="password" ngModel required>
               <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
           </form>
           <div class="side-panel">
               <a routerLink="/registration" routerLinkActive="active" class="side-panel__item">registration</a>
+              <a routerLink="/forget-password" routerLinkActive="active" class="side-panel__item">forget password</a>
           </div>`,
   styleUrls: ['./login.component.scss']
 })
@@ -36,11 +34,5 @@ export class LoginComponent {
     };
 
     this.authorizationService.checkLogin(loginData);
-  }
-
-  sendNewPassword(email: string) {
-    email = email.trim().toLowerCase();
-
-    this.authorizationService.sendNewPassword(email);
   }
 }

@@ -40,10 +40,11 @@ a {
   top: 50%;
   left: 0;
   z-index: 2;
+  padding-right: 10px;
   font-size: 22px;
   text-align: right;
   background-color: transparent;
-  transform: translate(-115%, -50%);
+  transform: translate(-100%, -50%);
 
   &__item {
     margin-bottom: 5px;
@@ -108,15 +109,6 @@ a {
   font-weight: normal;
 }
 
-.input-wrapper {
-  position: relative;
-  width: 80%;
-
-  .text-input {
-    width: 100%;
-  }
-}
-
 .text-input {
   height: 30px;
   width: 80%;
@@ -157,6 +149,7 @@ a {
     left: 0;
     bottom: -45px;
     width: 100%;
+    padding: 0;
     transform: none;
   }
 
