@@ -150,12 +150,6 @@ a {
 }
 
 @media (max-width: $tablet-width) {
-  .theme-color-hover {
-    &:hover {
-      color: inherit;
-    }
-  }
-
   .side-panel {
     flex-direction: row;
     justify-content: space-around;
@@ -168,13 +162,13 @@ a {
 
   a {
     &:hover {
-      color: inherit;
+      color: inherit !important;
     }
   }
 
   .button {
     &:hover {
-      color: inherit;
+      color: inherit !important;
     }
   }
 }
