@@ -27,7 +27,7 @@ import { TestWordsService } from 'app/service/test-words.service';
       <a routerLink="/test-choice" class="button button_wrong" [hidden]="testWordsService.wrongAnswers.length === 0"
         (click)="testWordsService.repeatWrongAnswersTest()">Repeat wrong</a>
       <div class="side-panel">
-          <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+          <a routerLink="/cards" class="side-panel__item">cards</a>
       </div>
     `,
     styleUrls: ['./answers-result.component.scss']

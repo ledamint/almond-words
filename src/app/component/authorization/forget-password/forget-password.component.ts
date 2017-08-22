@@ -14,7 +14,7 @@ import { AuthorizationService } from 'app/service/authorization.service';
               <button class="button" type="submit" [disabled]="!forgetPasswordForm.valid">Send new password</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/login" routerLinkActive="active" class="side-panel__item">login</a>
+              <a routerLink="/login" class="side-panel__item">login</a>
           </div>`,
   styleUrls: ['./forget-password.component.scss']
 })
