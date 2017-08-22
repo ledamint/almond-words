@@ -8,7 +8,7 @@ import { TestWordsService } from 'app/service/test-words.service';
         <span class="origin-word">{{ testWordsService.currentTestingWord.familiarWord }}</span>
         <router-outlet></router-outlet>
         <div class="side-panel">
-            <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+            <a routerLink="/cards" class="side-panel__item">cards</a>
         </div>`,
   styleUrls: ['./test-block.component.scss']
 })

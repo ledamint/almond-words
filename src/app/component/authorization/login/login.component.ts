@@ -17,8 +17,8 @@ import { LoginData } from 'app/service/interface/interfaces';
               <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/registration" routerLinkActive="active" class="side-panel__item">registration</a>
-              <a routerLink="/forget-password" routerLinkActive="active" class="side-panel__item">forget password</a>
+              <a routerLink="/registration" class="side-panel__item">registration</a>
+              <a routerLink="/forget-password" class="side-panel__item">forget password</a>
           </div>`,
   styleUrls: ['./login.component.scss']
 })

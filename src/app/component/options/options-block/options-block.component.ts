@@ -21,7 +21,7 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
               <button class="button" (click)="submitOptions()">Submit</button>
           </div>
           <div class="side-panel">
-              <a routerLink="/cards" routerLinkActive="active" class="side-panel__item" (click)="optionsService.resetChanges()">cards</a>
+              <a routerLink="/cards" class="side-panel__item" (click)="optionsService.resetChanges()">cards</a>
           </div>`,
   styleUrls: ['./options-block.component.scss']
 })

@@ -24,7 +24,7 @@ import { Word } from 'app/service/interface/interfaces';
                 <button class="button" (click)="deleteWord(word)">Delete</button>
             </div>
             <div class="side-panel">
-                <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+                <a routerLink="/cards" class="side-panel__item">cards</a>
             </div>
             <a class="direction right" (click)="goToWord('next')">next</a>
             <a class="direction left" (click)="goToWord('previous')">previous</a>

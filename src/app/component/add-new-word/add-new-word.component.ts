@@ -16,7 +16,7 @@ import { EventsService } from '../../service/events.service';
               <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/cards" routerLinkActive="active" class="side-panel__item">cards</a>
+              <a routerLink="/cards" class="side-panel__item">cards</a>
           </div>`,
   styleUrls: ['./add-new-word.component.scss']
 })
