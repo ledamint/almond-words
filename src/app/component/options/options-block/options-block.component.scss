@@ -8,7 +8,7 @@
   margin: 0 auto;
   border-bottom: 2px solid black;
   padding-bottom: 10px;
-  border-radius: 10%;
+  border-radius: 0 0 10% 10%;
 
   a {
     padding: 0 20px 11px;
@@ -20,7 +20,7 @@
   border-top: 2px solid black;
   margin-top: 20px;
   padding-top: 10px;
-  border-radius: 10%;
+  border-radius: 10% 10% 0 0;
 }
 
 @media (max-width: $mobile-width) {
