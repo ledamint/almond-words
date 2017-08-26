@@ -27,7 +27,7 @@ import { TestWordsService } from 'app/service/test-words.service';
         (click)="testWordsService.startAutoTest()">New autotest</a>
       <a routerLink="/test-choice" class="button" [hidden]="testWordsService.rightAnswers.length === 0"
         (click)="testWordsService.repeatTest()">Repeat test</a>
-      <a routerLink="/test-choice" class="button button_wrong" [hidden]="testWordsService.wrongAnswers.length === 0"
+      <a routerLink="/test-choice" class="button button_red-hover" [hidden]="testWordsService.wrongAnswers.length === 0"
         (click)="testWordsService.repeatWrongAnswersTest()">Repeat wrong</a>
       <div class="side-panel">
           <a routerLink="/cards" class="side-panel__item">cards</a>
