@@ -27,9 +27,13 @@ import { Word } from '../../service/interface/interfaces';
           </div>
       </div>
       <div class="side-panel">
-          <a routerLink="/add-new-word"  class="side-panel__item">add new word</a>
+          <a routerLink="/add-new-word" class="side-panel__item">add new word</a>
           <a routerLink="/user-options" class="side-panel__item">options</a>
           <a class="side-panel__item" (click)="logout()">logout</a>
+      </div>
+      <div class="side-panel side-panel_right">
+          <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
+            (click)="testWordsService.startAutoTest()">autotest</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']

@@ -18,10 +18,11 @@ export class TestWordsService {
   wrongAnswers: Word[] = [];
   currentTestingWord: Word;
   pointsForAnswerByTestId: number[] = [1, 2, 3];
+  isAutoTest: boolean = false;
 
   constructor(private wordsService: WordsService,
-              private eventsService: EventsService,
-              private router: Router) {
+    private eventsService: EventsService,
+    private router: Router) {
     this.eventsService.enterAnswer$.subscribe((resultTestAnswer) => {
       this.distributeAnswer(resultTestAnswer);
       this.updateWordKnowledge(resultTestAnswer);
@@ -30,7 +31,25 @@ export class TestWordsService {
   }
 
   startTest(card: Word[]) {
+    this.isAutoTest = false;
     this.testingWords = card.slice();
+    this.clearAnswers();
+    this.onNewRound();
+  }
+
+  startAutoTest() {
+    this.isAutoTest = true;
+    this.testingWords = [];
+    const variantsOfTestingWords = this.wordsService.activeWords.slice();
+    const testingWordsLength = variantsOfTestingWords.length < 10 ? variantsOfTestingWords.length : 10;
+
+    for (let i = 0; i < testingWordsLength; i++) {
+      const randomIndex = Math.floor(Math.random() * variantsOfTestingWords.length);
+
+      this.testingWords.push(variantsOfTestingWords[randomIndex]);
+      variantsOfTestingWords.splice(randomIndex, 1);
+    }
+
     this.clearAnswers();
     this.onNewRound();
   }
@@ -53,14 +72,22 @@ export class TestWordsService {
 
   onNewRound() {
     if (this.testingWords.length > 0) {
-      this.onNextTestingWord();
+      this.setUpNextTestingWord();
+
+      if (this.isAutoTest) {
+        if (this.currentTestingWord.knowledge < 4) this.router.navigateByUrl('/test/choose-translation');
+        else if (this.currentTestingWord.knowledge >= 4 &&
+          this.currentTestingWord.knowledge < 8) this.router.navigateByUrl('/test/compose-translation');
+        else this.router.navigateByUrl('/test/write-translation');
+      }
+
       this.eventsService.onNewRound();
     } else {
       this.finishTest();
     }
   }
 
-  onNextTestingWord() {
+  setUpNextTestingWord() {
     const randomTestingWordId = Math.floor(Math.random() * this.testingWords.length);
     this.currentTestingWord = this.testingWords[randomTestingWordId];
     this.testingWords.splice(randomTestingWordId, 1);

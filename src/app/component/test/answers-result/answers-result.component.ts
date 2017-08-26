@@ -23,7 +23,10 @@ import { TestWordsService } from 'app/service/test-words.service';
               </span>
           </div>
       </div>
-      <a routerLink="/test-choice" class="button" (click)="testWordsService.repeatTest()">Repeat test</a>
+      <a class="button button_autotest" [hidden]="wordsService.activeWords.length === 0 || !testWordsService.isAutoTest"
+        (click)="testWordsService.startAutoTest()">New autotest</a>
+      <a routerLink="/test-choice" class="button" [hidden]="testWordsService.rightAnswers.length === 0"
+        (click)="testWordsService.repeatTest()">Repeat test</a>
       <a routerLink="/test-choice" class="button button_wrong" [hidden]="testWordsService.wrongAnswers.length === 0"
         (click)="testWordsService.repeatWrongAnswersTest()">Repeat wrong</a>
       <div class="side-panel">
@@ -33,5 +36,6 @@ import { TestWordsService } from 'app/service/test-words.service';
     styleUrls: ['./answers-result.component.scss']
 })
 export class AnswersResultComponent {
-  constructor(public testWordsService: TestWordsService) { }
+  constructor(public wordsService: WordsService,
+              public testWordsService: TestWordsService) { }
 }
