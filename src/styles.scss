@@ -78,6 +78,10 @@ a {
   cursor: pointer;
   background-color: transparent;
 
+  &_red-hover:hover {
+    color: red !important;
+  }
+
   &[disabled] {
     color: grey !important;
     cursor: auto !important;

@@ -21,7 +21,7 @@ import { Word } from 'app/service/interface/interfaces';
             <span class="time">{{ time }}</span>
             <div class="buttons">
                 <button class="button" type="submit" [disabled]="!wordForm.valid">Change</button>
-                <button class="button" (click)="deleteWord(word)">Delete</button>
+                <button class="button button_red-hover" (click)="deleteWord(word)">Delete</button>
             </div>
             <div class="side-panel">
                 <a routerLink="/cards" class="side-panel__item">cards</a>

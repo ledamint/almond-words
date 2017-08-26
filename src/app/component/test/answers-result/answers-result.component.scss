@@ -31,10 +31,6 @@ h1 {
 
 .button {
   margin: 0 20px;
-
-  &_wrong:hover {
-    color: red;
-  }
 }
 
 @media (max-width: $mobile-width) {
