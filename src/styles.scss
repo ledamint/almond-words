@@ -46,6 +46,14 @@ a {
   background-color: transparent;
   transform: translate(-100%, -50%);
 
+  &_right {
+    left: auto;
+    right: 0;
+    padding-right: 0;
+    padding-left: 10px;
+    transform: translate(100%, -50%);
+  }
+
   &__item {
     margin-bottom: 5px;
     cursor: pointer;
@@ -169,6 +177,11 @@ a {
     width: 100%;
     padding: 0;
     transform: none;
+
+    &_right {
+      bottom: auto;
+      top: -45px;
+    }
   }
 
   a {
