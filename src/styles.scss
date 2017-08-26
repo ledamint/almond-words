@@ -188,10 +188,18 @@ a {
     &:hover {
       color: inherit;
     }
+
+    .blue-theme &:hover {
+      color: inherit;
+    }
   }
 
   .button {
     &:hover {
+      color: inherit;
+    }
+
+    .blue-theme &:hover {
       color: inherit;
     }
   }
