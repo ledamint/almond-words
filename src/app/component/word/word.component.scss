@@ -1,25 +1,24 @@
-@import 'variables';
-
 .buttons {
   margin-top: 20px;
 }
 
 .direction {
   position: absolute;
-  top: 10%;
+  top: 50%;
+  right: 5%;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid;
+  border-right: 2px solid;
   cursor: pointer;
 
   &.left {
     left: 5%;
+    transform: translateY(-50%) rotate(-135deg);
   }
 
   &.right {
     right: 5%;
-  }
-}
-
-@media (max-width: $tablet-width) {
-  .direction {
-    top: 5%;
+    transform: translateY(-50%) rotate(45deg);
   }
 }

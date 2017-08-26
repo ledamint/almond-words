@@ -26,8 +26,8 @@ import { Word } from 'app/service/interface/interfaces';
             <div class="side-panel">
                 <a routerLink="/cards" class="side-panel__item">cards</a>
             </div>
-            <a class="direction right" (click)="goToWord('next')">next</a>
-            <a class="direction left" (click)="goToWord('previous')">previous</a>
+            <a class="direction right" (click)="goToWord('next')"></a>
+            <a class="direction left" (click)="goToWord('previous')"></a>
         </form>
           `,
   styleUrls: ['./word.component.scss']
