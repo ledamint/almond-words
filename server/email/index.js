@@ -5,14 +5,14 @@ const passwords = require('../../passwords');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'checkingwords@gmail.com',
+    user: 'almondwords@gmail.com',
     pass: passwords.email,
   },
 });
 
 const sendMail = (emailTo, subject, text, reject, resolve) => {
   const mailOptions = {
-    from: 'checkingwords@gmail.com',
+    from: 'AlmondWords',
     to: emailTo,
     subject,
     text,
