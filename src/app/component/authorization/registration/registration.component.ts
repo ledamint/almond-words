@@ -22,8 +22,6 @@ import { RegistrationData } from 'app/service/interface/interfaces';
                   <input class="text-input" type="password" name="password" ngModel required required minlength="6">
                   <span class="prompt theme-color-text-second-color">min 6 symbols</span>
               </div>
-              <h4 class="input-title">confirm password</h4>
-              <input class="text-input" type="password" name="confirm-password" ngModel required>
               <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="familiar-language" ngModel required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
@@ -32,8 +30,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <select class="text-input" type="text" name="learning-language" ngModel required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
-              <button class="button" type="submit" [disabled]="!registrationForm.valid ||
-                registrationForm.value.password !== registrationForm.value['confirm-password']">Submit</button>
+              <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
           </form>
           <div class="side-panel">
               <a routerLink="/login" class="side-panel__item">login</a>
