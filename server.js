@@ -10,6 +10,21 @@ const routes = require('./server/routes');
 const app = express();
 const port = process.env.PORT || '8080';
 
+app.use((req, res, next) => {
+  let host = req.get('host');
+
+  if (/^www\./.test(host)) {
+    host = host.substring(4, host.length);
+    res.writeHead(301, {
+      Location: `${req.protocol}://${host}${req.originalUrl}`,
+      Expires: new Date().toGMTString(),
+    });
+    res.end();
+  } else {
+    next();
+  }
+});
+
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
