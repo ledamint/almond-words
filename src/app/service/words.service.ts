@@ -33,6 +33,7 @@ export class WordsService {
     this.updateWords();
   }
 
+  // TODO: think about optimization
   updateWords() {
     this.filterKnowledge(this.optionsService.activeOptions.filter.knowledge);
     this.sortWords(this.optionsService.activeOptions.sort);
