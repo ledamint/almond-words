@@ -17,6 +17,8 @@ module.exports = (app, db) => {
         const newUser = {
           email: registrationData.email,
           password: cryptPassword,
+          learningLanguage: registrationData.learningLanguage,
+          familiarLanguage: registrationData.familiarLanguage,
           registrationTime: new Date(),
           activeOptions: {
             sort: 'time',
@@ -36,8 +38,6 @@ module.exports = (app, db) => {
           },
           activeBoard: 0,
           boards: [{
-            learningLanguage: registrationData.learningLanguage,
-            familiarLanguage: registrationData.familiarLanguage,
             words: [],
           }],
         };

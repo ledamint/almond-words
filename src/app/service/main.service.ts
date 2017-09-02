@@ -43,7 +43,7 @@ export class MainService {
       .map(res => res.json())
       .subscribe(
         (user: User) => {
-          this.optionsService.setActiveOptions(user.activeOptions);
+          this.optionsService.setActiveOptions(user.activeOptions, user.learningLanguage, user.familiarLanguage);
           this.accountInformationService.setUp(user.email);
           this.wordsService.setUp(user.boards[user.activeBoard]);
           if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();

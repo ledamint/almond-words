@@ -18,15 +18,15 @@ export interface User {
   _id: string;
   email: string;
   password: string;
-  activeBoard: number;
+  learningLanguage: string;
+  familiarLanguage: string;
   registrationTime: Date;
+  activeBoard: number;
   boards: Board[];
   activeOptions: ActiveOptions;
 }
 
 export interface Board {
-  learningLanguage: string;
-  familiarLanguage: string;
   words: Word[];
 }
 
