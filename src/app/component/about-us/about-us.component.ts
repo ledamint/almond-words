@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'about-us',
@@ -13,8 +14,10 @@ import { Component } from '@angular/core';
             Every word has an own level of knowledge which is calculated after every test.
             So you can work only with words which have not reached a high level.
         </p>
-        <a class="button" routerLink="/registration">Enjoy!</a>
+        <a class="button" (click)="location.back()">Enjoy!</a>
         `,
   styleUrls: [ './about-us.component.scss' ]
 })
-export class AboutUsComponent { }
+export class AboutUsComponent {
+  constructor(public location: Location) { }
+}

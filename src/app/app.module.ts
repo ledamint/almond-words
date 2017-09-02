@@ -7,6 +7,7 @@ import { FocusModule } from 'angular2-focus';
 
 import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
+import { AutoRegistrationComponent } from './component/authorization/auto-registration/auto-registration.component';
 import { LoginComponent } from './component/authorization/login/login.component';
 import { ForgetPasswordComponent } from './component/authorization/forget-password/forget-password.component';
 import { BackgroundComponent } from './component/background/background.component';
@@ -38,6 +39,7 @@ import { TestWordsService } from './service/test-words.service';
 // TODO move to separate file
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
+  { path: 'auto-registration', component: AutoRegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
   { path: 'cards', component: CardsComponent },
@@ -72,6 +74,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     RegistrationComponent,
+    AutoRegistrationComponent,
     LoginComponent,
     ForgetPasswordComponent,
     BackgroundComponent,
