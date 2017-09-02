@@ -11,7 +11,7 @@ module.exports = (app, db) => {
         console.log(err);
         res.sendStatus(500);
       } else if (user !== null) {
-        res.status(403).send('Email is already exist');
+        res.status(403).send('Email already exists');
       } else {
         const cryptPassword = bcrypt.hashSync(registrationData.password);
         const newUser = {

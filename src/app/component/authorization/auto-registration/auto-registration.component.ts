@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm, EmailValidator } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 import { MainService } from 'app/service/main.service';
 import { AuthorizationService } from 'app/service/authorization.service';
@@ -8,20 +8,10 @@ import { RegistrationData } from 'app/service/interface/interfaces';
 
 // TODO: make visual validation
 @Component({
-  selector: 'registration',
+  selector: 'auto-registration',
   template: `
-          <h1>Registration</h1>
+          <h1>Choose languages</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
-              <h4 class="input-title">email</h4>
-              <div class="input-wrapper">
-                  <input class="text-input" type="email" name="email" focus="true" ngModel required email>
-                  <span class="prompt theme-color-text-second-color">verification is not needed</span>
-              </div>
-              <h4 class="input-title">password</h4>
-              <div class="input-wrapper">
-                  <input class="text-input" type="password" name="password" ngModel required required minlength="6">
-                  <span class="prompt theme-color-text-second-color">min 6 symbols</span>
-              </div>
               <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="familiar-language" ngModel required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
@@ -33,22 +23,23 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/auto-registration" class="side-panel__item">auto registration</a>
+              <a routerLink="/registration" class="side-panel__item">full registration</a>
               <a routerLink="/login" class="side-panel__item">login</a>
               <a routerLink="/about-us" class="side-panel__item">about us</a>
           </div>`,
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./auto-registration.component.scss']
 })
-export class RegistrationComponent {
+export class AutoRegistrationComponent {
   constructor(public mainService: MainService,
               public authorizationService: AuthorizationService) { }
 
   registerUser(form: NgForm) {
-    const email: string = form.value.email.trim().toLowerCase();
+    const randomString: string = Math.random().toString(36).slice(2, 8);
+    const email: string = `${randomString}@testmail.com`;
 
     const registrationData: RegistrationData = {
       email: email,
-      password: form.value.password,
+      password: randomString,
       learningLanguage: form.value['learning-language'],
       familiarLanguage: form.value['familiar-language']
     };
