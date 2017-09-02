@@ -11,8 +11,8 @@ import { AccountInformationService } from 'app/service/account-information.servi
             <div class="input-wrapper">
                 <input class="text-input" type="email" name="email" placeholder="email" focus="true"
                   [ngModel]="accountInformationService.email" required email>
-                <span class="prompt theme-color-text-second-color" [hidden]="emailForm.value.email.search('testmail') === -1">
-                  change to your email if you want to save your progress</span>
+                <span class="prompt theme-color-text-second-color" [hidden]="isAutoEmail(emailForm.value.email)">
+                  change to your email if you want to save progress</span>
             </div>
             <button class="button" type="submit" [disabled]="!emailForm.valid">Change email</button>
         </form>
@@ -31,6 +31,12 @@ import { AccountInformationService } from 'app/service/account-information.servi
 })
 export class AccountInformationComponent {
   constructor(public accountInformationService: AccountInformationService) { }
+
+  isAutoEmail(email: string) {
+    if (email === undefined) return true;
+
+    return email.search('@testmail.com') === -1;
+  }
 
   updateEmail(email: string) {
     if (confirm('Are you sure to change email?')) {
