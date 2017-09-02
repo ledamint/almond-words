@@ -13,7 +13,7 @@ import { MainApplicationInfo, User } from './interface/interfaces';
 
 @Injectable()
 export class MainService {
-  // TODO: move to main info service
+  // TODO: move to main info service all common data like points, languages, main options
   languages: string[];
 
   constructor(private http: Http,
@@ -30,7 +30,6 @@ export class MainService {
       .subscribe(
         (mainInfo: MainApplicationInfo) => {
           this.languages = mainInfo.languages;
-          // TODO move standart options outside optionsService
           this.optionsService.setUp(mainInfo.options);
         },
         (err) => {
