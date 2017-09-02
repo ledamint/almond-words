@@ -10,9 +10,6 @@ import { Board, Word, KnowledgeFilter, Sort } from './interface/interfaces';
 
 @Injectable()
 export class WordsService {
-  learningLanguage: string;
-  familiarLanguage: string;
-
   allWords: Word[] = [];
   activeWords: Word[] = [];
   cards: Array<Word[]> = [];
@@ -24,9 +21,6 @@ export class WordsService {
 
 
   setUp(board: Board) {
-    this.learningLanguage = board.learningLanguage;
-    this.familiarLanguage = board.familiarLanguage;
-
     this.allWords = board.words;
     this.activeWords = this.allWords;
 

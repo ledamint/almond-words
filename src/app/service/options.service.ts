@@ -11,6 +11,8 @@ export class OptionsService {
   options: Options;
   activeOptions: ActiveOptions;
   activeOptionsCopy: ActiveOptions;
+  learningLanguage: string = 'learning language';
+  familiarLanguage: string = 'familiar language';
 
   constructor(private http: Http,
               private eventsService: EventsService) { }
@@ -19,8 +21,10 @@ export class OptionsService {
     this.options = options;
   }
 
-  setActiveOptions(activeOptions: ActiveOptions) {
+  setActiveOptions(activeOptions: ActiveOptions, learningLanguage: string, familiarLanguage: string) {
     this.activeOptions = activeOptions;
+    this.learningLanguage = learningLanguage;
+    this.familiarLanguage = familiarLanguage;
   }
 
   updateActiveOptions() {

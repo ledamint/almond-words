@@ -7,6 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import { format } from 'date-fns';
 
 import { WordsService } from 'app/service/words.service';
+import { OptionsService } from 'app/service/options.service';
 import { Word } from 'app/service/interface/interfaces';
 
 @Component({
@@ -14,9 +15,9 @@ import { Word } from 'app/service/interface/interfaces';
   template: `
         <h1>Word</h1>
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
-            <h4 class="input-title">{{ wordsService.learningLanguage }}</h4>
+            <h4 class="input-title">{{ optionsService.learningLanguage }}</h4>
             <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
-            <h4 class="input-title">{{ wordsService.familiarLanguage }}</h4>
+            <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
             <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
             <span class="time">{{ time }}</span>
             <div class="buttons">
@@ -38,6 +39,7 @@ export class WordComponent implements OnInit {
   time: string;
 
   constructor(public wordsService: WordsService,
+              public optionsService: OptionsService,
               public route: ActivatedRoute,
               public router: Router) { }
 
