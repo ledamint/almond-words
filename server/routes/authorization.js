@@ -1,6 +1,7 @@
 const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt-nodejs');
 const sendEmail = require('../email');
+const updateUser = require('../db-actions/user').updateUser;
 
 module.exports = (app, db) => {
   app.post('/registration', (req, res) => {
@@ -77,6 +78,7 @@ module.exports = (app, db) => {
         } else {
           req.session._id = user._id;
           req.session.activeBoard = user.activeBoard;
+
           res.send(true);
         }
       });
@@ -98,20 +100,10 @@ module.exports = (app, db) => {
         };
         const randomPassword = Math.random().toString(36).slice(2, 12);
         const cryptPassword = bcrypt.hashSync(randomPassword);
-        const resolve = () => {
-          db.collection('users').findOneAndUpdate(userId, { $set: { password: cryptPassword } }, (err, result) => {
-            if (err) {
-              console.log(err);
-              res.sendStatus(500);
-            } else if (result.value === null) {
-              res.sendStatus(404);
-            } else {
-              res.send(true);
-            }
-          });
-        };
 
-        sendEmail(email, 'Your new password', randomPassword, () => res.sendStatus(500), resolve);
+        const updatePassword = updateUser.bind(null, db, userId, { password: cryptPassword }, res);
+
+        sendEmail(email, 'Your new password', randomPassword, () => res.sendStatus(500), updatePassword);
       }
     });
   });
