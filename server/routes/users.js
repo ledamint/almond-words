@@ -1,4 +1,5 @@
 const ObjectID = require('mongodb').ObjectID;
+const updateUser = require('../db-actions/user').updateUser;
 
 module.exports = (app, db) => {
   app.get('/user', (req, res) => {
@@ -13,7 +14,7 @@ module.exports = (app, db) => {
       } else if (user === null) {
         res.sendStatus(404);
       } else {
-        res.send(user);
+        updateUser(db, userId, { lastLogin: new Date() }, res, user);
       }
     });
   });

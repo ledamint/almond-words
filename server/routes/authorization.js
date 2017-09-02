@@ -21,6 +21,7 @@ module.exports = (app, db) => {
           learningLanguage: registrationData.learningLanguage,
           familiarLanguage: registrationData.familiarLanguage,
           registrationTime: new Date(),
+          lastLogin: new Date(),
           activeOptions: {
             sort: 'time',
             theme: 'blue',

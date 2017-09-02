@@ -1,6 +1,6 @@
 // TODO change other update user to this
 
-const updateUser = (db, userId, changes, res) => {
+const updateUser = (db, userId, changes, res, response = true) => {
   db.collection('users').findOneAndUpdate(userId, { $set: changes }, (err, result) => {
     if (err) {
       console.log(err);
@@ -8,7 +8,7 @@ const updateUser = (db, userId, changes, res) => {
     } else if (result.value === null) {
       res.sendStatus(404);
     } else {
-      res.send(true);
+      res.send(response);
     }
   });
 };

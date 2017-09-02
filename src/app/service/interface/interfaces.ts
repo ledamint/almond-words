@@ -21,6 +21,7 @@ export interface User {
   learningLanguage: string;
   familiarLanguage: string;
   registrationTime: Date;
+  lastLogin: Date;
   activeBoard: number;
   boards: Board[];
   activeOptions: ActiveOptions;
