@@ -161,6 +161,15 @@ a {
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
 
+.listen {
+  position: relative;
+  right: -5px;
+  top: 3px;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
 .option-item {
   margin-right: 15px;
   font-size: 20px;
