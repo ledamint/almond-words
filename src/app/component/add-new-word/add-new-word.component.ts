@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import tts from 'app/speech-synthesis';
+
 import { WordsService } from '../../service/words.service';
 import { OptionsService } from '../../service/options.service';
 import { EventsService } from '../../service/events.service';
@@ -10,7 +12,11 @@ import { EventsService } from '../../service/events.service';
   template: `
           <h1>Add a new word</h1>
           <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
-              <h4 class="input-title">{{ optionsService.learningLanguage }}</h4>
+              <h4 class="input-title">
+                  {{ optionsService.learningLanguage }}
+                  <img class="listen" src="assets/img/speaker-icon.svg" alt="listen"
+                    (click)="listenWord(newWordForm.value['learning-word'])">
+              </h4>
               <input class="text-input" type="text" name="learning-word" focus="true" ngModel required>
               <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
               <input class="text-input" type="text" name="familiar-word" ngModel required>
@@ -44,5 +50,9 @@ export class AddNewWordComponent implements OnInit {
 
     this.wordsService.addNewWord(newWord);
     newWordForm.reset();
+  }
+
+  listenWord(word: string) {
+    tts.speak(word);
   }
 }

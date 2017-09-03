@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 
 import { format } from 'date-fns';
+import tts from 'app/speech-synthesis';
 
 import { WordsService } from 'app/service/words.service';
 import { OptionsService } from 'app/service/options.service';
@@ -15,7 +16,10 @@ import { Word } from 'app/service/interface/interfaces';
   template: `
         <h1>Word</h1>
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
-            <h4 class="input-title">{{ optionsService.learningLanguage }}</h4>
+            <h4 class="input-title">
+                {{ optionsService.learningLanguage }}
+                <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" (click)="listenWord(wordForm.value['learning-word'])">
+            </h4>
             <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
             <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
             <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
@@ -90,5 +94,9 @@ export class WordComponent implements OnInit {
 
   formatDate(date: Date) {
     this.time = format(date, 'MMM Do YY');
+  }
+
+  listenWord(word: string) {
+    tts.speak(word);
   }
 }
