@@ -28,14 +28,15 @@ module.exports = (app, db) => {
             isBackgroundActive: false,
             isWordsOpacityActive: true,
             filter: {
-              knowledge: [{
-                name: 'weak',
-                value: [1, 4],
-              },
-              {
-                name: 'medium',
-                value: [5, 9],
-              }],
+              knowledge: [
+                {
+                  name: 'in progress',
+                  value: [
+                    1,
+                    9,
+                  ],
+                },
+              ],
             },
           },
           activeBoard: 0,
