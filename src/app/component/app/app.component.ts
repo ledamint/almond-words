@@ -7,7 +7,7 @@ import { OptionsService } from '../../service/options.service';
 @Component({
   selector: 'my-app',
   template: `
-    <div class="wrapper" [className]="getCurrentTheme()">
+    <div [className]="getCurrentTheme()">
         <main class="content">
             <router-outlet></router-outlet>
         </main>
