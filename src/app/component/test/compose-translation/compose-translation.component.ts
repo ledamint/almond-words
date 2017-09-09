@@ -12,9 +12,9 @@ interface WordLetter {
 @Component({
   selector: 'compose-translation',
   template: `<div class="letters letters_main-word">
-                 <div class="letter theme-color-text-second theme-color-background-fourth"
+                 <button class="letter theme-color-text-second theme-color-background-fourth"
                    [class.checked]="testingWordLetter.checked" *ngFor="let testingWordLetter of testingWordLetters"
-                   >{{ testingWordLetter.letter }}</div>
+                   >{{ testingWordLetter.letter }}</button>
              </div>
              <div class="letters letters_answer ">
                  <button class="letter theme-color-background-third theme-color-hover-background-fourth"
