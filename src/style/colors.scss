@@ -1,12 +1,4 @@
-.theme-color-border {
-  border-color: $pink-theme-second-color !important;
-
-  .blue-theme & {
-    border-color: $blue-theme-second-color !important;
-  }
-}
-
-.theme-color-text-main-color {
+.theme-color-text-main {
   color: $pink-theme-main-color !important;
 
   .blue-theme & {
@@ -14,7 +6,7 @@
   }
 }
 
-.theme-color-text-second-color {
+.theme-color-text-second {
   color: $pink-theme-second-color !important;
 
   .blue-theme & {
@@ -22,7 +14,7 @@
   }
 }
 
-.theme-color-background-third-color {
+.theme-color-background-third {
   background-color: $pink-theme-third-color !important;
 
   .blue-theme & {
@@ -30,7 +22,7 @@
   }
 }
 
-.theme-color-background-fourth-color {
+.theme-color-background-fourth {
   background-color: $pink-theme-fourth-color !important;
 
   .blue-theme & {
@@ -38,7 +30,7 @@
   }
 }
 
-.theme-color-hover-background-fourth-color {
+.theme-color-hover-background-fourth {
   &:hover {
     background-color: $pink-theme-fourth-color !important;
   }

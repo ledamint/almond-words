@@ -6,7 +6,7 @@ import { BackgroundService } from '../../service/background.service';
   selector: 'background',
   template: `
       <div class="background">
-          <div *ngFor="let backgroundLine of backgroundService.backgroundLines" class="background-line theme-color-text-main-color"
+          <div *ngFor="let backgroundLine of backgroundService.backgroundLines" class="background-line theme-color-text-main"
             [style.left]="backgroundLine.left + '%'" [style.top]="backgroundLine.top + '%'"
             [hidden]="disableBackground">{{ backgroundLine.word }}</div>
       </div>`,
