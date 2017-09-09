@@ -130,11 +130,13 @@ export class WordsService {
       );
   }
 
-  updateWord(wordId: string, changes: Object) {
+  updateWord(wordId: string, changes: Object, message?: { text: string }) {
     this.http.put('words/' + wordId, changes)
       .map((res) => res.json())
       .subscribe(
         (updatedWord: Word) => {
+          if (message !== undefined) this.eventsService.onShowMessage(message);
+
           const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
           this.allWords[updatedWordIndex] = updatedWord;
 
