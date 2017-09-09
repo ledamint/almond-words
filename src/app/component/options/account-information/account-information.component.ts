@@ -11,7 +11,7 @@ import { AccountInformationService } from 'app/service/account-information.servi
             <div class="input-wrapper">
                 <input class="text-input" type="email" name="email" placeholder="email" focus="true"
                   [ngModel]="accountInformationService.email" required email>
-                <span class="prompt theme-color-text-second-color" [hidden]="isAutoEmail(emailForm.value.email)">
+                <span class="prompt theme-color-text-second" [hidden]="isAutoEmail(emailForm.value.email)">
                   change to your email if you want to save progress</span>
             </div>
             <button class="button" type="submit" [disabled]="!emailForm.valid">Change email</button>
@@ -20,7 +20,7 @@ import { AccountInformationService } from 'app/service/account-information.servi
             <h3>Password</h3>
             <div class="input-wrapper">
                 <input class="text-input" type="password" name="password" placeholder="password" ngModel required minlength="6">
-                <span class="prompt theme-color-text-second-color">min 6 symbols</span>
+                <span class="prompt theme-color-text-second">min 6 symbols</span>
             </div>
             <input class="text-input" type="password" name="confirm-password" placeholder="confirm password" ngModel required>
             <button class="button" type="submit" [disabled]="!passwordForm.valid ||
