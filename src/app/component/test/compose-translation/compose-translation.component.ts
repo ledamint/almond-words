@@ -12,11 +12,12 @@ interface WordLetter {
 @Component({
   selector: 'compose-translation',
   template: `<div class="letters letters_main-word">
-                 <div class="letter theme-color-text-second-color theme-color-border" [class.checked]="testingWordLetter.checked"
-                   *ngFor="let testingWordLetter of testingWordLetters">{{ testingWordLetter.letter }}</div>
+                 <div class="letter theme-color-text-second-color theme-color-background-fourth-color"
+                   [class.checked]="testingWordLetter.checked" *ngFor="let testingWordLetter of testingWordLetters"
+                   >{{ testingWordLetter.letter }}</div>
              </div>
-             <div class="letters letters_answer">
-                 <div class="letter" [class.selected]="answerLetter.checked"
+             <div class="letters letters_answer ">
+                 <div class="letter theme-color-background-third-color" [class.selected]="answerLetter.checked"
                    *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">{{ answerLetter.letter }}</div>
              </div>`,
   styleUrls: ['./compose-translation.component.scss']

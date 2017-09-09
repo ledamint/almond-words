@@ -11,7 +11,8 @@ import { VariantOfAnswer, defaultAnswers } from './default-answers';
 @Component({
   selector: 'choose-translation',
   template: `<div class="answers">
-                 <button class="answer button" *ngFor="let answer of answers" (click)="checkAnswer(answer)">{{ answer }}</button>
+                 <button class="answer button theme-color-background-third-color" *ngFor="let answer of answers"
+                   (click)="checkAnswer(answer)">{{ answer }}</button>
              </div>`,
   styleUrls: ['./choose-translation.component.scss']
 })

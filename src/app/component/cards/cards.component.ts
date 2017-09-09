@@ -18,11 +18,11 @@ import { Word } from '../../service/interface/interfaces';
       </h1>
       <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
-          <div *ngFor="let card of wordsService.cards" class="card theme-color-border">
+          <div *ngFor="let card of wordsService.cards" class="card theme-color-background-third-color">
               <a *ngFor="let word of card" title="{{ word.familiarWord }}"
                 [style.opacity]="optionsService.activeOptions.isWordsOpacityActive ? 1 : word.knowledge/10" class="word"
                 routerLink="/word/{{ word._id }}">{{ word.learningWord }}</a>
-              <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test theme-color-border"
+              <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test theme-color-background-fourth-color"
                 (click)="testWordsService.startTest(card)">Test it</a>
           </div>
       </div>
