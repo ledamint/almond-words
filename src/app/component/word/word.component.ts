@@ -58,8 +58,6 @@ export class WordComponent implements OnInit {
   }
 
   updateWord(wordForm: NgForm) {
-    this.router.navigateByUrl('/cards');
-
     const learningWord: string = wordForm.value['learning-word'].trim().toLowerCase();
     const familiarWord: string = wordForm.value['familiar-word'].trim().toLowerCase();
 
@@ -69,7 +67,7 @@ export class WordComponent implements OnInit {
       familiarWord
     };
 
-    this.wordsService.updateWord(wordId, updatedData);
+    this.wordsService.updateWord(wordId, updatedData, { text: 'Changed!'});
   }
 
   deleteWord(word: Word) {
