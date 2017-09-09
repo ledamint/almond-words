@@ -17,8 +17,8 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
               <a class="button" routerLink="/user-options/account" routerLinkActive="active">account</a>
           </div>
           <router-outlet></router-outlet>
-          <div class="buttons" [hidden]="this.router.url === '/user-options/account'">
-              <button class="button" (click)="submitOptions()">Submit</button>
+          <div class="buttons">
+              <button class="button" [hidden]="this.router.url === '/user-options/account'" (click)="submitOptions()">Submit</button>
           </div>
           <div class="side-panel">
               <a routerLink="/cards" class="side-panel__item" (click)="optionsService.resetChanges()">cards</a>

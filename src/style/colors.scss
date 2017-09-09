@@ -21,3 +21,19 @@
     color: $blue-theme-second-color !important;
   }
 }
+
+.theme-color-background-third-color {
+  background-color: $pink-theme-third-color !important;
+
+  .blue-theme & {
+    background-color: $blue-theme-third-color !important;
+  }
+}
+
+.theme-color-background-fourth-color {
+  background-color: $pink-theme-fourth-color !important;
+
+  .blue-theme & {
+    background-color: $blue-theme-fourth-color !important;
+  }
+}
