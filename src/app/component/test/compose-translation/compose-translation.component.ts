@@ -17,8 +17,9 @@ interface WordLetter {
                    >{{ testingWordLetter.letter }}</div>
              </div>
              <div class="letters letters_answer ">
-                 <button class="letter theme-color-background-third-color" [class.selected]="answerLetter.checked"
-                   *ngFor="let answerLetter of answerLetters" (click)="checkLetter(answerLetter)">{{ answerLetter.letter }}</button>
+                 <button class="letter theme-color-background-third-color theme-color-hover-background-fourth-color"
+                   [class.selected]="answerLetter.checked" *ngFor="let answerLetter of answerLetters"
+                   (click)="checkLetter(answerLetter)">{{ answerLetter.letter }}</button>
              </div>`,
   styleUrls: ['./compose-translation.component.scss']
 })
