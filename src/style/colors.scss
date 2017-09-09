@@ -37,3 +37,15 @@
     background-color: $blue-theme-fourth-color !important;
   }
 }
+
+.theme-color-hover-background-fourth-color {
+  &:hover {
+    background-color: $pink-theme-fourth-color !important;
+  }
+
+  .blue-theme & {
+    &:hover {
+      background-color: $blue-theme-fourth-color !important;
+    }
+  }
+}

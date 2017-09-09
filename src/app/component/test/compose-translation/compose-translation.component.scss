@@ -27,14 +27,6 @@
     .letter {
       cursor: pointer;
 
-      &:hover {
-        background-color: $pink-theme-fourth-color !important;
-
-        :host-context(.blue-theme) & {
-          background-color: $blue-theme-fourth-color !important;
-        }
-      }
-
       &:active {
         transform: translate(1px, 1px);
       }
@@ -52,6 +44,7 @@
   margin-right: 10px;
   margin-bottom: 10px;
   border: 0;
+  border-radius: 5px;
   outline: 0;
   font-size: 28px;
   line-height: 1.45;
