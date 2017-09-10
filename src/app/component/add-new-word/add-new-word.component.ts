@@ -68,7 +68,8 @@ export class AddNewWordComponent implements OnInit {
     };
 
     this.wordsService.addNewWord(newWord);
-    newWordForm.reset();
+    this.learningWord = '';
+    this.familiarWord = '';
   }
 
   translateWord(word: string) {
