@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { OptionsService } from './options.service';
 
-import { Board, Word, KnowledgeFilter, Sort } from './interface/interfaces';
+import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/interfaces';
 
 @Injectable()
 export class WordsService {
@@ -149,28 +149,58 @@ export class WordsService {
     const apiUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
     const apiKey = 'trnsl.1.1.20170910T052245Z.2dcffa636619250a.1ae7a58bd70134c42f7ab907150584f2ed488d8f';
 
-    return this.http.get(`${apiUrl}?key=${apiKey}&text=${word}&lang=${this.optionsService.learningLanguage}-${this.optionsService.familiarLanguage}`)
+    return this.http.get(`${apiUrl}?key=${apiKey}&text=${word}&lang=${this.optionsService.learningLanguage}-
+      ${this.optionsService.familiarLanguage}`);
 
   }
 
   // TODO: move to server
   updateWordKnowledge(wordId: string, addingPoints: number) {
     const updatedWordIndex = this.allWords.findIndex((word) => wordId === word._id);
-    const entirePoints = this.calculateEntirePoints(this.allWords[updatedWordIndex].knowledge, addingPoints);
+    const newKnowledgePoints = this.calculateEntirePoints(this.allWords[updatedWordIndex].knowledge, addingPoints);
 
-    this.updateWord(wordId, { knowledge: entirePoints });
+    if (newKnowledgePoints === 10) {
+      const decreaseTime: DecreaseTime = this.calculateDecreaseTime(updatedWordIndex);
+
+      this.updateWord(wordId, { knowledge: newKnowledgePoints, decreaseTime });
+    } else {
+      this.updateWord(wordId, { knowledge: newKnowledgePoints });
+    }
+  }
+
+  calculateDecreaseTime(updatedWordIndex: number): DecreaseTime {
+    let datesToNextDecrease = 1;
+    let nextDecreaseTime = new Date();
+
+    if (this.allWords[updatedWordIndex].decreaseTime !== undefined) {
+      datesToNextDecrease = this.allWords[updatedWordIndex].decreaseTime.datesToNextDecrease || 1;
+      nextDecreaseTime = this.allWords[updatedWordIndex].decreaseTime.time || new Date();
+    }
+    if (typeof nextDecreaseTime === 'string') nextDecreaseTime = new Date(nextDecreaseTime);
+
+    nextDecreaseTime.setDate(nextDecreaseTime.getDate() + datesToNextDecrease);
+    datesToNextDecrease *= 2;
+
+    const decreaseTime = {
+      datesToNextDecrease,
+      time: nextDecreaseTime
+    };
+
+    return decreaseTime;
   }
 
   calculateEntirePoints(currentKnowledgePoints: number, addingKnowledgePoints: number) {
+    let newKnowledgePoints;
+
     if (currentKnowledgePoints !== undefined) {
-      currentKnowledgePoints += addingKnowledgePoints;
+       newKnowledgePoints = currentKnowledgePoints + addingKnowledgePoints;
     } else {
-      currentKnowledgePoints = 1 + addingKnowledgePoints;
+      newKnowledgePoints = 1 + addingKnowledgePoints;
     }
 
-    if (currentKnowledgePoints > 10) currentKnowledgePoints = 10;
-    if (currentKnowledgePoints < 1) currentKnowledgePoints = 1;
+    if (newKnowledgePoints > 10) newKnowledgePoints = 10;
+    if (newKnowledgePoints < 1) newKnowledgePoints = 1;
 
-    return currentKnowledgePoints;
+    return newKnowledgePoints;
   }
 }
