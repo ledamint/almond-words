@@ -11,8 +11,8 @@ export class OptionsService {
   options: Options;
   activeOptions: ActiveOptions;
   activeOptionsCopy: ActiveOptions;
-  learningLanguage: string = 'learning language';
-  familiarLanguage: string = 'familiar language';
+  learningLanguage: string;
+  familiarLanguage: string;
 
   constructor(private http: Http,
               private eventsService: EventsService) { }
