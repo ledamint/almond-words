@@ -37,8 +37,13 @@ export interface Word {
   familiarWord: string;
   time: Date;
   knowledge: number;
+  decreaseTime: DecreaseTime;
 }
 
+export interface DecreaseTime {
+  datesToNextDecrease: number;
+  time: Date;
+}
 
 export interface MainApplicationInfo {
   languages: string[];
