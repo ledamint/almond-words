@@ -226,6 +226,10 @@ a {
       color: inherit;
     }
   }
+
+  .listen {
+    display: none;
+  }
 }
 
 @media (max-width: $mobile-width) {
