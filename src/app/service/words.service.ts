@@ -149,9 +149,8 @@ export class WordsService {
     const apiUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
     const apiKey = 'trnsl.1.1.20170910T052245Z.2dcffa636619250a.1ae7a58bd70134c42f7ab907150584f2ed488d8f';
 
-    return this.http.get(`${apiUrl}?key=${apiKey}&text=${word}&lang=${this.optionsService.learningLanguage}-
-      ${this.optionsService.familiarLanguage}`);
-
+    return this.http.get(
+      `${apiUrl}?key=${apiKey}&text=${word}&lang=${this.optionsService.learningLanguage}-${this.optionsService.familiarLanguage}`);
   }
 
   // TODO: move to server
