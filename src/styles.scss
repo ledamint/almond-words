@@ -37,8 +37,9 @@ a {
   }
 }
 
-.button, input {
+button, input {
   font-family: $main-font;
+  color: black;
 }
 
 .side-panel {
