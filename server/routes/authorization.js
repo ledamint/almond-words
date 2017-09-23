@@ -2,6 +2,7 @@ const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt-nodejs');
 const sendEmail = require('../email');
 const updateUser = require('../db-actions/user').updateUser;
+const decreaseWordsKnowledge = require('../db-actions/words').decreaseWordsKnowledge;
 
 module.exports = (app, db) => {
   app.post('/registration', (req, res) => {
@@ -62,7 +63,14 @@ module.exports = (app, db) => {
   app.post('/login', (req, res) => {
     if (Object.keys(req.body).length === 0) {
       if (req.session._id) {
-        res.send(true);
+        const userId = {
+          _id: new ObjectID(req.session._id),
+        };
+
+        decreaseWordsKnowledge(db, userId)
+          .then(() => {
+            res.send(true);
+          });
       } else {
         res.send(false);
       }
@@ -81,7 +89,14 @@ module.exports = (app, db) => {
           req.session._id = user._id;
           req.session.activeBoard = user.activeBoard;
 
-          res.send(true);
+          const userId = {
+            _id: new ObjectID(req.session._id),
+          };
+
+          decreaseWordsKnowledge(db, userId)
+            .then(() => {
+              res.send(true);
+            });
         }
       });
     }

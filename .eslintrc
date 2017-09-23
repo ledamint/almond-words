@@ -3,6 +3,7 @@
   "plugins": ["import"],
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ['_id'] }],
+    "no-param-reassign": "off",
     "no-shadow": ["error", { "allow": ['err'] }],
     "no-console": ["error", { allow: ["log", "warn", "error"] }],
     "jsx-a11y/href-no-hash": "off",
