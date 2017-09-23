@@ -169,15 +169,13 @@ export class WordsService {
 
   calculateDecreaseTime(updatedWordIndex: number): DecreaseTime {
     let datesToNextDecrease = 1;
-    let nextDecreaseTime = new Date();
+    const nextDecreaseTime = new Date();
 
     if (this.allWords[updatedWordIndex].decreaseTime !== undefined) {
       datesToNextDecrease = this.allWords[updatedWordIndex].decreaseTime.datesToNextDecrease || 1;
-      nextDecreaseTime = this.allWords[updatedWordIndex].decreaseTime.time || new Date();
     }
-    if (typeof nextDecreaseTime === 'string') nextDecreaseTime = new Date(nextDecreaseTime);
 
-    nextDecreaseTime.setDate(nextDecreaseTime.getDate() + datesToNextDecrease);
+    nextDecreaseTime.setDate(new Date().getDate() + datesToNextDecrease);
     datesToNextDecrease *= 2;
 
     const decreaseTime = {
