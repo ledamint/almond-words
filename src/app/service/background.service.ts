@@ -45,7 +45,7 @@ export class BackgroundService {
 
         backgroundLine.word = randomWord;
         backgroundLine.left = i;
-        backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
+        backgroundLine.top = -Math.floor((Math.random() * 200) + 20);
 
         this.backgroundLines.push(backgroundLine);
       }
@@ -58,7 +58,7 @@ export class BackgroundService {
     requestAnimationFrame(function backgroundStep() {
       self.backgroundLines.forEach((backgroundLine) => {
         backgroundLine.top += 0.04;
-        if (backgroundLine.top > 100) backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
+        if (backgroundLine.top > 100) backgroundLine.top = -Math.floor((Math.random() * 200) + 20);
       });
 
       if (self.isAnimationActive) requestAnimationFrame(backgroundStep);
