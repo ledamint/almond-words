@@ -13,18 +13,22 @@ interface BackgroundLine {
 export class BackgroundService {
   backgroundLines: BackgroundLine[] = [];
   disableBackground: boolean = false;
-  backgroundInterval = null;
+  isAnimationActive: boolean;
 
   constructor(private optionsService: OptionsService,
               private wordsService: WordsService) { }
 
   setUp() {
-    this.setUpBackgroundLines();
-    this.setUpAnimation();
+    if (window.innerWidth > 480) {
+      this.isAnimationActive = true;
+
+      this.setUpBackgroundLines();
+      this.setUpAnimation();
+    }
   }
 
   reset() {
-    clearInterval(this.backgroundInterval);
+    this.isAnimationActive = false;
     this.backgroundLines = [];
   }
 
@@ -49,11 +53,15 @@ export class BackgroundService {
   }
 
   setUpAnimation() {
-    this.backgroundInterval = setInterval(() => {
-      this.backgroundLines.forEach((backgroundLine) => {
-        backgroundLine.top += 0.02;
+    const self = this;
+
+    requestAnimationFrame(function backgroundStep() {
+      self.backgroundLines.forEach((backgroundLine) => {
+        backgroundLine.top += 0.04;
         if (backgroundLine.top > 100) backgroundLine.top = -Math.floor((Math.random() * 200) + 1);
       });
-    }, 10);
+
+      if (self.isAnimationActive) requestAnimationFrame(backgroundStep);
+    });
   }
 }
