@@ -48,7 +48,7 @@ export class AddNewWordComponent implements OnInit {
       });
 
     this.keyUpLearningWord$
-      .debounceTime(1000)
+      .debounceTime(500)
       .subscribe((word) => {
         if (word !== '') {
           this.translateWord(word);
