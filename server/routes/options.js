@@ -7,7 +7,7 @@ module.exports = (app, db) => {
     };
 
     db.collection('users').findOneAndUpdate(userId, { $set: { activeOptions: req.body } },
-      { upsert: true }, (err, result) => {
+      (err, result) => {
         if (err) {
           console.log(err);
           res.sendStatus(500);
