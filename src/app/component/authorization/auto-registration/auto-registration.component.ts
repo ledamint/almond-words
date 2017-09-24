@@ -13,11 +13,11 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <h1>Choose languages</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">familiar language</h4>
-              <select class="text-input" name="familiar-language" ngModel required>
-                  <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
+              <select class="text-input" name="familiar-language" [(ngModel)]="familiarLanguage" required>
+                  <option  value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
               <h4 class="input-title">learning language</h4>
-              <select class="text-input" type="text" name="learning-language" ngModel required>
+              <select class="text-input" type="text" name="learning-language" [(ngModel)]="learningLanguage" required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
               <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
@@ -30,6 +30,10 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   styleUrls: ['./auto-registration.component.scss']
 })
 export class AutoRegistrationComponent {
+  // TODO: move to main info
+  familiarLanguage: string = 'ru';
+  learningLanguage: string = 'en';
+
   constructor(public mainService: MainService,
               public authorizationService: AuthorizationService) { }
 
