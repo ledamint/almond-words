@@ -12,6 +12,7 @@ import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/in
 export class WordsService {
   allWords: Word[] = [];
   activeWords: Word[] = [];
+  recommendedWords: string[] = [];
   cards: Array<Word[]> = [];
   overallKnowledgePercent: number;
 
@@ -24,6 +25,7 @@ export class WordsService {
     this.activeWords = this.allWords;
 
     this.updateWords();
+    this.getRecommendedWords();
   }
 
   // TODO: think about optimization
@@ -32,6 +34,17 @@ export class WordsService {
     this.sortWords(this.optionsService.activeOptions.sort);
     this.distributeWords();
     this.calculateOverallKnowledge();
+  }
+
+  getRecommendedWords() {
+    this.http.get(`recommended-words/${this.optionsService.learningLanguage}`)
+      .map((res) => res.json())
+      .subscribe(
+        (recommendedWords) => {
+          this.recommendedWords = recommendedWords;
+        },
+        err => this.eventsService.onServerError(err)
+      );
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
