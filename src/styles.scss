@@ -92,7 +92,7 @@ button, input {
   }
 
   &[disabled] {
-    color: grey !important;
+    visibility: hidden;
     cursor: auto !important;
   }
 
