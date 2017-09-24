@@ -22,7 +22,11 @@ import { EventsService } from '../../service/events.service';
               <input class="text-input" type="text" name="learning-word" focus="true"
                 (keyup)="keyUpLearningWordSubject.next(learningWord)" [(ngModel)]="learningWord" required>
               <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
-              <input class="text-input" type="text" name="familiar-word" [(ngModel)]="familiarWord" required>
+              <div class="input-wrapper">
+                  <input class="text-input" type="text" name="familiar-word" [(ngModel)]="familiarWord" required>
+                  <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
+                    optionsService.familiarLanguage }}&text={{ learningWord }}" target="_blank">Yandex translate</a>
+              </div>
               <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
           </form>
           <div class="side-panel">

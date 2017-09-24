@@ -22,7 +22,11 @@ import { Word } from 'app/service/interface/interfaces';
             </h4>
             <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
             <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
-            <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
+            <div class="input-wrapper">
+                <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
+                <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
+                  optionsService.familiarLanguage }}&text={{ word.learningWord }}" target="_blank">Yandex translate</a>
+            </div>
             <span class="time">{{ time }}</span>
             <div class="buttons">
                 <button class="button" type="submit" [disabled]="!wordForm.valid">Change</button>
