@@ -47,7 +47,7 @@ export class ChooseTranslationComponent implements OnInit {
   }
 
   updateVariantsOfAnswers() {
-    if (this.wordsService.activeWords.length > 3) {
+    if (this.wordsService.activeWords.length > 9) {
       this.variantsOfAnswers = this.wordsService.activeWords.slice(-30);
     } else if (this.wordsService.allWords.length > 3) {
       this.variantsOfAnswers = this.wordsService.allWords.slice(-30);
