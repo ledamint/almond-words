@@ -12,9 +12,9 @@ const decreaseWordsKnowledge = (db, userId) => {
           if (word.decreaseTime !== undefined) {
             if (typeof word.decreaseTime.time === 'string') word.decreaseTime.time = new Date(word.decreaseTime.time);
 
-            if (word.decreaseTime.time !== undefined && word.decreaseTime.time < new Date()) {
+            if (word.decreaseTime.time !== null && word.decreaseTime.time < new Date()) {
               word.knowledge -= 1;
-              word.decreaseTime.time = undefined;
+              word.decreaseTime.time = null;
 
               return word;
             }
