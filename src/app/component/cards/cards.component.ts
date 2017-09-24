@@ -26,14 +26,14 @@ import { Word } from '../../service/interface/interfaces';
                 (click)="testWordsService.startTest(card)">Test it</a>
           </div>
       </div>
-      <div class="side-panel">
+      <div class="side-panel side-panel_left">
           <a routerLink="/add-new-word" class="side-panel__item">add new word</a>
-          <a routerLink="/user-options" class="side-panel__item">options</a>
-          <a class="side-panel__item" (click)="logout()">logout</a>
+            <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
+              (click)="testWordsService.startAutoTest()">autotest</a>
       </div>
       <div class="side-panel side-panel_right">
-          <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
-            (click)="testWordsService.startAutoTest()">autotest</a>
+          <a routerLink="/user-options" class="side-panel__item">options</a>
+          <a class="side-panel__item" (click)="logout()">logout</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']
