@@ -33,7 +33,7 @@ import { Word } from 'app/service/interface/interfaces';
                 <button class="button button_red-hover" type="button" (click)="deleteWord(word)">Delete</button>
             </div>
             <div class="side-panel">
-                <a routerLink="/cards" class="side-panel__item">cards</a>
+                <a routerLink="/cards" class="side-panel__item">back</a>
             </div>
             <a class="direction right" (click)="goToWord('next')"></a>
             <a class="direction left" (click)="goToWord('previous')"></a>

@@ -6,6 +6,19 @@
   align-items: center;
 }
 
+.input-wrapper {
+  width: 90%;
+  margin-bottom: 0;
+
+  .text-input {
+    width: 100%;
+  }
+}
+
+.text-input {
+  width: 90%;
+}
+
 .button {
   font-size: 20px;
 }
@@ -13,5 +26,13 @@
 @media (max-width: $mobile-width) {
   :host {
     display: block;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .text-input {
+    width: 100%;
   }
 }
