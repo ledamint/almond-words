@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
@@ -38,12 +39,13 @@ export class AddNewWordComponent implements OnInit {
   keyUpLearningWordSubject = new Subject<string>();
   keyUpLearningWord$ = this.keyUpLearningWordSubject.asObservable();
 
-  learningWord: string;
-  familiarWord: string;
+  learningWord: string = '';
+  familiarWord: string = '';
 
   constructor(public wordsService: WordsService,
               public optionsService: OptionsService,
-              public eventsService: EventsService) { }
+              public eventsService: EventsService,
+              public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.eventsService.addNewWord$
@@ -60,6 +62,14 @@ export class AddNewWordComponent implements OnInit {
           this.familiarWord = '';
         }
       });
+
+      this.route.paramMap
+        .subscribe((params: ParamMap) => {
+          if (!(params.get('word') === ' ')) {
+            this.learningWord = params.get('word');
+            this.translateWord(this.learningWord);
+          }
+        });
   }
 
   addNewWord(newWordForm: NgForm) {

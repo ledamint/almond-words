@@ -3,6 +3,27 @@ const ObjectID = require('mongodb').ObjectID;
 module.exports = (app, db) => {
   const usersCollection = db.collection('users');
 
+  app.get('/recommended-words/:lang', (req, res) => {
+    db.collection('recommended-words').findOne({ lang: req.params.lang }, (err, result) => {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        const recommendedWords = result.words;
+        const randomRecommendedWords = [];
+
+        for (let i = 0; i < 50; i += 1) {
+          const randomIndex = Math.floor(Math.random() * recommendedWords.length);
+          const randomRecommendedWord = recommendedWords[randomIndex];
+
+          randomRecommendedWords.push(randomRecommendedWord);
+          recommendedWords.splice(randomIndex, 1);
+        }
+
+        res.send(randomRecommendedWords);
+      }
+    });
+  });
+
   app.put('/words/:id', (req, res) => {
     const userId = {
       _id: new ObjectID(req.session._id),

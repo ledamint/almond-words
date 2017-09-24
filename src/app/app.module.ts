@@ -26,6 +26,7 @@ import { ChooseTranslationComponent } from './component/test/choose-translation/
 import { ComposeTranslationComponent } from './component/test/compose-translation/compose-translation.component';
 import { WriteTranslationComponent } from './component/test/write-translation/write-translation.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
+import { RecommendedWordsComponent } from './component/recommended-words/recommended-words.component';
 
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'words', pathMatch: 'full' },
     ],
   },
-  { path: 'add-new-word', component: AddNewWordComponent },
+  { path: 'add-new-word/:word', component: AddNewWordComponent },
   { path: 'test-choice', component: TestChoiceComponent },
   {
     path: 'test',
@@ -92,7 +93,8 @@ const appRoutes: Routes = [
     ChooseTranslationComponent,
     ComposeTranslationComponent,
     WriteTranslationComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    RecommendedWordsComponent
   ],
   bootstrap: [AppComponent],
   providers: [
