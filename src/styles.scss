@@ -60,6 +60,7 @@ button, input {
     right: 0;
     padding-right: 0;
     padding-left: 10px;
+    text-align: left;
     transform: translate(100%, -50%);
   }
 
@@ -132,7 +133,7 @@ button, input {
 .input-wrapper {
   position: relative;
   width: 80%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   .text-input {
     width: 100%;
@@ -197,14 +198,21 @@ button, input {
     justify-content: space-around;
     top: auto;
     left: 0;
-    bottom: -45px;
+    bottom: -40px;
     width: 100%;
     padding: 0;
     transform: none;
 
-    &_right {
-      bottom: auto;
-      top: -45px;
+    &__item {
+      margin: 0;
+    }
+
+    &_left {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding: 10px 0;
+      background: rgba(255, 255, 255, 0.9);
     }
   }
 
