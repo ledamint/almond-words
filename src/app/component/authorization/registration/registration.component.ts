@@ -23,11 +23,11 @@ import { RegistrationData } from 'app/service/interface/interfaces';
                   <span class="prompt theme-color-text-second">min 6 symbols</span>
               </div>
               <h4 class="input-title">familiar language</h4>
-              <select class="text-input" name="familiar-language" ngModel required>
+              <select class="text-input" name="familiar-language" [(ngModel)]="familiarLanguage" required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
               <h4 class="input-title">learning language</h4>
-              <select class="text-input" type="text" name="learning-language" ngModel required>
+              <select class="text-input" type="text" name="learning-language" [(ngModel)]="learningLanguage" required>
                   <option value="{{ language }}" *ngFor="let language of mainService.languages">{{ language }}</option>
               </select>
               <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
@@ -40,6 +40,10 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
+  // TODO: move to main info
+  familiarLanguage: string = 'ru';
+  learningLanguage: string = 'en';
+
   constructor(public mainService: MainService,
               public authorizationService: AuthorizationService) { }
 
