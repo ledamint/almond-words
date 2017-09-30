@@ -4,11 +4,10 @@ import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
 
-import { Options, ActiveOptions, KnowledgeFilter } from './interface/interfaces';
+import { ActiveOptions, KnowledgeFilter } from './interface/interfaces';
 
 @Injectable()
 export class OptionsService {
-  options: Options;
   activeOptions: ActiveOptions;
   activeOptionsCopy: ActiveOptions;
   learningLanguage: string;
@@ -16,10 +15,6 @@ export class OptionsService {
 
   constructor(private http: Http,
               private eventsService: EventsService) { }
-
-  setUp(options: Options) {
-    this.options = options;
-  }
 
   setActiveOptions(activeOptions: ActiveOptions, learningLanguage: string, familiarLanguage: string) {
     this.activeOptions = activeOptions;
