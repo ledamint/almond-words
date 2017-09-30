@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { WordsService } from '../../service/words.service';
 import { OptionsService } from '../../service/options.service';
@@ -8,7 +8,7 @@ import { OptionsService } from '../../service/options.service';
   template: `
         <h2 [hidden]="wordsService.recommendedWords.length === 0">Recommended words</h2>
         <div class="recommended-words-wrapper">
-          <div class="recommended-words" [style.left]="left + 'px'">
+          <div class="recommended-words">
             <a routerLink="/add-new-word/{{ recommendedWord[optionsService.learningLanguage] }}"
               class="recommended-word theme-color-hover-background-fourth"
               *ngFor="let recommendedWord of wordsService.recommendedWords"
@@ -18,26 +18,7 @@ import { OptionsService } from '../../service/options.service';
         `,
   styleUrls: [ './recommended-words.component.scss' ]
 })
-export class RecommendedWordsComponent implements OnInit {
-  left: number = 0;
-
+export class RecommendedWordsComponent {
   constructor(public wordsService: WordsService,
               public optionsService: OptionsService) { }
-
-  ngOnInit() {
-    if (window.innerWidth > 480) {
-      setTimeout(() => {
-        const self = this;
-
-        requestAnimationFrame(function step() {
-          const averageLengthRecommendedWords = 4000;
-
-          if (self.left < -averageLengthRecommendedWords) self.left = window.innerWidth;
-          self.left -= 0.2;
-
-          requestAnimationFrame(step);
-        });
-      }, 5000);
-    }
-  }
 }
