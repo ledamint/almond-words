@@ -18,13 +18,12 @@ h2 {
 
 .recommended-words-wrapper {
   overflow: hidden;
-  height: 24px;
 }
 
 .recommended-words {
   position: relative;
   white-space: nowrap;
-  animation: moveleft 400s linear 10s infinite;
+  animation: moveleft 400s linear infinite;
 }
 
 .recommended-word {
@@ -42,7 +41,7 @@ h2 {
 
 @keyframes moveleft {
   from {
-    left: 0;
+    left: 100%;
   }
 
   to {

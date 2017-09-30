@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MainService } from '../../service/main.service';
 import { AuthorizationService } from '../../service/authorization.service';
+import { WordsService } from '../../service/words.service';
 import { OptionsService } from '../../service/options.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { OptionsService } from '../../service/options.service';
             <router-outlet></router-outlet>
         </main>
         <background></background>
-        <recommended-words></recommended-words>
+        <recommended-words [hidden]="wordsService.recommendedWords.length === 0"></recommended-words>
         <pop-up></pop-up>
     </div>`,
   styleUrls: [ './app.component.scss' ]
@@ -20,7 +21,8 @@ import { OptionsService } from '../../service/options.service';
 export class AppComponent implements OnInit {
   constructor(public mainService: MainService,
               public authorizationService: AuthorizationService,
-              public optionsService: OptionsService) {  }
+              public wordsService: WordsService,
+              public optionsService: OptionsService) { }
 
   ngOnInit() {
     this.mainService.setUpApplication();
