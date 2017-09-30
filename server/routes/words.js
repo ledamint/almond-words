@@ -3,8 +3,8 @@ const ObjectID = require('mongodb').ObjectID;
 module.exports = (app, db) => {
   const usersCollection = db.collection('users');
 
-  app.get('/recommended-words/:lang', (req, res) => {
-    db.collection('recommended-words').findOne({ lang: req.params.lang }, (err, result) => {
+  app.get('/recommended-words/', (req, res) => {
+    db.collection('recommended-words').findOne({ }, (err, result) => {
       if (err) {
         res.sendStatus(500);
       } else {

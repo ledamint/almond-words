@@ -37,7 +37,7 @@ export class WordsService {
   }
 
   getRecommendedWords() {
-    this.http.get(`recommended-words/${this.optionsService.learningLanguage}`)
+    this.http.get(`recommended-words`)
       .map((res) => res.json())
       .subscribe(
         (recommendedWords) => {

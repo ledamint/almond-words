@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { WordsService } from '../../service/words.service';
+import { OptionsService } from '../../service/options.service';
 
 @Component({
   selector: 'recommended-words',
@@ -8,8 +9,10 @@ import { WordsService } from '../../service/words.service';
         <h2 [hidden]="wordsService.recommendedWords.length === 0">Recommended words</h2>
         <div class="recommended-words-wrapper">
           <div class="recommended-words" [style.left]="left + 'px'">
-            <a routerLink="/add-new-word/{{ recommendedWord }}" class="recommended-word theme-color-hover-background-fourth"
-              *ngFor="let recommendedWord of wordsService.recommendedWords">{{ recommendedWord }}</a>
+            <a routerLink="/add-new-word/{{ recommendedWord[optionsService.learningLanguage] }}"
+              class="recommended-word theme-color-hover-background-fourth"
+              *ngFor="let recommendedWord of wordsService.recommendedWords"
+                >{{ recommendedWord[optionsService.learningLanguage] }} - {{ recommendedWord[optionsService.familiarLanguage] }}</a>
           </div>
         </div>
         `,
@@ -18,7 +21,8 @@ import { WordsService } from '../../service/words.service';
 export class RecommendedWordsComponent implements OnInit {
   left: number = 0;
 
-  constructor(public wordsService: WordsService) { }
+  constructor(public wordsService: WordsService,
+              public optionsService: OptionsService) { }
 
   ngOnInit() {
     if (window.innerWidth > 480) {
