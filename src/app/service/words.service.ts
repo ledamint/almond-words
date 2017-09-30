@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
+import { MainInfoService } from './main-info.service';
 import { OptionsService } from './options.service';
 
 import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/interfaces';
@@ -18,6 +19,7 @@ export class WordsService {
 
   constructor(private http: Http,
               private eventsService: EventsService,
+              private mainInfoService: MainInfoService,
               private optionsService: OptionsService) { }
 
   setUp(board: Board) {
@@ -37,14 +39,17 @@ export class WordsService {
   }
 
   getRecommendedWords() {
-    this.http.get(`recommended-words`)
-      .map((res) => res.json())
-      .subscribe(
-        (recommendedWords) => {
-          this.recommendedWords = recommendedWords;
-        },
-        err => this.eventsService.onServerError(err)
-      );
+    if (this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.learningLanguage) !== -1 &&
+        this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.familiarLanguage) !== -1) {
+      this.http.get(`recommended-words`)
+        .map((res) => res.json())
+        .subscribe(
+          (recommendedWords) => {
+            this.recommendedWords = recommendedWords;
+          },
+          err => this.eventsService.onServerError(err)
+        );
+    }
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
