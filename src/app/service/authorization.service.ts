@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { MainService } from './main.service';
 import { EventsService } from './events.service';
+import { WordsService } from './words.service';
 import { BackgroundService } from './background.service';
 
 import { LoginData, RegistrationData } from './interface/interfaces';
@@ -14,6 +15,7 @@ export class AuthorizationService {
               private router: Router,
               private mainService: MainService,
               private eventsService: EventsService,
+              private wordsService: WordsService,
               private backgroundService: BackgroundService) { }
 
   registerUser(registrationData: RegistrationData) {
@@ -59,6 +61,8 @@ export class AuthorizationService {
   }
 
   logout() {
+    this.wordsService.recommendedWords = [];
+
     this.http.post('logout', { })
       .subscribe(
         () => {
