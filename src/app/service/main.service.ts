@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
+import { MainInfoService } from './main-info.service';
 import { WordsService } from './words.service';
 import { OptionsService } from './options.service';
 import { AccountInformationService } from './account-information.service';
@@ -13,12 +14,10 @@ import { MainApplicationInfo, User } from './interface/interfaces';
 
 @Injectable()
 export class MainService {
-  // TODO: move to main info service all common data like points, languages, main options
-  languages: string[];
-
   constructor(private http: Http,
               private router: Router,
               private eventsService: EventsService,
+              private mainInfoService: MainInfoService,
               private wordsService: WordsService,
               private optionsService: OptionsService,
               private accountInformationService: AccountInformationService,
@@ -29,8 +28,7 @@ export class MainService {
       .map(res => res.json())
       .subscribe(
         (mainInfo: MainApplicationInfo) => {
-          this.languages = mainInfo.languages;
-          this.optionsService.setUp(mainInfo.options);
+          this.mainInfoService.setUp(mainInfo);
         },
         (err) => {
           this.eventsService.onServerError(err);

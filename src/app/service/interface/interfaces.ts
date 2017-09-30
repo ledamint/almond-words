@@ -47,6 +47,7 @@ export interface DecreaseTime {
 
 export interface MainApplicationInfo {
   languages: string[];
+  recommendedWordsAvailableLangs: string[];
   options: Options;
 }
 

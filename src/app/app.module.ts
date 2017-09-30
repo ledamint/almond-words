@@ -31,6 +31,7 @@ import { RecommendedWordsComponent } from './component/recommended-words/recomme
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
 import { EventsService } from './service/events.service';
+import { MainInfoService } from './service/main-info.service';
 import { WordsService } from './service/words.service';
 import { OptionsService } from './service/options.service';
 import { AccountInformationService } from './service/account-information.service';
@@ -101,6 +102,7 @@ const appRoutes: Routes = [
     AuthorizationService,
     MainService,
     EventsService,
+    MainInfoService,
     WordsService,
     OptionsService,
     AccountInformationService,
