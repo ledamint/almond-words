@@ -8,6 +8,7 @@ const decreaseWordsKnowledge = (db, userId) => {
       } else if (user === null) {
         console.log('not found');
       } else {
+        // TODO: add disabling decreasing in options
         const query = {
           $set: { },
         };
