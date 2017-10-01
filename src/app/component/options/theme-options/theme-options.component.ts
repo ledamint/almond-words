@@ -21,6 +21,11 @@ import { MainInfoService } from 'app/service/main-info.service';
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isWordsOpacityActive"
                   (click)="toggleWordsOpacity()">active</span>
             </div>
+            <div class="recommended-words" *ngIf="optionsService.isRecommendedWordsAvailable">
+                <h3>Recommended Words</h3>
+                <span class="option-item button" [class.active]="optionsService.activeOptions.isRecommendedWordsActive"
+                  (click)="toggleRecommendedWords()">active</span>
+            </div>
           `,
   styleUrls: ['./theme-options.component.scss']
 })
@@ -38,5 +43,9 @@ export class ThemeOptionsComponent {
 
   toggleWordsOpacity() {
     this.optionsService.toggleWordsOpacity();
+  }
+
+  toggleRecommendedWords() {
+    this.optionsService.toggleRecommendedWords();
   }
 }
