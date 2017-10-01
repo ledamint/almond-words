@@ -71,6 +71,8 @@ export class AddNewWordComponent implements OnInit {
           if (learningWord !== null && familiarWord !== null) {
             this.learningWord = learningWord;
             this.familiarWord = familiarWord;
+
+            return;
           }
 
           if (learningWord !== null) {
