@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
@@ -14,7 +14,7 @@ import { MainApplicationInfo, User } from './interface/interfaces';
 
 @Injectable()
 export class MainService {
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private router: Router,
               private eventsService: EventsService,
               private mainInfoService: MainInfoService,
@@ -25,7 +25,6 @@ export class MainService {
 
   setUpApplication() {
     this.http.get('main-info')
-      .map(res => res.json())
       .subscribe(
         (mainInfo: MainApplicationInfo) => {
           this.mainInfoService.setUp(mainInfo);
@@ -38,7 +37,6 @@ export class MainService {
 
   setUpUser() {
     this.http.get('user')
-      .map(res => res.json())
       .subscribe(
         (user: User) => {
           this.optionsService.setActiveOptions(user.activeOptions, user.learningLanguage, user.familiarLanguage);

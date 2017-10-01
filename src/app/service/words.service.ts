@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
 
@@ -17,7 +17,7 @@ export class WordsService {
   cards: Array<Word[]> = [];
   overallKnowledgePercent: number;
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private eventsService: EventsService,
               private mainInfoService: MainInfoService,
               private optionsService: OptionsService) { }
@@ -42,9 +42,8 @@ export class WordsService {
     if (this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.learningLanguage) !== -1 &&
         this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.familiarLanguage) !== -1) {
       this.http.get(`recommended-words`)
-        .map((res) => res.json())
         .subscribe(
-          (recommendedWords) => {
+          (recommendedWords: string[]) => {
             this.recommendedWords = recommendedWords;
           },
           err => this.eventsService.onServerError(err)
@@ -119,7 +118,6 @@ export class WordsService {
   // TODO add type
   addNewWord(newWord) {
     this.http.post('words', newWord)
-      .map((res) => res.json())
       .subscribe(
         (addedWord: Word) => {
           this.allWords.push(addedWord);
@@ -149,7 +147,6 @@ export class WordsService {
 
   updateWord(wordId: string, changes: Object, message?: { text: string }) {
     this.http.put('words/' + wordId, changes)
-      .map((res) => res.json())
       .subscribe(
         (updatedWord: Word) => {
           if (message !== undefined) this.eventsService.onShowMessage(message);

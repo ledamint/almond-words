@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { EventsService } from './events.service';
 
@@ -7,7 +7,7 @@ import { EventsService } from './events.service';
 export class AccountInformationService {
   email: string;
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private eventsService: EventsService) { }
 
   setUp(email: string) {
@@ -16,10 +16,9 @@ export class AccountInformationService {
 
   updateEmail(email: string) {
     this.http.post('email', { email })
-      .map((res) => res.text())
       .subscribe(
-        (updatedEmail: string) => {
-          this.email = updatedEmail;
+        (updatedEmail: { email: string; }) => {
+          this.email = updatedEmail.email;
           this.eventsService.onShowMessage({ text: 'Changed!' });
         },
         (err) => this.eventsService.onServerError(err)
@@ -28,7 +27,6 @@ export class AccountInformationService {
 
   changePassword(password: string) {
     this.http.post('password', { password })
-      .map((res) => res.text())
       .subscribe(
         () => {
           this.eventsService.onShowMessage({ text: 'Changed!' });
