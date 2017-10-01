@@ -6,7 +6,7 @@ const tts = new ya.speechkit.Tts(
     lang: 'en-US',
     emotion: 'neutral',
     speed: 1,
-    speaker: 'zahar'
+    speaker: 'jane'
   }
 );
 

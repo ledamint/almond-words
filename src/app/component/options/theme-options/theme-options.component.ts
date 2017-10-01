@@ -16,7 +16,7 @@ import { MainInfoService } from 'app/service/main-info.service';
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isBackgroundActive"
                   (click)="toggleBackground()">active</span>
             </div>
-            <div class="opacity" title="Turn off this option if you want words have different opacity depending of level of knowledge">
+            <div class="opacity" title="Turn off this option if you want words have different opacity depending of knowledge level">
                 <h3>Words opacity</h3>
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isWordsOpacityActive"
                   (click)="toggleWordsOpacity()">active</span>

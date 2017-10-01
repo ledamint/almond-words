@@ -18,7 +18,8 @@ import { Word } from 'app/service/interface/interfaces';
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
             <h4 class="input-title">
                 {{ optionsService.learningLanguage }}
-                <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" (click)="listenWord(wordForm.value['learning-word'])">
+                <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
+                  (click)="listenWord(wordForm.value['learning-word'])">
             </h4>
             <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
             <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
