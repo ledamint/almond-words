@@ -16,6 +16,10 @@ module.exports = (app, db) => {
         res.status(403).send('Email already exists');
       } else {
         const cryptPassword = bcrypt.hashSync(registrationData.password);
+        const nextDecreaseWordsTime = new Date();
+        // TODO: move sum of + day to config
+        nextDecreaseWordsTime.setDate(new Date().getDate() + 1);
+
         const newUser = {
           email: registrationData.email,
           password: cryptPassword,
@@ -23,6 +27,7 @@ module.exports = (app, db) => {
           familiarLanguage: registrationData.familiarLanguage,
           registrationTime: new Date(),
           lastLogin: new Date(),
+          nextDecreaseWordsTime,
           activeOptions: {
             sort: 'time',
             theme: 'blue',
