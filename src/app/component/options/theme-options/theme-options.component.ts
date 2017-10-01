@@ -16,13 +16,13 @@ import { MainInfoService } from 'app/service/main-info.service';
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isBackgroundActive"
                   (click)="toggleBackground()">active</span>
             </div>
-            <div class="opacity" title="Turn off this option if you want words have different opacity depending of knowledge level">
+            <div class="opacity" title="Turn off this option if you want that words have different opacity depending of knowledge level">
                 <h3>Words opacity</h3>
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isWordsOpacityActive"
                   (click)="toggleWordsOpacity()">active</span>
             </div>
             <div class="recommended-words" *ngIf="optionsService.isRecommendedWordsAvailable">
-                <h3>Recommended Words</h3>
+                <h3>Recommended words</h3>
                 <span class="option-item button" [class.active]="optionsService.activeOptions.isRecommendedWordsActive"
                   (click)="toggleRecommendedWords()">active</span>
             </div>
