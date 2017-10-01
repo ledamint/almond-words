@@ -14,7 +14,7 @@ import { LoginData } from 'app/service/interface/interfaces';
               <input class="text-input" type="email" name="email" focus="true" ngModel email required>
               <h4 class="input-title">password</h4>
               <input class="text-input" type="password" name="password" ngModel required>
-              <button class="button" type="submit" [disabled]="!loginForm.valid">Submit</button>
+              <button class="button" type="submit" [disabled]="!loginForm.valid">Log in</button>
           </form>
           <div class="side-panel">
               <a routerLink="/registration" class="side-panel__item">registration</a>
