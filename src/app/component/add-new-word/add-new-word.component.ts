@@ -65,8 +65,16 @@ export class AddNewWordComponent implements OnInit {
 
       this.route.paramMap
         .subscribe((params: ParamMap) => {
-          if (!(params.get('word') === ' ')) {
-            this.learningWord = params.get('word');
+          const learningWord = params.get('learning-word');
+          const familiarWord = params.get('familiar-word');
+
+          if (learningWord !== null && familiarWord !== null) {
+            this.learningWord = learningWord;
+            this.familiarWord = familiarWord;
+          }
+
+          if (learningWord !== null) {
+            this.learningWord = learningWord;
             this.translateWord(this.learningWord);
           }
         });

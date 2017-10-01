@@ -56,7 +56,9 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'words', pathMatch: 'full' },
     ],
   },
-  { path: 'add-new-word/:word', component: AddNewWordComponent },
+  { path: 'add-new-word', component: AddNewWordComponent },
+  { path: 'add-new-word/:learning-word', component: AddNewWordComponent },
+  { path: 'add-new-word/:learning-word/:familiar-word', component: AddNewWordComponent },
   { path: 'test-choice', component: TestChoiceComponent },
   {
     path: 'test',
