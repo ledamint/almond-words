@@ -30,7 +30,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <select class="text-input" type="text" name="learning-language" [(ngModel)]="learningLanguage" required>
                   <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language | translate }}</option>
               </select>
-              <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
+              <button class="button" type="submit" [disabled]="!registrationForm.valid">Sign up</button>
           </form>
           <div class="side-panel">
               <a routerLink="/auto-registration" class="side-panel__item">auto registration</a>

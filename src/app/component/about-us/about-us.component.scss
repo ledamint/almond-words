@@ -1,14 +1,26 @@
+@import 'variables';
+
 :host {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
+.description {
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
 p {
   max-width: 450px;
-  margin: 0 auto;
-  margin-bottom: 20px;;
+  margin: 20px auto;
   text-indent: 1.5em;
   text-align: justify;
   font-size: 18px;
+}
+
+@media (max-width: $mobile-width) {
+  p {
+    margin: 20px 10px;
+  }
 }
