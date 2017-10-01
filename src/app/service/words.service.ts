@@ -12,6 +12,7 @@ import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/in
 export class WordsService {
   allWords: Word[] = [];
   activeWords: Word[] = [];
+  // TODO: change type
   recommendedWords: string[] = [];
   cards: Array<Word[]> = [];
   overallKnowledgePercent: number;
