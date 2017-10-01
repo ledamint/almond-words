@@ -78,6 +78,7 @@ export interface ActiveOptions {
   theme: string;
   isBackgroundActive: boolean;
   isWordsOpacityActive: boolean;
+  isRecommendedWordsActive: boolean;
   filter: ActiveFilter;
 }
 

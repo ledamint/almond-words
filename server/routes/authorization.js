@@ -31,8 +31,9 @@ module.exports = (app, db) => {
           activeOptions: {
             sort: 'time',
             theme: 'blue',
-            isBackgroundActive: false,
+            isBackgroundActive: true,
             isWordsOpacityActive: true,
+            isRecommendedWordsActive: true,
             filter: {
               knowledge: [
                 {

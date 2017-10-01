@@ -44,5 +44,10 @@ export class OptionsBlockComponent implements OnInit {
       if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
       else this.backgroundService.reset();
     }
+
+    if (this.optionsService.activeOptions.isRecommendedWordsActive !== this.optionsService.activeOptionsCopy.isRecommendedWordsActive) {
+      if (this.optionsService.activeOptions.isRecommendedWordsActive) this.wordsService.getRecommendedWords();
+      else this.wordsService.recommendedWords = [];
+    }
   }
 }

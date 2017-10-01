@@ -9,12 +9,13 @@ import { OptionsService } from '../../service/options.service';
 @Component({
   selector: 'my-app',
   template: `
-    <div [className]="getCurrentTheme()">
+    <div [className]="'wrapper ' + optionsService.currentTheme">
         <main class="content">
             <router-outlet></router-outlet>
         </main>
         <background></background>
-        <recommended-words [hidden]="wordsService.recommendedWords.length === 0"></recommended-words>
+        <recommended-words *ngIf="optionsService.isRecommendedWordsAvailable &&
+          wordsService.recommendedWords.length !== 0"></recommended-words>
         <pop-up></pop-up>
     </div>`,
   styleUrls: [ './app.component.scss' ]
@@ -31,17 +32,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.mainService.setUpApplication();
     this.authorizationService.checkLogin();
-  }
-
-  getCurrentTheme() {
-    let currentTheme: string;
-
-    if (this.optionsService.activeOptions === undefined || this.optionsService.activeOptions.theme === undefined) {
-      currentTheme = 'blue-theme';
-    } else {
-      currentTheme = `${this.optionsService.activeOptions.theme}-theme`;
-    }
-
-    return `wrapper ${currentTheme}`;
   }
 }

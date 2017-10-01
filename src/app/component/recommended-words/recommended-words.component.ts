@@ -5,7 +5,7 @@ import { OptionsService } from '../../service/options.service';
 
 @Component({
   selector: 'recommended-words',
-  template: `
+  template: `        
         <h2>Recommended words</h2>
         <div class="recommended-words-wrapper">
           <div class="recommended-words">

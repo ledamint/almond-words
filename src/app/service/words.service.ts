@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
-import { MainInfoService } from './main-info.service';
 import { OptionsService } from './options.service';
 
 import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/interfaces';
@@ -19,7 +18,6 @@ export class WordsService {
 
   constructor(private http: HttpClient,
               private eventsService: EventsService,
-              private mainInfoService: MainInfoService,
               private optionsService: OptionsService) { }
 
   setUp(board: Board) {
@@ -27,7 +25,9 @@ export class WordsService {
     this.activeWords = this.allWords;
 
     this.updateWords();
-    this.getRecommendedWords();
+    if (this.optionsService.isRecommendedWordsAvailable && this.optionsService.activeOptions.isRecommendedWordsActive) {
+      this.getRecommendedWords();
+    }
   }
 
   // TODO: think about optimization
@@ -38,17 +38,15 @@ export class WordsService {
     this.calculateOverallKnowledge();
   }
 
+  // TODO: move recommended to separate service
   getRecommendedWords() {
-    if (this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.learningLanguage) !== -1 &&
-        this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.optionsService.familiarLanguage) !== -1) {
-      this.http.get(`recommended-words`)
-        .subscribe(
-          (recommendedWords: string[]) => {
-            this.recommendedWords = recommendedWords;
-          },
-          err => this.eventsService.onServerError(err)
-        );
-    }
+    this.http.get('recommended-words')
+      .subscribe(
+        (recommendedWords: string[]) => {
+          this.recommendedWords = recommendedWords;
+        },
+        err => this.eventsService.onServerError(err)
+      );
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
