@@ -173,6 +173,10 @@ button, input {
   &:-ms-input-placeholder      { color: rgba(0, 0, 0, 0.5); }
 }
 
+select.text-input {
+  text-align: left;
+}
+
 .listen {
   position: relative;
   right: -5px;

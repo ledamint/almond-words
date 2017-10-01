@@ -24,11 +24,11 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               </div>
               <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="familiar-language" [(ngModel)]="familiarLanguage" required>
-                  <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language }}</option>
+                  <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language | translate }}</option>
               </select>
               <h4 class="input-title">learning language</h4>
               <select class="text-input" type="text" name="learning-language" [(ngModel)]="learningLanguage" required>
-                  <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language }}</option>
+                  <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language | translate }}</option>
               </select>
               <button class="button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
           </form>
