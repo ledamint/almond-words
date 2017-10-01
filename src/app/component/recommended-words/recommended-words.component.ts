@@ -9,7 +9,7 @@ import { OptionsService } from '../../service/options.service';
         <h2>Recommended words</h2>
         <div class="recommended-words-wrapper">
           <div class="recommended-words">
-            <a routerLink="/add-new-word/{{ recommendedWord[optionsService.learningLanguage] }}"
+            <a routerLink="/add-new-word/{{ recommendedWord[optionsService.learningLanguage] }}/{{ recommendedWord[optionsService.familiarLanguage] }}"
               class="recommended-word theme-color-hover-background-fourth"
               *ngFor="let recommendedWord of wordsService.recommendedWords"
                 >{{ recommendedWord[optionsService.learningLanguage] }} - {{ recommendedWord[optionsService.familiarLanguage] }}</a>
