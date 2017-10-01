@@ -17,7 +17,7 @@ import { EventsService } from '../../service/events.service';
           <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
               <h4 class="input-title">
                   {{ optionsService.learningLanguage }}
-                  <img class="listen" src="assets/img/speaker-icon.svg" alt="listen"
+                  <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
                     (click)="listenWord(newWordForm.value['learning-word'])">
               </h4>
               <input class="text-input" type="text" name="learning-word" focus="true"
