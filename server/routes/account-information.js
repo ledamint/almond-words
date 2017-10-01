@@ -20,7 +20,7 @@ module.exports = (app, db) => {
             console.log(err);
             res.sendStatus(500);
           } else {
-            res.send(result.value.email);
+            res.send({ email: result.value.email });
           }
         });
       }

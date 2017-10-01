@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { MainService } from './main.service';
@@ -11,7 +11,7 @@ import { LoginData, RegistrationData } from './interface/interfaces';
 
 @Injectable()
 export class AuthorizationService {
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private router: Router,
               private mainService: MainService,
               private eventsService: EventsService,
@@ -20,7 +20,6 @@ export class AuthorizationService {
 
   registerUser(registrationData: RegistrationData) {
     this.http.post('registration', registrationData)
-      .map(res => res.json())
       .subscribe(
         (isLoginDone: boolean) => {
           this.mainService.setUpUser();
@@ -33,7 +32,6 @@ export class AuthorizationService {
 
   checkLogin(loginData: LoginData = { }) {
     this.http.post('login', loginData)
-      .map(res => res.json())
       .subscribe(
         // TODO: divide requests
         (isLoginDone: boolean) => {

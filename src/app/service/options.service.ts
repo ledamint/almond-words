@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
@@ -13,7 +13,7 @@ export class OptionsService {
   learningLanguage: string;
   familiarLanguage: string;
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
               private eventsService: EventsService) { }
 
   setActiveOptions(activeOptions: ActiveOptions, learningLanguage: string, familiarLanguage: string) {
@@ -24,7 +24,6 @@ export class OptionsService {
 
   updateActiveOptions() {
     this.http.post('active-options', this.activeOptions)
-      .map(res => res.json())
       .subscribe(
         () => {
 

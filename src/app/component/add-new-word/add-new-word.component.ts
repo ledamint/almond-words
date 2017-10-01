@@ -98,9 +98,8 @@ export class AddNewWordComponent implements OnInit {
 
   translateWord(word: string) {
     this.wordsService.translateWord(word)
-      .map((res) => res.json())
       .subscribe(
-        (res) => {
+        (res: {text: string}) => {
           this.familiarWord = res.text[0];
         },
         err => this.eventsService.onServerError(err)

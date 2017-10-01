@@ -2,7 +2,7 @@
   "name": "checking-words",
   "version": "1.0.0",
   "angular-cli": {},
-  "main" : "server.js",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "install": "ng build --prod --env=prod",
@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "^4.1.3",
     "@angular/platform-server": "^4.1.3",
     "@angular/router": "^4.1.3",
+    "@ngx-translate/core": "^8.0.0",
+    "@ngx-translate/http-loader": "^2.0.0",
     "angular2-focus": "^1.1.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
