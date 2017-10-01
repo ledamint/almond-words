@@ -16,13 +16,13 @@ import { EventsService } from '../../service/events.service';
           <h1>Add a new word</h1>
           <form class="form" #newWordForm="ngForm" action="" method="post" (ngSubmit)="addNewWord(newWordForm)">
               <h4 class="input-title">
-                  {{ optionsService.learningLanguage }}
+                  {{ optionsService.learningLanguage | translate}}
                   <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
                     (click)="listenWord(newWordForm.value['learning-word'])">
               </h4>
               <input class="text-input" type="text" name="learning-word" focus="true"
                 (keyup)="keyUpLearningWordSubject.next(learningWord)" [(ngModel)]="learningWord" required>
-              <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
+              <h4 class="input-title">{{ optionsService.familiarLanguage | translate }}</h4>
               <div class="input-wrapper">
                   <input class="text-input" type="text" name="familiar-word" [(ngModel)]="familiarWord" required>
                   <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{

@@ -17,12 +17,12 @@ import { Word } from 'app/service/interface/interfaces';
         <h1>Word</h1>
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
             <h4 class="input-title">
-                {{ optionsService.learningLanguage }}
+                {{ optionsService.learningLanguage | translate}}
                 <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
                   (click)="listenWord(wordForm.value['learning-word'])">
             </h4>
             <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
-            <h4 class="input-title">{{ optionsService.familiarLanguage }}</h4>
+            <h4 class="input-title">{{ optionsService.familiarLanguage | translate}}</h4>
             <div class="input-wrapper">
                 <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
                 <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
