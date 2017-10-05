@@ -1,4 +1,7 @@
+@import 'variables';
+
 .buttons {
+  width: 100%;
   margin-top: 20px;
 }
 
@@ -20,5 +23,11 @@
   &.right {
     right: 5%;
     transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .button {
+    font-size: 20px;
   }
 }
