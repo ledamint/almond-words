@@ -6,7 +6,6 @@
   left: 0;
   z-index: 3;
   width: 100%;
-  padding: 10px;
   text-align: center;
   background-color: black;
   color: white;
@@ -17,6 +16,7 @@ h2 {
 }
 
 .recommended-words-wrapper {
+  padding: 10px;
   overflow: hidden;
 }
 
@@ -31,12 +31,6 @@ h2 {
   font-size: 20px;
   cursor: pointer;
   color: white;
-}
-
-@media (max-width: $mobile-width) {
-  :host {
-    display: none;
-  }
 }
 
 @keyframes moveleft {

@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
+import shuffle from 'lodash.shuffle';
 
 import tts from 'app/speech-synthesis';
 
@@ -28,7 +29,7 @@ import { EventsService } from '../../service/events.service';
                   <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
                     optionsService.familiarLanguage }}&text={{ learningWord }}" target="_blank">Yandex translate</a>
               </div>
-              <button class="button" type="submit" [disabled]="!newWordForm.valid">Submit</button>
+              <button class="button" type="submit" [disabled]="!newWordForm.valid">Add</button>
           </form>
           <div class="side-panel">
               <a routerLink="/cards" class="side-panel__item">back</a>
@@ -48,6 +49,10 @@ export class AddNewWordComponent implements OnInit {
               public route: ActivatedRoute) { }
 
   ngOnInit() {
+    if (window.innerWidth < 1024) {
+      this.wordsService.recommendedWords = shuffle(this.wordsService.recommendedWords);
+    }
+
     this.eventsService.addNewWord$
       .subscribe(() => {
         this.eventsService.onShowMessage({ text: 'Added!' });

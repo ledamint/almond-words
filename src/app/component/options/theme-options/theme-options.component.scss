@@ -14,7 +14,7 @@ div {
 }
 
 @media (max-width: $mobile-width) {
-  .recommended-words, .background {
+  .background {
     display: none;
   }
 }
