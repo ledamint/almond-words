@@ -68,14 +68,22 @@ button, input {
     margin-bottom: 5px;
     cursor: pointer;
     text-decoration: none;
-    color: gray;
+    color: rgba(255, 255, 255, 0.9);
 
     &:active {
-      color: white;
+      color: $pink-theme-main-color !important;
+
+      .blue-theme & {
+        color: $blue-theme-main-color !important;
+      }
     }
 
-    &:hover, .blue-theme &:hover {
-      color: white;
+    &:hover {
+      color: $pink-theme-main-color !important;
+
+      .blue-theme & {
+        color: $blue-theme-main-color !important;
+      }
     }
   }
 }
@@ -226,7 +234,19 @@ select.text-input {
       left: 0;
       z-index: 3;
       padding: 10px 0;
-      background: rgba(255, 255, 255, 1);
+      background: white;
+
+      .blue-theme & {
+        border-color: $blue-theme-fourth-color;
+      }
+
+      .side-panel__item {
+        color: $pink-theme-fourth-color !important;
+
+        .blue-theme & {
+          color: $blue-theme-fourth-color !important;
+        }
+      }
     }
   }
 

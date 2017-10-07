@@ -27,7 +27,7 @@ import { Word } from '../../service/interface/interfaces';
           </div>
       </div>
       <div class="side-panel side-panel_left">
-          <a routerLink="/add-new-word/" class="side-panel__item">add new word</a>
+          <a routerLink="/add-new-word/" class="side-panel__item theme-color-border-main">add a new word</a>
             <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
               (click)="testWordsService.startAutoTest()">autotest</a>
       </div>

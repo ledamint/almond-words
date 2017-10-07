@@ -6,6 +6,14 @@
   }
 }
 
+.theme-color-border-main {
+  border-color: $pink-theme-main-color !important;
+
+  .blue-theme & {
+    border-color: $blue-theme-main-color !important;
+  }
+}
+
 .theme-color-text-second {
   color: $pink-theme-second-color !important;
 
