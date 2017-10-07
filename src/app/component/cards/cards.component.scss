@@ -32,6 +32,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .type-of-test {
@@ -39,6 +43,27 @@
   margin-top: auto;
   padding: 10px 0;
   border-radius: 0 0 7px 7px;
+}
+
+.side-panel_left {
+  .side-panel__item {
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+
+    &:last-of-type {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .side-panel_left {
+    .side-panel__item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
 }
 
 @media (max-width: $mobile-width) {
