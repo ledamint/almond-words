@@ -6,7 +6,6 @@ import { OptionsService } from '../../service/options.service';
 @Component({
   selector: 'recommended-words',
   template: `        
-        <h2>Recommended words</h2>
         <div class="recommended-words-wrapper">
           <div class="recommended-words">
             <a routerLink="/add-new-word/{{ recommendedWord[optionsService.learningLanguage] }}/{{ recommendedWord[optionsService.familiarLanguage] }}"
