@@ -8,13 +8,18 @@ import { OptionsService } from './options.service';
 
 import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/interfaces';
 
+interface Card {
+  words: Word[];
+  isActive: boolean;
+}
+
 @Injectable()
 export class WordsService {
   allWords: Word[] = [];
   activeWords: Word[] = [];
   // TODO: change type
   recommendedWords: string[] = [];
-  cards: Array<Word[]> = [];
+  cards: Card[] = [];
   overallKnowledgePercent: number;
 
   constructor(private http: HttpClient,
@@ -90,10 +95,13 @@ export class WordsService {
     this.activeWords.forEach((word, i) => {
       if (i % 10 === 0) {
         cardId += 1;
-        this.cards[cardId] = [];
+        this.cards[cardId] = {
+          words: [],
+          isActive: false
+        };
       }
 
-      this.cards[cardId].push(word);
+      this.cards[cardId].words.push(word);
     });
   }
 
