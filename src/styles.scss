@@ -253,6 +253,10 @@ select.text-input {
   .listen {
     display: none;
   }
+
+  .hide-tablet {
+    display: none !important;
+  }
 }
 
 @media (max-width: $mobile-width) {
