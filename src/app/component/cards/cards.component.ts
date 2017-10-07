@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { AuthorizationService } from '../../service/authorization.service';
 import { WordsService } from '../../service/words.service';
@@ -18,18 +18,20 @@ import { Word } from '../../service/interface/interfaces';
       </h1>
       <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
       <div class="cards">
-          <div *ngFor="let card of wordsService.cards" class="card theme-color-background-third">
-              <a *ngFor="let word of card" title="{{ word.familiarWord }}"
+          <div *ngFor="let card of wordsService.cards" class="card theme-color-background-third" [ngClass]="{ shake: card.isActive }">
+              <a *ngFor="let word of card.words" title="{{ word.familiarWord }}"
                 [style.opacity]="optionsService.activeOptions.isWordsOpacityActive ? 1 : word.knowledge/10" class="word"
                 routerLink="/word/{{ word._id }}">{{ word.learningWord }}</a>
               <a routerLink="/test-choice" routerLinkActive="active" class="type-of-test theme-color-background-fourth"
-                (click)="testWordsService.startTest(card)">Test it</a>
+                (click)="testWordsService.startTest(card.words)" (mouseover)="card.isActive = true"
+                (mouseleave)="card.isActive = false">Test it</a>
           </div>
       </div>
       <div class="side-panel side-panel_left">
           <a routerLink="/add-new-word/" class="side-panel__item theme-color-border-main">add a new word</a>
             <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
-              (click)="testWordsService.startAutoTest()">autotest</a>
+              (click)="testWordsService.startAutoTest()" (mouseover)="setCardsActive(true)"
+              (mouseleave)="setCardsActive(false)">autotest</a>
       </div>
       <div class="side-panel side-panel_right">
           <a routerLink="/user-options" class="side-panel__item">options</a>
@@ -38,7 +40,7 @@ import { Word } from '../../service/interface/interfaces';
     `,
   styleUrls: ['./cards.component.scss']
 })
-export class CardsComponent {
+export class CardsComponent implements OnDestroy {
   constructor(public authorizationService: AuthorizationService,
               public wordsService: WordsService,
               public optionsService: OptionsService,
@@ -48,5 +50,19 @@ export class CardsComponent {
     if (confirm('Are you sure to logout?')) {
       this.authorizationService.logout();
     }
+  }
+
+  setCardsActive(isActive: boolean) {
+    let delay = 0;
+
+    this.wordsService.cards.forEach((card) => {
+      setTimeout(() => card.isActive = isActive, delay);
+
+      delay += 50;
+    });
+  }
+
+  ngOnDestroy() {
+    this.setCardsActive(false);
   }
 }
