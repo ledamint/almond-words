@@ -24,8 +24,16 @@ import { RecommendedWord } from 'app/service/interface/interfaces';
                   <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
                     (click)="listenWord(newWordForm.value['learning-word'])">
               </h4>
-              <input class="text-input" type="text" name="learning-word" focus="true"
-                (keyup)="keyUpLearningWordSubject.next(learningWord)" [(ngModel)]="learningWord" required>
+              <div class="input-wrapper">
+                  <input class="text-input" type="text" name="learning-word" focus="true" autocomplete="off"
+                    (keyup)="keyUpLearningWordSubject.next(learningWord)" (focus)="setIsAvailableWordsActive(true)"
+                    (blur)="setIsAvailableWordsActive(false)" [(ngModel)]="learningWord" required>
+                  <div class="available-words theme-color-background-fourth" [hidden]="!isAvailableWordsActive">
+                    <a routerLink="/add-new-word/{{ availableWord[optionsService.learningLanguage] }}/{{ availableWord[optionsService.familiarLanguage] }}"
+                      class="available-word" *ngFor="let availableWord of availableWords"
+                      >{{ availableWord[optionsService.learningLanguage] }}</a>
+                  </div>
+              </div>
               <h4 class="input-title">{{ optionsService.familiarLanguage | translate }}</h4>
               <div class="input-wrapper">
                   <input class="text-input" type="text" name="familiar-word" [(ngModel)]="familiarWord" required>
@@ -47,6 +55,7 @@ export class AddNewWordComponent implements OnInit {
   familiarWord: string = '';
 
   availableWords: RecommendedWord[];
+  isAvailableWordsActive: boolean = true;
 
   constructor(public wordsService: WordsService,
               public optionsService: OptionsService,
@@ -66,6 +75,7 @@ export class AddNewWordComponent implements OnInit {
     this.keyUpLearningWord$
       .debounceTime(500)
       .distinctUntilChanged()
+      .map((word: string) => word.toLowerCase())
       .subscribe((word: string) => {
         if (word !== '') {
           this.translateWord(word);
@@ -75,26 +85,28 @@ export class AddNewWordComponent implements OnInit {
           }
         } else {
           this.familiarWord = '';
+          this.availableWords = [];
         }
       });
 
-      this.route.paramMap
-        .subscribe((params: ParamMap) => {
-          const learningWord = params.get('learning-word');
-          const familiarWord = params.get('familiar-word');
+    this.route.paramMap
+      .subscribe((params: ParamMap) => {
+        const learningWord = params.get('learning-word');
+        const familiarWord = params.get('familiar-word');
 
-          if (learningWord !== null && familiarWord !== null) {
-            this.learningWord = learningWord;
-            this.familiarWord = familiarWord;
+        if (learningWord !== null && familiarWord !== null) {
+          this.learningWord = learningWord;
+          this.familiarWord = familiarWord;
+          this.availableWords = [];
 
-            return;
-          }
+          return;
+        }
 
-          if (learningWord !== null) {
-            this.learningWord = learningWord;
-            this.translateWord(this.learningWord);
-          }
-        });
+        if (learningWord !== null) {
+          this.learningWord = learningWord;
+          this.translateWord(this.learningWord);
+        }
+      });
   }
 
   addNewWord(newWordForm: NgForm) {
@@ -109,6 +121,7 @@ export class AddNewWordComponent implements OnInit {
     this.wordsService.addNewWord(newWord);
     this.learningWord = '';
     this.familiarWord = '';
+    this.availableWords = [];
   }
 
   getAvailableWords(word: string) {
@@ -119,6 +132,10 @@ export class AddNewWordComponent implements OnInit {
         },
         err => this.eventsService.onServerError(err)
       );
+  }
+
+  setIsAvailableWordsActive(isActive: boolean) {
+    setTimeout(() => this.isAvailableWordsActive = isActive, 200);
   }
 
   translateWord(word: string) {
