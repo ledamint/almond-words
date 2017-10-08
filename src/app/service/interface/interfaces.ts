@@ -87,6 +87,15 @@ export interface ActiveFilter {
 }
 
 
+export interface RecommendedWord {
+  en: string;
+  ru: string;
+  de: string;
+  es: string;
+  fr: string;
+}
+
+
 export interface Message {
   text: string;
   isActive?: boolean;

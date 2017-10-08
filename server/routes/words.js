@@ -9,17 +9,32 @@ module.exports = (app, db) => {
         res.sendStatus(500);
       } else {
         const recommendedWords = result.words;
-        const randomRecommendedWords = [];
+        const limit = Number(req.query.limit || 50);
 
-        for (let i = 0; i < 50; i += 1) {
-          const randomIndex = Math.floor(Math.random() * recommendedWords.length);
-          const randomRecommendedWord = recommendedWords[randomIndex];
+        if (req.query.random === '1') {
+          const randomRecommendedWords = [];
 
-          randomRecommendedWords.push(randomRecommendedWord);
-          recommendedWords.splice(randomIndex, 1);
+          for (let i = 0; i < 50; i += 1) {
+            const randomIndex = Math.floor(Math.random() * recommendedWords.length);
+            const randomRecommendedWord = recommendedWords[randomIndex];
+
+            randomRecommendedWords.push(randomRecommendedWord);
+            recommendedWords.splice(randomIndex, 1);
+          }
+
+          res.send(randomRecommendedWords.slice(0, limit));
         }
 
-        res.send(randomRecommendedWords);
+        if (req.query.search !== undefined) {
+          const lang = req.query.lang;
+
+          if (lang !== undefined) {
+            const recommendedWordsBySearch = recommendedWords
+              .filter(word => word[lang].indexOf(req.query.search) === 0);
+
+            res.send(recommendedWordsBySearch.slice(0, limit));
+          }
+        }
       }
     });
   });
