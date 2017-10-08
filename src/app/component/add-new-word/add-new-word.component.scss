@@ -8,11 +8,12 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 5;
+  z-index: 4;
   width: 100%;
   border-radius: 5px;
   text-align: center;
   font-size: 20px;
+  overflow-y: auto;
 }
 
 .available-word {

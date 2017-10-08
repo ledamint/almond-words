@@ -14,6 +14,10 @@ import { EventsService } from '../../service/events.service';
 
 import { RecommendedWord } from 'app/service/interface/interfaces';
 
+interface AvailableWord {
+  word: string;
+}
+
 @Component({
   selector: 'add-new-word',
   template: `
@@ -29,9 +33,9 @@ import { RecommendedWord } from 'app/service/interface/interfaces';
                     (keyup)="keyUpLearningWordSubject.next(learningWord)" (focus)="setIsAvailableWordsActive(true)"
                     (blur)="setIsAvailableWordsActive(false)" [(ngModel)]="learningWord" required>
                   <div class="available-words theme-color-background-fourth" [hidden]="!isAvailableWordsActive">
-                    <a routerLink="/add-new-word/{{ availableWord[optionsService.learningLanguage] }}/{{ availableWord[optionsService.familiarLanguage] }}"
+                    <a routerLink="/add-new-word/{{ availableWord.word }}"
                       class="available-word" *ngFor="let availableWord of availableWords"
-                      >{{ availableWord[optionsService.learningLanguage] }}</a>
+                      >{{ availableWord.word }}</a>
                   </div>
               </div>
               <h4 class="input-title">{{ optionsService.familiarLanguage | translate }}</h4>
@@ -54,7 +58,7 @@ export class AddNewWordComponent implements OnInit {
   learningWord: string = '';
   familiarWord: string = '';
 
-  availableWords: RecommendedWord[];
+  availableWords: AvailableWord[];
   isAvailableWordsActive: boolean = true;
 
   constructor(public wordsService: WordsService,
@@ -80,7 +84,7 @@ export class AddNewWordComponent implements OnInit {
         if (word !== '') {
           this.translateWord(word);
 
-          if (word.length >= 3) {
+          if (word.length >= 2 && this.optionsService.learningLanguage === 'en') {
             this.getAvailableWords(word);
           }
         } else {
@@ -91,13 +95,14 @@ export class AddNewWordComponent implements OnInit {
 
     this.route.paramMap
       .subscribe((params: ParamMap) => {
+        this.availableWords = [];
+
         const learningWord = params.get('learning-word');
         const familiarWord = params.get('familiar-word');
 
         if (learningWord !== null && familiarWord !== null) {
           this.learningWord = learningWord;
           this.familiarWord = familiarWord;
-          this.availableWords = [];
 
           return;
         }
@@ -125,10 +130,10 @@ export class AddNewWordComponent implements OnInit {
   }
 
   getAvailableWords(word: string) {
-    this.wordsService.getRecommendedWordsBySearch(word)
+    this.wordsService.getAvailableWords(word)
       .subscribe(
-        (recommendedWordsBySearch: RecommendedWord[]) => {
-          this.availableWords = recommendedWordsBySearch;
+        (availableWords: AvailableWord[]) => {
+          this.availableWords = availableWords.slice(0, 7);
         },
         err => this.eventsService.onServerError(err)
       );

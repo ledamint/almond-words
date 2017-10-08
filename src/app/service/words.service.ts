@@ -55,8 +55,8 @@ export class WordsService {
       );
   }
 
-  getRecommendedWordsBySearch(word: string, lang: string = this.optionsService.learningLanguage) {
-    return this.http.get(`recommended-words?lang=${lang}&search=${word}&limit=6`);
+  getAvailableWords(word: string) {
+    return this.http.get(`https://api.datamuse.com/sug?s=${word}`);
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
