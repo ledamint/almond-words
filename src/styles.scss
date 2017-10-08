@@ -236,17 +236,14 @@ select.text-input {
       z-index: 3;
       padding: 10px 0;
       background: white;
+      background-color: $pink-theme-fourth-color;
 
       .blue-theme & {
-        border-color: $blue-theme-fourth-color;
+        background-color: $blue-theme-fourth-color !important;
       }
 
       .side-panel__item {
-        color: $pink-theme-fourth-color !important;
-
-        .blue-theme & {
-          color: $blue-theme-fourth-color !important;
-        }
+        color: black !important;
       }
     }
   }
