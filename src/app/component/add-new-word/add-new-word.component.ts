@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 import shuffle from 'lodash.shuffle';
 
 import tts from 'app/speech-synthesis';
@@ -10,6 +11,8 @@ import tts from 'app/speech-synthesis';
 import { WordsService } from '../../service/words.service';
 import { OptionsService } from '../../service/options.service';
 import { EventsService } from '../../service/events.service';
+
+import { RecommendedWord } from 'app/service/interface/interfaces';
 
 @Component({
   selector: 'add-new-word',
@@ -43,6 +46,8 @@ export class AddNewWordComponent implements OnInit {
   learningWord: string = '';
   familiarWord: string = '';
 
+  availableWords: RecommendedWord[];
+
   constructor(public wordsService: WordsService,
               public optionsService: OptionsService,
               public eventsService: EventsService,
@@ -60,9 +65,14 @@ export class AddNewWordComponent implements OnInit {
 
     this.keyUpLearningWord$
       .debounceTime(500)
-      .subscribe((word) => {
+      .distinctUntilChanged()
+      .subscribe((word: string) => {
         if (word !== '') {
           this.translateWord(word);
+
+          if (word.length >= 3) {
+            this.getAvailableWords(word);
+          }
         } else {
           this.familiarWord = '';
         }
@@ -99,6 +109,16 @@ export class AddNewWordComponent implements OnInit {
     this.wordsService.addNewWord(newWord);
     this.learningWord = '';
     this.familiarWord = '';
+  }
+
+  getAvailableWords(word: string) {
+    this.wordsService.getRecommendedWordsBySearch(word)
+      .subscribe(
+        (recommendedWordsBySearch: RecommendedWord[]) => {
+          this.availableWords = recommendedWordsBySearch;
+        },
+        err => this.eventsService.onServerError(err)
+      );
   }
 
   translateWord(word: string) {

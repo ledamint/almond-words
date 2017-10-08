@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { OptionsService } from './options.service';
 
-import { Board, Word, DecreaseTime, KnowledgeFilter, Sort } from './interface/interfaces';
+import { Board, Word, DecreaseTime, KnowledgeFilter, Sort, RecommendedWord } from './interface/interfaces';
 
 interface Card {
   words: Word[];
@@ -18,7 +18,7 @@ export class WordsService {
   allWords: Word[] = [];
   activeWords: Word[] = [];
   // TODO: change type
-  recommendedWords: string[] = [];
+  recommendedWords: RecommendedWord[] = [];
   cards: Card[] = [];
   overallKnowledgePercent: number;
 
@@ -46,13 +46,17 @@ export class WordsService {
 
   // TODO: move recommended to separate service
   getRecommendedWords() {
-    this.http.get('recommended-words')
+    this.http.get('recommended-words?random=1')
       .subscribe(
-        (recommendedWords: string[]) => {
+        (recommendedWords: RecommendedWord[]) => {
           this.recommendedWords = recommendedWords;
         },
         err => this.eventsService.onServerError(err)
       );
+  }
+
+  getRecommendedWordsBySearch(word: string, lang: string = this.optionsService.learningLanguage) {
+    return this.http.get(`recommended-words?lang=${lang}&search=${word}&limit=6`);
   }
 
   filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
