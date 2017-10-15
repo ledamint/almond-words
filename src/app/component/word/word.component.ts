@@ -16,19 +16,19 @@ import { Word } from 'app/service/interface/interfaces';
   template: `
         <h1>Word</h1>
         <form class="form" #wordForm="ngForm" action="" method="post" (ngSubmit)="updateWord(wordForm)">
-            <h4 class="input-title">
-                {{ optionsService.learningLanguage | translate}}
+            <div class="input-wrapper">
                 <img class="listen" src="assets/img/speaker-icon.svg" alt="listen" [hidden]="optionsService.learningLanguage !== 'en'"
                   (click)="listenWord(wordForm.value['learning-word'])">
-            </h4>
-            <input class="text-input" type="text" name="learning-word" [ngModel]="word.learningWord" required>
-            <h4 class="input-title">{{ optionsService.familiarLanguage | translate}}</h4>
+                <input class="text-input learning-word" type="text" name="learning-word" [ngModel]="word.learningWord" required>
+            </div>
             <div class="input-wrapper">
-                <input class="text-input" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
-                <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
+                <input class="text-input familiar-word theme-color-text-second" type="text" name="familiar-word" [ngModel]="word.familiarWord" required>
+            </div>
+            <div class="time theme-color-background-fourth">
+                {{ time }}
+                <a class="yandex" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
                   optionsService.familiarLanguage }}&text={{ word.learningWord }}" target="_blank">Yandex translate</a>
             </div>
-            <span class="time">{{ time }}</span>
             <div class="buttons">
                 <button class="button" type="submit" [disabled]="!wordForm.valid">Change</button>
                 <button class="button button_red-hover" type="button" (click)="deleteWord(word)">Delete</button>
