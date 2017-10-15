@@ -10,7 +10,8 @@ import { RegistrationData } from 'app/service/interface/interfaces';
 @Component({
   selector: 'registration',
   template: `
-          <h1>Registration</h1>
+          <h1>Start expanding your vocabulary</h1>
+          <h2>Registration</h2>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">email</h4>
               <div class="input-wrapper">
