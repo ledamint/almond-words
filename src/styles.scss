@@ -235,11 +235,11 @@ select.text-input {
       left: 0;
       z-index: 3;
       padding: 10px 0;
-      background: white;
-      background-color: $pink-theme-fourth-color;
+      background-color: white;
+      // background-color: $pink-theme-fourth-color;
 
       .blue-theme & {
-        background-color: $blue-theme-fourth-color !important;
+        // background-color: $blue-theme-fourth-color !important;
       }
 
       .side-panel__item {
