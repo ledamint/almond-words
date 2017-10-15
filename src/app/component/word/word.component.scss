@@ -1,5 +1,47 @@
 @import 'variables';
 
+.text-input {
+  margin-bottom: 0;
+}
+
+.input-wrapper {
+  margin-bottom: 0;
+}
+
+.listen {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.learning-word {
+  padding: 15px 0 10px;
+  font-size: 40px;
+  border-radius: 5px 5px 0 0;
+}
+
+.familiar-word {
+  padding-bottom: 10px;
+  border-radius: 0;
+}
+
+.time {
+  position: relative;
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  font-size: 14px;
+
+  .yandex {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+  }
+}
+
 .buttons {
   width: 100%;
   margin-top: 20px;
@@ -27,7 +69,24 @@
 }
 
 @media (max-width: $mobile-width) {
+  .learning-word {
+    font-size: 35px;
+  }
+
+  .familiar-word {
+    font-size: 17.5px;
+  }
+
   .button {
     font-size: 20px;
+  }
+
+  .time {
+    margin-bottom: 20px;
+
+    .yandex {
+      top: 125%;
+      transform: none;
+    }
   }
 }
