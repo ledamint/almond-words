@@ -11,7 +11,6 @@ import { RegistrationData } from 'app/service/interface/interfaces';
   selector: 'auto-registration',
   template: `
           <h1>Start expanding your vocabulary</h1>
-          <h2>Choose languages</h2>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="familiar-language" [(ngModel)]="familiarLanguage" required>
@@ -26,7 +25,6 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <div class="side-panel">
               <a routerLink="/registration" class="side-panel__item">full registration</a>
               <a routerLink="/login" class="side-panel__item">login</a>
-              <a routerLink="/about-us" class="side-panel__item">about us</a>
           </div>`,
   styleUrls: ['./auto-registration.component.scss']
 })

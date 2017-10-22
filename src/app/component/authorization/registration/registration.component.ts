@@ -10,8 +10,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
 @Component({
   selector: 'registration',
   template: `
-          <h1>Start expanding your vocabulary</h1>
-          <h2>Registration</h2>
+          <h1>Registration</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">email</h4>
               <div class="input-wrapper">
@@ -36,7 +35,6 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <div class="side-panel">
               <a routerLink="/auto-registration" class="side-panel__item">auto registration</a>
               <a routerLink="/login" class="side-panel__item">login</a>
-              <a routerLink="/about-us" class="side-panel__item">about us</a>
           </div>`,
   styleUrls: ['./registration.component.scss']
 })
