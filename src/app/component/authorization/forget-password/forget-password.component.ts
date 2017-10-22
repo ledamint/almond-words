@@ -6,7 +6,7 @@ import { AuthorizationService } from 'app/service/authorization.service';
 @Component({
   selector: 'forget-password',
   template: `
-          <h1>Forget password</h1>
+          <h1>Password recovery</h1>
           <form class="form" #forgetPasswordForm="ngForm" action="" method="post"
             (ngSubmit)="sendNewPassword(forgetPasswordForm.value.email)">
               <h4 class="input-title">email</h4>
