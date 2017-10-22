@@ -45,7 +45,7 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'auto-registration', component: AutoRegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'password-recovery', component: ForgetPasswordComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'word/:id', component: WordComponent },
   {

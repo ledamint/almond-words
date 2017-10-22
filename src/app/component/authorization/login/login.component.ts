@@ -18,7 +18,7 @@ import { LoginData } from 'app/service/interface/interfaces';
           </form>
           <div class="side-panel">
               <a routerLink="/registration" class="side-panel__item">registration</a>
-              <a routerLink="/forget-password" class="side-panel__item">forget password</a>
+              <a routerLink="/password-recovery" class="side-panel__item">password recovery</a>
           </div>`,
   styleUrls: ['./login.component.scss']
 })
