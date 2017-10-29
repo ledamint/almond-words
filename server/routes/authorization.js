@@ -34,17 +34,7 @@ module.exports = (app, db) => {
             isBackgroundActive: true,
             isWordsOpacityActive: true,
             isRecommendedWordsActive: true,
-            filter: {
-              knowledge: [
-                {
-                  name: 'in progress',
-                  value: [
-                    1,
-                    9,
-                  ],
-                },
-              ],
-            },
+            filter: 'new',
           },
           activeBoard: 0,
           boards: [{
