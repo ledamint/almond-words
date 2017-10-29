@@ -15,11 +15,8 @@ import { KnowledgeFilter } from 'app/service/interface/interfaces';
           </div>
           <div class="knowledge">
               <h3>Filter</h3>
-              <span class="option-item option-item_title">knowledge:</span>
-              <span class="option-item button"
-                *ngFor="let knowledgeFilter of mainInfoService.options.filter.knowledge"
-                [class.active]="checkKnowledgeActive(knowledgeFilter.name)"
-                (click)="updateKnowledge(knowledgeFilter)">{{ knowledgeFilter.name }}</span>
+              <span class="option-item button" [class.active]="optionsService.activeOptions.filter === filter"
+                *ngFor="let filter of mainInfoService.options.filters" (click)="updateFilter(filter)">{{ filter }}</span>
           </div>`,
   styleUrls: ['./words-options.component.scss']
 })
@@ -31,13 +28,7 @@ export class WordsOptionsComponent {
     this.optionsService.updateSorts(sortValue);
   }
 
-  updateKnowledge(knowledge: KnowledgeFilter) {
-    this.optionsService.updateKnowledge(knowledge);
-  }
-
-  checkKnowledgeActive(knowledgeFilterName: string) {
-    return -1 < this.optionsService.activeOptions.filter.knowledge.findIndex((knowledge) => {
-      return knowledge.name === knowledgeFilterName;
-    });
+  updateFilter(filter: string) {
+    this.optionsService.updateFilter(filter);
   }
 }

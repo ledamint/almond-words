@@ -38,7 +38,7 @@ export class WordsService {
 
   // TODO: think about optimization
   updateWords() {
-    this.filterKnowledge(this.optionsService.activeOptions.filter.knowledge);
+    this.filterWords(this.optionsService.activeOptions.filter);
     this.sortWords(this.optionsService.activeOptions.sort);
     this.distributeWords();
     this.calculateOverallKnowledge();
@@ -59,20 +59,18 @@ export class WordsService {
     return this.http.get(`https://api.datamuse.com/sug?s=${word}`);
   }
 
-  filterKnowledge(activeKnowledge: KnowledgeFilter[]) {
-    if (activeKnowledge.length > 0 && activeKnowledge !== undefined) {
-      this.activeWords = this.allWords.filter((word) => {
-        let suitableFilter = false;
+  filterWords(filter: string = 'all') {
+    if (filter === 'all') {
+      this.activeWords = this.allWords;
+    }
 
-        activeKnowledge.forEach((knowledge) => {
-          if (word.knowledge >= knowledge.value[0] && word.knowledge <= knowledge.value[1]) {
-            suitableFilter = true;
-          }
-        });
+    if (filter === 'new') {
+      this.activeWords = this.allWords.filter(word => word.decreaseTime === undefined);
+    }
 
-        return suitableFilter;
-      });
-    } else this.activeWords = this.allWords;
+    if (filter === 'repeat') {
+      this.activeWords = this.allWords.filter(word => word.decreaseTime !== undefined && word.knowledge < 10);
+    }
   }
 
   sortWords(activeSort: string = 'time', isInverse: boolean = false) {

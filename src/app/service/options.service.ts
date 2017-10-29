@@ -53,6 +53,10 @@ export class OptionsService {
     this.activeOptions.sort = sort;
   }
 
+  updateFilter(filter: string) {
+    this.activeOptions.filter = filter;
+  }
+
   updateTheme(theme: string) {
     this.activeOptions.theme = theme;
     this.currentTheme = `${theme}-theme`;
@@ -85,23 +89,5 @@ export class OptionsService {
     }
 
     this.currentTheme = currentTheme;
-  }
-
-  updateKnowledge(selectedKnowledge: KnowledgeFilter) {
-    let selectedKnowledgeIsActive = false;
-
-    this.activeOptions.filter.knowledge = this.activeOptions.filter.knowledge.filter((knowledge) => {
-      if (knowledge.name === selectedKnowledge.name) {
-        selectedKnowledgeIsActive = true;
-
-        return false;
-      }
-
-      return true;
-    });
-
-    if (!selectedKnowledgeIsActive) {
-      this.activeOptions.filter.knowledge.push(selectedKnowledge);
-    }
   }
 }

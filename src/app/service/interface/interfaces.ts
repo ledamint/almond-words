@@ -79,11 +79,7 @@ export interface ActiveOptions {
   isBackgroundActive: boolean;
   isWordsOpacityActive: boolean;
   isRecommendedWordsActive: boolean;
-  filter: ActiveFilter;
-}
-
-export interface ActiveFilter {
-  knowledge: KnowledgeFilter[];
+  filter: string;
 }
 
 
