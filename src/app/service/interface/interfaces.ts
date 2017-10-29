@@ -54,7 +54,7 @@ export interface MainApplicationInfo {
 export interface Options {
   sorts: Sort[];
   themes: string[];
-  filter: string[];
+  filters: string[];
 }
 
 export interface Sort {
