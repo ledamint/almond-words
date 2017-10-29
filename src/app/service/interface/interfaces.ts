@@ -54,24 +54,13 @@ export interface MainApplicationInfo {
 export interface Options {
   sorts: Sort[];
   themes: string[];
-  filter: Filter;
+  filter: string[];
 }
 
 export interface Sort {
   name: string;
   value: string;
 }
-
-export interface Filter {
-  knowledge: KnowledgeFilter[];
-}
-
-// TODO: simplify KnowledgeFilter
-export interface KnowledgeFilter {
-  name: string;
-  value: number[];
-}
-
 
 export interface ActiveOptions {
   sort: string;

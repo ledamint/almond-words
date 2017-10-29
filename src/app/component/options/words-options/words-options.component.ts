@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { OptionsService } from 'app/service/options.service';
 import { MainInfoService } from 'app/service/main-info.service';
 
-import { KnowledgeFilter } from 'app/service/interface/interfaces';
-
 @Component({
   selector: 'words-options',
   template: `

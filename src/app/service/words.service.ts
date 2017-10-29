@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { OptionsService } from './options.service';
 
-import { Board, Word, DecreaseTime, KnowledgeFilter, Sort, RecommendedWord } from './interface/interfaces';
+import { Board, Word, DecreaseTime, Sort, RecommendedWord } from './interface/interfaces';
 
 interface Card {
   words: Word[];
