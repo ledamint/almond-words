@@ -5,8 +5,6 @@ import { WordsService } from 'app/service/words.service';
 import { OptionsService } from 'app/service/options.service';
 import { BackgroundService } from 'app/service/background.service';
 
-import { KnowledgeFilter } from 'app/service/interface/interfaces';
-
 @Component({
   selector: 'options',
   template: `

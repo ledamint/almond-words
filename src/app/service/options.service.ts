@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { EventsService } from './events.service';
 import { MainInfoService } from './main-info.service';
 
-import { ActiveOptions, KnowledgeFilter } from './interface/interfaces';
+import { ActiveOptions } from './interface/interfaces';
 
 @Injectable()
 export class OptionsService {
