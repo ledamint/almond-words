@@ -9,7 +9,7 @@ import { AccountInformationService } from 'app/service/account-information.servi
         <form class="form" #emailForm="ngForm" action="" method="post" (ngSubmit)="updateEmail(emailForm.value.email)">
             <h3>Email</h3>
             <div class="input-wrapper">
-                <input class="text-input" type="email" name="email" placeholder="email" focus="true"
+                <input class="text-input" type="email" name="email" placeholder="email" myAutofocus
                   [ngModel]="accountInformationService.email" required email>
                 <span class="prompt theme-color-text-second" [hidden]="isAutoEmail(emailForm.value.email)">
                   change to your email if you want to save progress</span>

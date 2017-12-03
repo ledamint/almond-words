@@ -29,7 +29,7 @@ interface AvailableWord {
                     (click)="listenWord(newWordForm.value['learning-word'])">
               </h4>
               <div class="input-wrapper">
-                  <input class="text-input" type="text" name="learning-word" focus="true" autocomplete="off"
+                  <input class="text-input" type="text" name="learning-word" myAutofocus autocomplete="off"
                     (keyup)="keyUpLearningWordSubject.next(learningWord)" (focus)="setIsAvailableWordsActive(true)"
                     (blur)="setIsAvailableWordsActive(false)" [(ngModel)]="learningWord" required>
                   <div class="available-words theme-color-background-fourth" [hidden]="!isAvailableWordsActive">

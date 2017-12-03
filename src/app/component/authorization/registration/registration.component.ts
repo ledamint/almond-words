@@ -14,7 +14,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">email</h4>
               <div class="input-wrapper">
-                  <input class="text-input" type="email" name="email" focus="true" ngModel required email>
+                  <input class="text-input" type="email" name="email" myAutofocus ngModel required email>
                   <span class="prompt theme-color-text-second">verification is not needed</span>
               </div>
               <h4 class="input-title">password</h4>
