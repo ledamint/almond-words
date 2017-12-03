@@ -3,6 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AuthorizationService } from '../../service/authorization.service';
 import { WordsService } from '../../service/words.service';
 import { OptionsService } from '../../service/options.service';
+import { MainInfoService } from 'app/service/main-info.service';
 import { TestWordsService } from '../../service/test-words.service';
 
 import { Word } from '../../service/interface/interfaces';
@@ -16,7 +17,11 @@ import { Word } from '../../service/interface/interfaces';
         title="level of words knowledge">
           {{ wordsService.overallKnowledgePercent }}%</span>
       </h1>
-      <p class="description" [hidden]="wordsService.activeWords.length !== 0">You need to add new words or extend filter</p>
+      <div class="filter">
+          <span class="button" [class.active]="optionsService.activeOptions.filter === filter"
+            *ngFor="let filter of mainInfoService.options.filters" (click)="updateFilter(filter)">{{ filter }}</span>
+      </div>
+      <p class="description" [hidden]="wordsService.activeWords.length !== 0">You do not have the words for this filter</p>
       <div class="cards">
           <div *ngFor="let card of wordsService.cards" class="card theme-color-background-third" [ngClass]="{ shake: card.isActive }">
               <a *ngFor="let word of card.words" title="{{ word.familiarWord }}"
@@ -44,6 +49,7 @@ export class CardsComponent implements OnDestroy {
   constructor(public authorizationService: AuthorizationService,
               public wordsService: WordsService,
               public optionsService: OptionsService,
+              public mainInfoService: MainInfoService,
               public testWordsService: TestWordsService) { }
 
   logout() {
@@ -60,6 +66,12 @@ export class CardsComponent implements OnDestroy {
 
       delay += 50;
     });
+  }
+
+  updateFilter(filter: string) {
+    this.optionsService.updateFilter(filter);
+    this.wordsService.updateWords();
+    this.optionsService.updateActiveOptions();
   }
 
   ngOnDestroy() {
