@@ -10,7 +10,7 @@ import { AuthorizationService } from 'app/service/authorization.service';
           <form class="form" #forgetPasswordForm="ngForm" action="" method="post"
             (ngSubmit)="sendNewPassword(forgetPasswordForm.value.email)">
               <h4 class="input-title">email</h4>
-              <input class="text-input" type="email" name="email" focus="true" ngModel email required>
+              <input class="text-input" type="email" name="email" myAutofocus ngModel email required>
               <button class="button" type="submit" [disabled]="!forgetPasswordForm.valid">Send new password</button>
           </form>
           <div class="side-panel">

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FocusModule } from 'angular2-focus';
+// import { FocusModule } from 'angular2-focus';
 
 import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
@@ -29,6 +29,8 @@ import { ComposeTranslationComponent } from './component/test/compose-translatio
 import { WriteTranslationComponent } from './component/test/write-translation/write-translation.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { RecommendedWordsComponent } from './component/recommended-words/recommended-words.component';
+
+import { AutofocusDirective } from './directives/autofocus';
 
 import { AuthorizationService } from './service/authorization.service';
 import { MainService } from './service/main.service';
@@ -92,7 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    FocusModule.forRoot()
+    // FocusModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -116,7 +118,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ComposeTranslationComponent,
     WriteTranslationComponent,
     AboutUsComponent,
-    RecommendedWordsComponent
+    RecommendedWordsComponent,
+    AutofocusDirective
   ],
   bootstrap: [AppComponent],
   providers: [

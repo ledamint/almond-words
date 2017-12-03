@@ -11,7 +11,7 @@ import { LoginData } from 'app/service/interface/interfaces';
           <h1>Login</h1>
           <form class="form" #loginForm="ngForm" action="" method="post" (ngSubmit)="checkLogin(loginForm)">
               <h4 class="input-title">email</h4>
-              <input class="text-input" type="email" name="email" focus="true" ngModel email required>
+              <input class="text-input" type="email" name="email" myAutofocus ngModel email required>
               <h4 class="input-title">password</h4>
               <input class="text-input" type="password" name="password" ngModel required>
               <button class="button" type="submit" [disabled]="!loginForm.valid">Log in</button>
