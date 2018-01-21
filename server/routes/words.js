@@ -81,31 +81,37 @@ module.exports = (app, db) => {
   });
 
   app.post('/words', (req, res) => {
-    const userId = {
-      _id: new ObjectID(req.session._id),
-    };
+    if (req.session._id !== undefined) {
+      const userId = {
+        _id: new ObjectID(req.session._id),
+      };
 
-    const word = req.body;
-    word._id = new ObjectID();
-    word.time = new Date();
-    word.knowledge = 1;
+      const word = req.body;
+      word._id = new ObjectID();
+      word.time = new Date();
+      word.knowledge = 1;
 
-    const wordsSelector = `boards.${req.session.activeBoard}.words`;
-    const query = {
-      $push: { [wordsSelector]: word },
-    };
+      const wordsSelector = `boards.${req.session.activeBoard}.words`;
+      const query = {
+        $push: { [wordsSelector]: word },
+      };
 
-    usersCollection.findOneAndUpdate(userId, query, { returnOriginal: false }, (err, result) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      } else {
-        const user = result.value;
-        const words = user.boards[user.activeBoard].words;
+      usersCollection.findOneAndUpdate(userId, query, { returnOriginal: false }, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else if (result === null) {
+          res.sendStatus(404);
+        } else {
+          const user = result.value;
+          const words = user.boards[user.activeBoard].words;
 
-        res.send(words[words.length - 1]);
-      }
-    });
+          res.send(words[words.length - 1]);
+        }
+      });
+    } else {
+      res.sendStatus(404);
+    }
   });
 
   app.delete('/words/:id', (req, res) => {
