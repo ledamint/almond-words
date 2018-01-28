@@ -41,7 +41,7 @@ interface AvailableWord {
               <h4 class="input-title">{{ optionsService.familiarLanguage | translate }}</h4>
               <div class="input-wrapper">
                   <input class="text-input" type="text" name="familiar-word" [(ngModel)]="familiarWord" required>
-                  <a class="prompt prompt_right" href="https://translate.yandex.ru/?lang={{ optionsService.learningLanguage }}-{{
+                  <a class="prompt prompt_right" href="https://translate.yandex.com/?lang={{ optionsService.learningLanguage }}-{{
                     optionsService.familiarLanguage }}&text={{ learningWord }}" target="_blank">Yandex translate</a>
               </div>
               <button class="button" type="submit" [disabled]="!newWordForm.valid">Add</button>
