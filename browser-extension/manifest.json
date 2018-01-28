@@ -6,6 +6,7 @@
   "version": "1.0",
   "content_scripts": [{
     "js": ["content.js"],
+    "css": ["content.css"],
     "matches": ["<all_urls>"],
     "run_at": "document_start"
   }],
