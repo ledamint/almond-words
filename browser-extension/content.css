@@ -29,3 +29,10 @@
   font-size: 15px;
   font-weight: bold;
 }
+
+.aw-yandex-logo {
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
+  cursor: pointer;
+}
