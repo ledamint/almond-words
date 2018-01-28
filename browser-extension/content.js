@@ -1,5 +1,15 @@
 /* eslint-disable */
 
+function onSuccessAdding() {
+  document.querySelector('.aw-submit').textContent = 'Success';
+
+  setTimeout(function() {
+    var awNewWord = document.getElementById('aw-new-word');
+
+    document.body.removeChild(awNewWord);
+  }, 2000);
+}
+
 function sendRequest(e) {
   e.preventDefault();
 
@@ -18,12 +28,14 @@ document.addEventListener('mouseup', function (e) {
 
   var selection = window.getSelection().toString();
 
-  if (selection !== '') {
+  if (selection.trim() !== '') {
+    chrome.runtime.sendMessage(null, selection);
+
     var popup = `
         <form method="post" name="word">
             <input id="aw-learning-word" type="text" name="learningWord" value="${selection}">
             <input id="aw-familiar-word" type="text" name="familiarWord">
-            <button type="submit">Add</button>
+            <button class="aw-submit" type="submit">Add</button>
         </form>
     `;
     var element = document.createElement('div');
@@ -37,3 +49,9 @@ document.addEventListener('mouseup', function (e) {
     document.body.appendChild(element);
   }
 });
+
+chrome.runtime.onMessage.addListener(function (translatedWord) {
+  if (typeof translatedWord === 'string') {
+    document.getElementById('aw-familiar-word').value = translatedWord;
+  }
+})
