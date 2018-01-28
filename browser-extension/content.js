@@ -1,13 +1,15 @@
 /* eslint-disable */
 
+function removePopup() {
+  var awNewWord = document.getElementById('aw-new-word');
+
+  document.body.removeChild(awNewWord);
+}
+
 function onSuccessAdding() {
   document.querySelector('.aw-submit').textContent = 'Success';
 
-  setTimeout(function() {
-    var awNewWord = document.getElementById('aw-new-word');
-
-    document.body.removeChild(awNewWord);
-  }, 2000);
+  setTimeout(removePopup, 2000);
 }
 
 function sendRequest(e) {
