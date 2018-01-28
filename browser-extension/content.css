@@ -1,0 +1,31 @@
+#aw-new-word {
+  width: 150px;
+  background-color: #3cf;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 10000;
+}
+
+#aw-new-word input {
+  height: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 2px 0;
+  background-color: #6cdaff;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
+}
+
+#aw-new-word button {
+  border: 0;
+  outline: 0;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: bold;
+}

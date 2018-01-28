@@ -23,15 +23,15 @@ document.addEventListener('mouseup', function (e) {
         <form method="post" name="word">
             <input id="aw-learning-word" type="text" name="learningWord" value="${selection}">
             <input id="aw-familiar-word" type="text" name="familiarWord">
-            <button type="submit">Submit</button>
+            <button type="submit">Add</button>
         </form>
     `;
     var element = document.createElement('div');
     element.innerHTML = popup;
     element.setAttribute('id', 'aw-new-word');
     element.style.position = 'absolute';
-    element.style.top = e.pageY - 30 + 'px';
-    element.style.left = e.pageX + 'px';
+    element.style.top = e.pageY - 120 + 'px';
+    element.style.left = e.pageX - 50 + 'px';
     element.onsubmit = sendRequest;
 
     document.body.appendChild(element);
