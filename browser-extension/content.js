@@ -9,7 +9,7 @@ function removePopup() {
 function onAdding(isSuccess) {
   document.querySelector('.aw-submit').textContent = isSuccess ? 'Success' : 'Error';
 
-  setTimeout(removePopup, 1500);
+  setTimeout(removePopup, 1000);
 }
 
 function sendRequest(e) {
