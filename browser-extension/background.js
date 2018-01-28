@@ -1,19 +1,14 @@
 /* eslint-disable */
 
-function addNewWord(wordData) {
+chrome.extension.onRequest.addListener(function (wordData, MessageSender) {
   axios.post('http://almondwords.com/words', wordData)
     .then(function (res) {
-      console.log(res);
+      chrome.tabs.sendRequest(MessageSender.tab.id, true);
     })
     .catch(function (error) {
-      alert(JSON.stringify(error));
+      chrome.tabs.sendRequest(MessageSender.tab.id, false);
     });
-};
-
-chrome.extension.onRequest.addListener(function (wordData) {
-  addNewWord(wordData);
 });
-
 
 function translateWord(word) {
   const apiUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate';

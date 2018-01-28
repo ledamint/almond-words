@@ -6,10 +6,10 @@ function removePopup() {
   document.body.removeChild(awNewWord);
 }
 
-function onSuccessAdding() {
-  document.querySelector('.aw-submit').textContent = 'Success';
+function onAdding(isSuccess) {
+  document.querySelector('.aw-submit').textContent = isSuccess ? 'Success' : 'Error';
 
-  setTimeout(removePopup, 2000);
+  setTimeout(removePopup, 1500);
 }
 
 function sendRequest(e) {
@@ -20,6 +20,10 @@ function sendRequest(e) {
     familiarWord: document.getElementById('aw-familiar-word').value
   });
 };
+
+chrome.extension.onRequest.addListener(function (isSuccess) {
+  onAdding(isSuccess);
+});
 
 document.addEventListener('mouseup', function (e) {
   if (e.target.closest('#aw-new-word')) return;
