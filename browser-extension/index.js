@@ -4,7 +4,7 @@ axios.post('http://almondwords.com/login')
   .then(function (res) {
     if (res.data) {
       document.body.querySelector('.content').innerHTML =
-        '<p class="login success">You have already logged in to <a href="http://almondwords.com" target="_blank">almondwords</a> and can add new words</p>';
+        '<p class="login success">You have already logged in to <a href="http://almondwords.com" target="_blank">almondwords</a> and can add new words, just select any word on the page</p>';
     } else {
       document.body.querySelector('.content').innerHTML =
         '<p class="login error">Please log in to <a href="http://almondwords.com" target="_blank">almondwords</a></p>';
