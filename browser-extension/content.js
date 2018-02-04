@@ -32,9 +32,9 @@ document.addEventListener('mouseup', function (e) {
 
   if (awNewWord !== null) document.body.removeChild(awNewWord);
 
-  var selection = window.getSelection().toString();
+  var selection = window.getSelection().toString().trim();
 
-  if (selection.trim() !== '') {
+  if (selection !== '') {
     chrome.runtime.sendMessage(null, selection);
 
     // TODO change ru to different languages
