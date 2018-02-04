@@ -40,7 +40,7 @@ import { Word } from '../../service/interface/interfaces';
       </div>
       <div class="side-panel side-panel_right">
           <a routerLink="/user-options" class="side-panel__item">options</a>
-          <a class="side-panel__item" (click)="logout()">logout</a>
+          <a class="side-panel__item" (click)="logout()">log out</a>
       </div>
     `,
   styleUrls: ['./cards.component.scss']
@@ -53,7 +53,7 @@ export class CardsComponent implements OnDestroy {
               public testWordsService: TestWordsService) { }
 
   logout() {
-    if (confirm('Are you sure to logout?')) {
+    if (confirm('Are you sure to log out?')) {
       this.authorizationService.logout();
     }
   }
