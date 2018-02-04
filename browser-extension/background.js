@@ -38,12 +38,17 @@ function translateWord(word) {
   }
 }
 
-chrome.runtime.onMessage.addListener(function (word, MessageSender) {
-  translateWord(word)
-    .then(function (res)  {
-        chrome.tabs.sendMessage(MessageSender.tab.id, res.data.text[0]);
-      })
-    .catch(function (err) {
-      chrome.tabs.sendMessage(MessageSender.tab.id, err);
-    })
+chrome.runtime.onMessage.addListener(function (message, MessageSender, sendAnswer) {
+  if (message === 'lang') {
+    sendAnswer({familiarLanguage, learningLanguage})
+  } else {
+    translateWord(message)
+      .then(function (res)  {
+          chrome.tabs.sendMessage(MessageSender.tab.id, res.data.text[0]);
+        })
+      .catch(function (err) {
+        chrome.tabs.sendMessage(MessageSender.tab.id, err);
+      });
+  }
 });
+
