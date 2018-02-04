@@ -2,20 +2,18 @@
 <html>
   <head>
     <title>Almond words extension</title>
+    <link rel="stylesheet" href="./top-popup.css">
   </head>
 
   <body>
     <h1>Almond words</h1>
-    <!-- <form method="post" name="login">
-      <input type="text" name="email">
-      <input type="password" name="password">
-      <button type="submit">Submit</button>
-    </form> -->
-    <form method="post" name="word">
+    <p class="login error">Please log in to <a href="http://almondwords.com" target="_blank">almondwords</a></p>
+    <p class="login success">You have already logged in to <a href="http://almondwords.com" target="_blank">almondwords</a> and can add new words</p>
+    <!-- <form class="add-new-word" method="post" name="word">
       <input type="text" name="learningWord">
       <input type="text" name="familiarWord">
       <button type="submit">Submit</button>
-    </form>
+    </form> -->
     <script src="axios.js"></script>
     <script src="index.js"></script>
   </body>

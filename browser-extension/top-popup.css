@@ -1,13 +1,11 @@
-#aw-new-word {
-  width: 150px;
-  background-color: #3cf;
-  padding: 8px;
-  border-radius: 5px;
+body {
+  width: 170px;
+  padding: 0 8px;
   text-align: center;
-  z-index: 10000;
+  background-color: #3cf;
 }
 
-#aw-new-word input {
+input {
   height: 20px;
   width: 100%;
   margin-bottom: 10px;
@@ -20,8 +18,7 @@
   text-align: center;
 }
 
-#aw-new-word button {
-  width: 40px;
+button {
   height: 20px;
   border: 0;
   outline: 0;
@@ -32,9 +29,11 @@
   font-weight: bold;
 }
 
-.aw-yandex-logo {
-  position: absolute;
-  right: 10px;
-  bottom: 7px;
-  cursor: pointer;
+h1 {
+  margin-bottom: 10px;
+}
+
+.login {
+  font-size: 16px;
+  margin-top: 10px;
 }
