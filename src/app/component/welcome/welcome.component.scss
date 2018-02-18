@@ -38,8 +38,12 @@ p {
   }
 }
 
-@media (max-width: $tablet-width) {
+@media (max-width: $mobile-width) {
   .welcome {
-    width: 80%;
+    font-size: 1rem;
+  }
+
+  .content {
+    width: 95%;
   }
 }
