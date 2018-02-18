@@ -21,7 +21,7 @@ import { Word } from '../../service/interface/interfaces';
           <span class="button" [class.active]="optionsService.activeOptions.filter === filter"
             *ngFor="let filter of mainInfoService.options.filters" (click)="updateFilter(filter)">{{ filter }}</span>
       </div>
-      <p class="description" [hidden]="wordsService.activeWords.length !== 0">You do not have the words for this filter</p>
+      <p class="description" [hidden]="wordsService.activeWords.length !== 0">You do not have words for this filter</p>
       <div class="cards">
           <div *ngFor="let card of wordsService.cards" class="card theme-color-background-third" [ngClass]="{ shake: card.isActive }">
               <a *ngFor="let word of card.words" title="{{ word.familiarWord }}"
@@ -35,7 +35,7 @@ import { Word } from '../../service/interface/interfaces';
       <div class="side-panel side-panel_left">
           <a routerLink="/add-new-word/" class="side-panel__item theme-color-border-main">add a new word</a>
             <a class="side-panel__item" [hidden]="wordsService.activeWords.length === 0"
-              (click)="testWordsService.startAutoTest()" (mouseover)="setCardsActive(true)"
+              (click)="testWordsService.startAutoTest()" (mouseover)="setCardsAthective(true)"
               (mouseleave)="setCardsActive(false)">autotest</a>
       </div>
       <div class="side-panel side-panel_right">
