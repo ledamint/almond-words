@@ -23,10 +23,12 @@ function onAdding(isSuccess) {
 function sendRequest(e) {
   e.preventDefault();
 
-  chrome.extension.sendRequest({
-    learningWord: document.getElementById('aw-learning-word').value,
-    familiarWord: document.getElementById('aw-familiar-word').value
-  });
+  var learningWord = document.getElementById('aw-learning-word').value.trim().toLowerCase();
+  var familiarWord = document.getElementById('aw-familiar-word').value.trim().toLowerCase();
+
+  if (learningWord !== '' && familiarWord !== '') {
+    chrome.extension.sendRequest({learningWord, familiarWord});
+  }
 };
 
 chrome.extension.onRequest.addListener(function (isSuccess) {
