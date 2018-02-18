@@ -30,14 +30,14 @@ export class TestWordsService {
     });
   }
 
-  startTest(card: Word[]) {
-    this.isAutoTest = false;
+  startTest(card: Word[], isAutoTest = false) {
+    this.isAutoTest = isAutoTest;
     this.testingWords = card.slice();
     this.clearAnswers();
     this.onNewRound();
   }
 
-  startAutoTest() {
+  startFullAutoTest() {
     this.isAutoTest = true;
     this.testingWords = [];
     const variantsOfTestingWords = this.wordsService.activeWords.slice();
