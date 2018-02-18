@@ -18,6 +18,9 @@
     "default_popup": "popup.html",
     "default_title": "AlmondWords"
   },
+  "icons": {
+    "128": "icon-128.png"
+  },
   "permissions": [
     "activeTab",
     "tabs",
