@@ -25,7 +25,9 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <div class="side-panel">
               <a routerLink="/registration" class="side-panel__item">full registration</a>
               <a routerLink="/login" class="side-panel__item">login</a>
-          </div>`,
+          </div>
+          <welcome></welcome>
+          `,
   styleUrls: ['./auto-registration.component.scss']
 })
 export class AutoRegistrationComponent {

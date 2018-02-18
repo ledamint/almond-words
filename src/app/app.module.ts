@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-// import { FocusModule } from 'angular2-focus';
 
 import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
@@ -14,6 +13,7 @@ import { LoginComponent } from './component/authorization/login/login.component'
 import { ForgetPasswordComponent } from './component/authorization/forget-password/forget-password.component';
 import { BackgroundComponent } from './component/background/background.component';
 import { PopUpComponent } from './component/pop-up/pop-up.component';
+import { WelcomeComponent } from './component/welcome/welcome.component';
 import { CardsComponent } from './component/cards/cards.component';
 import { WordComponent } from './component/word/word.component';
 import { OptionsBlockComponent } from './component/options/options-block/options-block.component';
@@ -93,8 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    // FocusModule.forRoot()
+    })
   ],
   declarations: [
     AppComponent,
@@ -104,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgetPasswordComponent,
     BackgroundComponent,
     PopUpComponent,
+    WelcomeComponent,
     CardsComponent,
     WordComponent,
     AddNewWordComponent,
