@@ -85,3 +85,8 @@ export interface Message {
   text: string;
   isActive?: boolean;
 }
+
+export interface UserPoints {
+  todayPoints: number;
+  allPoints: number;
+}
