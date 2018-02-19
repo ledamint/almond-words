@@ -28,6 +28,7 @@ export class ComposeTranslationComponent implements OnInit {
   testingWordLetters: WordLetter[] = [];
   answerLetters: WordLetter[] = [];
   checkingLetterIndex: number = 0;
+  wasMistake: boolean = false;
 
   constructor(public wordsService: WordsService,
               public testWordsService: TestWordsService,
@@ -42,6 +43,7 @@ export class ComposeTranslationComponent implements OnInit {
   }
 
   setUpOneRound() {
+    this.wasMistake = false;
     this.lettersOfTestingWord = this.testWordsService.currentTestingWord.learningWord.split('');
     this.checkingLetterIndex = 0;
     this.setUptestingWordLetters();
@@ -86,11 +88,15 @@ export class ComposeTranslationComponent implements OnInit {
       answerLetter.checked = true;
       this.checkingLetterIndex += 1;
     } else {
-      this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: false });
+      this.wasMistake = true;
     }
 
     if (this.checkingLetterIndex === this.lettersOfTestingWord.length) {
-      this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: true });
+      if (this.wasMistake) {
+        this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: false });
+      } else {
+        this.eventsService.onEnterAnswer({ testId: 1, isAnswerRight: true });
+      }
     }
   }
 }
