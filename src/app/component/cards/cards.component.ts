@@ -39,6 +39,7 @@ import { Word } from '../../service/interface/interfaces';
               (mouseleave)="setCardsActive(false)">autotest</a>
       </div>
       <div class="side-panel side-panel_right">
+          <a href="https://chrome.google.com/webstore/detail/almondwords/nmegbabcobddpflndffbclmfdbfhjbjp" target="_blank" class="side-panel__item">browser extension</a>
           <a routerLink="/user-options" class="side-panel__item">options</a>
           <a class="side-panel__item" (click)="logout()">log out</a>
       </div>

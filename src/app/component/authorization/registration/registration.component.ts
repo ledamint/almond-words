@@ -33,7 +33,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <button class="button" type="submit" [disabled]="!registrationForm.valid">Sign up</button>
           </form>
           <div class="side-panel">
-              <a routerLink="/auto-registration" class="side-panel__item">auto registration</a>
+              <a routerLink="/auto-registration" class="side-panel__item">fast registration</a>
               <a routerLink="/login" class="side-panel__item">login</a>
           </div>`,
   styleUrls: ['./registration.component.scss']

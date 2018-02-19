@@ -10,7 +10,7 @@ import { RegistrationData } from 'app/service/interface/interfaces';
 @Component({
   selector: 'auto-registration',
   template: `
-          <h1>Start expanding your vocabulary</h1>
+          <h1>Fast registration</h1>
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">familiar language</h4>
               <select class="text-input" name="familiar-language" [(ngModel)]="familiarLanguage" required>
