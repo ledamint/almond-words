@@ -29,6 +29,7 @@ import { ComposeTranslationComponent } from './component/test/compose-translatio
 import { WriteTranslationComponent } from './component/test/write-translation/write-translation.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { RecommendedWordsComponent } from './component/recommended-words/recommended-words.component';
+import { CornerUserPointsComponent } from './component/user-points/corner-user-points/corner-user-points.component';
 
 import { AutofocusDirective } from './directives/autofocus';
 
@@ -120,6 +121,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     WriteTranslationComponent,
     AboutUsComponent,
     RecommendedWordsComponent,
+    CornerUserPointsComponent,
     AutofocusDirective
   ],
   bootstrap: [AppComponent],

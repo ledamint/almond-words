@@ -9,6 +9,7 @@ import { WordsService } from './words.service';
 import { OptionsService } from './options.service';
 import { AccountInformationService } from './account-information.service';
 import { BackgroundService } from './background.service';
+import { UserPointsService } from './user-points.service';
 
 import { MainApplicationInfo, User } from './interface/interfaces';
 
@@ -21,7 +22,8 @@ export class MainService {
               private wordsService: WordsService,
               private optionsService: OptionsService,
               private accountInformationService: AccountInformationService,
-              private backgroundService: BackgroundService) { }
+              private backgroundService: BackgroundService,
+              private userPointsService: UserPointsService) { }
 
   setUpApplication() {
     this.http.get('main-info')
@@ -42,6 +44,7 @@ export class MainService {
           this.optionsService.setActiveOptions(user.activeOptions, user.learningLanguage, user.familiarLanguage);
           this.accountInformationService.setUp(user.email);
           this.wordsService.setUp(user.boards[user.activeBoard]);
+          this.userPointsService.setUp({ todayPoints: 10, allPoints: 100 });
           if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
 
           this.router.navigateByUrl('/cards');
