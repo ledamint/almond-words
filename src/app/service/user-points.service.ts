@@ -4,7 +4,11 @@ import { UserPoints } from './interface/interfaces';
 
 @Injectable()
 export class UserPointsService {
-  userPoints: UserPoints;
+  userPoints: UserPoints = {
+    todayPoints: 0,
+    todayGoalPoints: 0,
+    allPoints: 0
+  };
 
   constructor(private http: HttpClient) { }
 
