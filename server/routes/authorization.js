@@ -36,6 +36,11 @@ module.exports = (app, db) => {
             isRecommendedWordsActive: true,
             filter: 'new',
           },
+          userPoints: {
+            todayPoints: 0,
+            todayGoalPoints: 30,
+            allPoints: 0,
+          },
           activeBoard: 0,
           boards: [{
             words: [],

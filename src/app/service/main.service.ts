@@ -44,7 +44,8 @@ export class MainService {
           this.optionsService.setActiveOptions(user.activeOptions, user.learningLanguage, user.familiarLanguage);
           this.accountInformationService.setUp(user.email);
           this.wordsService.setUp(user.boards[user.activeBoard]);
-          this.userPointsService.setUp({ todayPoints: 10, allPoints: 100 });
+          this.userPointsService.setUp(user.userPoints);
+
           if (this.optionsService.activeOptions.isBackgroundActive) this.backgroundService.setUp();
 
           this.router.navigateByUrl('/cards');

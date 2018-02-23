@@ -23,6 +23,7 @@ export interface User {
   registrationTime: Date;
   lastLogin: Date;
   activeBoard: number;
+  userPoints: UserPoints;
   boards: Board[];
   activeOptions: ActiveOptions;
 }
@@ -88,5 +89,6 @@ export interface Message {
 
 export interface UserPoints {
   todayPoints: number;
+  todayGoalPoints: number;
   allPoints: number;
 }
