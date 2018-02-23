@@ -15,6 +15,7 @@ import { OptionsService } from '../../service/options.service';
         <background></background>
         <recommended-words></recommended-words>
         <pop-up></pop-up>
+        <corner-user-points></corner-user-points>
     </div>`,
   styleUrls: [ './app.component.scss' ]
 })
