@@ -7,15 +7,13 @@ module.exports = (app, db) => {
       _id: new ObjectID(req.session._id),
     };
 
-    db.collection('users').findOne(userId, (err, user) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      } else if (user === null) {
-        res.sendStatus(404);
-      } else {
-        updateUser(db, userId, { lastLogin: new Date() }, res, user);
-      }
-    });
+    updateUser(db, userId, { lastLogin: new Date() })
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => {
+        if (err === 404) res.sendStatus(404);
+        else if (err === 500) res.sendStatus(500);
+      });
   });
 };

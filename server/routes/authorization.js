@@ -119,9 +119,16 @@ module.exports = (app, db) => {
         const randomPassword = Math.random().toString(36).slice(2, 12);
         const cryptPassword = bcrypt.hashSync(randomPassword);
 
-        const updatePassword = updateUser.bind(null, db, userId, { password: cryptPassword }, res);
-
-        sendEmail(email, 'Your new password', randomPassword, () => res.sendStatus(500), updatePassword);
+        sendEmail(email, 'Your new password', randomPassword)
+          .then(() => {
+            updateUser(db, userId, { password: cryptPassword })
+              .then(() => {
+                res.send(true);
+              });
+          })
+          .catch(() => {
+            res.sendStatus(500);
+          });
       }
     });
   });

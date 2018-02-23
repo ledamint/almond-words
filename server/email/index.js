@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = (emailTo, subject, text, reject, resolve) => {
+const sendMail = (emailTo, subject, text) => {
   const mailOptions = {
     from: 'AlmondWords',
     to: emailTo,
@@ -18,13 +18,15 @@ const sendMail = (emailTo, subject, text, reject, resolve) => {
     text,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      reject();
-    } else {
-      resolve();
-    }
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        reject();
+      } else {
+        resolve(info);
+      }
+    });
   });
 };
 
