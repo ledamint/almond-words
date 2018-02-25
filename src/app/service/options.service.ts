@@ -30,6 +30,7 @@ export class OptionsService {
   }
 
   updateActiveOptions() {
+    this.validateTodayGoalPoints();
     this.http.post('active-options', this.activeOptions)
       .subscribe(
         () => {
@@ -39,6 +40,23 @@ export class OptionsService {
           this.eventsService.onServerError(err);
         }
       );
+  }
+
+  validateTodayGoalPoints() {
+    let todayGoalPoints = this.activeOptions.todayGoalPoints;
+    // TODO move to config
+    const minPoints = 20;
+    const maxPoints = 200;
+
+    if (typeof todayGoalPoints !== 'number') {
+      todayGoalPoints = minPoints;
+    } else if (todayGoalPoints < minPoints) {
+      todayGoalPoints = minPoints;
+    } else if (todayGoalPoints > maxPoints) {
+      todayGoalPoints = maxPoints;
+    }
+
+    this.activeOptions.todayGoalPoints = todayGoalPoints;
   }
 
   saveOptionsCopy() {
