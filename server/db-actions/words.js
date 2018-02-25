@@ -28,18 +28,30 @@ const decreaseWordsKnowledge = (user, query) => {
   }
 };
 
-const updateUserPoints = (userPoints, query) => {
+const updateUserPoints = (user, query) => {
+  const userPoints = user.userPoints;
+
   if (userPoints !== undefined) {
     if (userPoints.nextUpdateUserPointsTime === undefined ||
     userPoints.nextUpdateUserPointsTime < new Date()) {
       const nextUpdateUserPointsTime = new Date();
-      nextUpdateUserPointsTime.setDate(new Date().getDate() + 1);
+      nextUpdateUserPointsTime.setDate(nextUpdateUserPointsTime.getDate() + 1);
       nextUpdateUserPointsTime.setHours(6);
+
+      const previousDay = new Date();
+      previousDay.setDate(previousDay.getDate() - 1);
+      const historyPoints = userPoints.historyPoints || [];
+      historyPoints.push({
+        day: previousDay,
+        points: userPoints.todayPoints || 0,
+        todayGoalPoints: user.activeOptions.todayGoalPoints || 20,
+      });
 
       query.$set.userPoints = {
         ...userPoints,
         todayPoints: 0,
         nextUpdateUserPointsTime,
+        historyPoints,
       };
     }
   }
@@ -61,7 +73,7 @@ const updateUserValuesByTime = (db, userId) => {
         };
 
         decreaseWordsKnowledge(user, query);
-        updateUserPoints(user.userPoints, query);
+        updateUserPoints(user, query);
 
         if (Object.keys(query.$set).length !== 0) {
           usersCollection.findOneAndUpdate(userId, query, (err) => {
