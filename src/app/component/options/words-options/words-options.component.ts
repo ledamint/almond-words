@@ -12,7 +12,7 @@ import { MainInfoService } from 'app/service/main-info.service';
                 *ngFor="let sort of mainInfoService.options.sorts" (click)="updateSort(sort.value)">{{ sort.name }}</span>
           </div>
           <div class="user-points">
-              <h3>Points goal per day</h3>
+              <h3 title="points which you plan to earn every day">Points goal per day</h3>
               <input class="text-input" type="number" min="20" max="500"
                 [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
           </div>
