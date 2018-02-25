@@ -46,7 +46,7 @@ export class OptionsService {
     let todayGoalPoints = this.activeOptions.todayGoalPoints;
     // TODO move to config
     const minPoints = 20;
-    const maxPoints = 200;
+    const maxPoints = 500;
 
     if (typeof todayGoalPoints !== 'number') {
       todayGoalPoints = minPoints;

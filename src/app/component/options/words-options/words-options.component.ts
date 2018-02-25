@@ -13,7 +13,7 @@ import { MainInfoService } from 'app/service/main-info.service';
           </div>
           <div class="user-points">
               <h3>Points goal per day</h3>
-              <input class="text-input" type="number" min="20" max="200"
+              <input class="text-input" type="number" min="20" max="500"
                 [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
           </div>
         `,

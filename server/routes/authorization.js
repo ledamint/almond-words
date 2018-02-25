@@ -2,7 +2,7 @@ const ObjectID = require('mongodb').ObjectID;
 const bcrypt = require('bcrypt-nodejs');
 const sendEmail = require('../email');
 const updateUser = require('../db-actions/user').updateUser;
-const decreaseWordsKnowledge = require('../db-actions/words').decreaseWordsKnowledge;
+const updateUserValuesByTime = require('../db-actions/words').updateUserValuesByTime;
 
 module.exports = (app, db) => {
   app.post('/registration', (req, res) => {
@@ -17,8 +17,12 @@ module.exports = (app, db) => {
       } else {
         const cryptPassword = bcrypt.hashSync(registrationData.password);
         const nextDecreaseWordsTime = new Date();
+        const nextUpdateUserPointsTime = new Date();
         // TODO: move sum of + day to config
         nextDecreaseWordsTime.setDate(new Date().getDate() + 1);
+
+        nextUpdateUserPointsTime.setDate(new Date().getDate() + 1);
+        nextUpdateUserPointsTime.setHours(6);
 
         const newUser = {
           email: registrationData.email,
@@ -40,6 +44,7 @@ module.exports = (app, db) => {
           userPoints: {
             todayPoints: 0,
             allPoints: 0,
+            nextUpdateUserPointsTime,
           },
           activeBoard: 0,
           boards: [{
@@ -68,7 +73,7 @@ module.exports = (app, db) => {
           _id: new ObjectID(req.session._id),
         };
 
-        decreaseWordsKnowledge(db, userId)
+        updateUserValuesByTime(db, userId)
           .then(() => {
             res.send(true);
           });
@@ -94,7 +99,7 @@ module.exports = (app, db) => {
             _id: new ObjectID(req.session._id),
           };
 
-          decreaseWordsKnowledge(db, userId)
+          updateUserValuesByTime(db, userId)
             .then(() => {
               res.send(true);
             });
