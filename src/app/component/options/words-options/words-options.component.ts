@@ -11,6 +11,11 @@ import { MainInfoService } from 'app/service/main-info.service';
               <span class="option-item button" [class.active]="optionsService.activeOptions.sort === sort.value"
                 *ngFor="let sort of mainInfoService.options.sorts" (click)="updateSort(sort.value)">{{ sort.name }}</span>
           </div>
+          <div class="user-points">
+              <h3>Points goal per day</h3>
+              <input class="text-input" type="number" min="20" max="200"
+                [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
+          </div>
         `,
   styleUrls: ['./words-options.component.scss']
 })
