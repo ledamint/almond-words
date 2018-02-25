@@ -9,8 +9,13 @@ module.exports = (app, db) => {
     const pointsDifference = req.body.pointsDifference;
 
     db.collection('users').findOne(userId, (err, user) => {
-      const todayPoints = user.userPoints.todayPoints + pointsDifference;
-      const allPoints = user.userPoints.allPoints + pointsDifference;
+      let todayPoints = user.userPoints !== undefined ? user.userPoints.todayPoints : 0;
+      let allPoints = user.userPoints !== undefined ? user.userPoints.allPoints : 0;
+
+      todayPoints += pointsDifference;
+      allPoints += pointsDifference;
+      todayPoints = todayPoints < 0 ? 0 : todayPoints;
+      allPoints = allPoints < 0 ? 0 : allPoints;
 
       updateUser(db, userId, { userPoints: { todayPoints, allPoints } })
         .then((updatedUser) => {

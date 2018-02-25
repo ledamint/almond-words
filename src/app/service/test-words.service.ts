@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { EventsService } from './events.service';
 import { WordsService } from './words.service';
+import { UserPointsService } from './user-points.service';
 
 import { Word } from './interface/interfaces';
 
@@ -22,6 +23,7 @@ export class TestWordsService {
 
   constructor(private wordsService: WordsService,
     private eventsService: EventsService,
+    private userPointsService: UserPointsService,
     private router: Router) {
     this.eventsService.enterAnswer$.subscribe((resultTestAnswer) => {
       this.distributeAnswer(resultTestAnswer);
@@ -94,8 +96,12 @@ export class TestWordsService {
   }
 
   distributeAnswer(resultTestAnswer: ResultTestAnswer) {
-    if (resultTestAnswer.isAnswerRight) this.rightAnswers.push(this.currentTestingWord);
-    else this.wrongAnswers.push(this.currentTestingWord);
+    if (resultTestAnswer.isAnswerRight) {
+      this.userPointsService.updatePoints(this.pointsForAnswerByTestId[resultTestAnswer.testId]);
+      this.rightAnswers.push(this.currentTestingWord);
+    } else {
+       this.wrongAnswers.push(this.currentTestingWord);
+    }
   }
 
   clearAnswers() {
