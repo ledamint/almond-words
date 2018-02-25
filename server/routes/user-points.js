@@ -17,7 +17,7 @@ module.exports = (app, db) => {
       todayPoints = todayPoints < 0 ? 0 : todayPoints;
       allPoints = allPoints < 0 ? 0 : allPoints;
 
-      updateUser(db, userId, { userPoints: { todayPoints, allPoints } })
+      updateUser(db, userId, { userPoints: { ...user.userPoints, todayPoints, allPoints } })
         .then((updatedUser) => {
           res.send(updatedUser.userPoints);
         })
