@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { EventsService } from './events.service';
 import { OptionsService } from './options.service';
+import { UserPointsService } from './user-points.service';
 
 import { Board, Word, DecreaseTime, Sort, RecommendedWord } from './interface/interfaces';
 
@@ -24,6 +25,7 @@ export class WordsService {
 
   constructor(private http: HttpClient,
               private eventsService: EventsService,
+              private userPointsService: UserPointsService,
               private optionsService: OptionsService) { }
 
   setUp(board: Board) {
@@ -126,6 +128,8 @@ export class WordsService {
 
   // TODO add type
   addNewWord(newWord) {
+    // TODO move sum of points to config
+    this.userPointsService.updatePoints(5);
     this.http.post('words', newWord)
       .subscribe(
         (addedWord: Word) => {
@@ -138,12 +142,14 @@ export class WordsService {
 
           setTimeout(() => {
             this.addNewWord(newWord);
-          }, 600000);
+          }, 60000);
         }
       );
   }
 
   deleteWord(deletedWord: Word) {
+    // TODO move sum of points to config
+    this.userPointsService.updatePoints(-5);
     this.http.delete('words/' + deletedWord._id)
       .subscribe(
         () => {
