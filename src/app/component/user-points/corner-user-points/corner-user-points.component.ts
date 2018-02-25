@@ -8,7 +8,7 @@ import { OptionsService } from 'app/service/options.service';
   template: `
         <div class="corner-user-points">
           <span class="today-points">{{ userPointsService.userPoints?.todayPoints }} /
-          {{ optionsService.activeOptions.todayGoalPoints }}</span>
+          {{ optionsService.activeOptions?.todayGoalPoints }}</span>
         </div>
         `,
   styleUrls: [ './corner-user-points.component.scss' ]
