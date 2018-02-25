@@ -77,6 +77,10 @@ h1 {
       padding-bottom: 0;
     }
   }
+
+  .browser-extension {
+    display: none;
+  }
 }
 
 @media (max-width: $mobile-width) {
