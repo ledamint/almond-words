@@ -11,7 +11,7 @@ module.exports = (app, db) => {
         if (err) {
           console.log(err);
           res.sendStatus(500);
-        } else if (result === null) {
+        } else if (result.value === null) {
           res.send(404);
         } else {
           res.send(true);
