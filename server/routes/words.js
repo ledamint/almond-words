@@ -100,7 +100,7 @@ module.exports = (app, db) => {
         if (err) {
           console.log(err);
           res.sendStatus(500);
-        } else if (result === null) {
+        } else if (result.value === null) {
           res.sendStatus(404);
         } else {
           const user = result.value;
