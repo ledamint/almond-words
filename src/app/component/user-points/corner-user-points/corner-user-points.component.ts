@@ -6,7 +6,7 @@ import { OptionsService } from 'app/service/options.service';
 @Component({
   selector: 'corner-user-points',
   template: `
-        <div class="corner-user-points">
+        <div class="corner-user-points" *ngIf="userPointsService.userPoints">
           <span>points today</span>
           <span>{{ userPointsService.userPoints?.todayPoints }} /
           {{ optionsService.activeOptions?.todayGoalPoints }}</span>
