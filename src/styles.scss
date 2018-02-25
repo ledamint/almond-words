@@ -7,8 +7,17 @@ body {
   background-color: black;
 }
 
-select::-ms-expand {
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  text-align-last: center;
+  cursor: pointer;
+
+  &::-ms-expand {
     display: none;
+  }
 }
 
 h1 {

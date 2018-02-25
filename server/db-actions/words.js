@@ -38,11 +38,8 @@ const updateUserPoints = (user, query) => {
       nextUpdateUserPointsTime.setDate(nextUpdateUserPointsTime.getDate() + 1);
       nextUpdateUserPointsTime.setHours(6);
 
-      const previousDay = new Date();
-      previousDay.setDate(previousDay.getDate() - 1);
       const historyPoints = userPoints.historyPoints || [];
       historyPoints.push({
-        day: previousDay,
         points: userPoints.todayPoints || 0,
         todayGoalPoints: user.activeOptions.todayGoalPoints || 20,
       });
