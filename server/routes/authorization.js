@@ -35,10 +35,10 @@ module.exports = (app, db) => {
             isWordsOpacityActive: true,
             isRecommendedWordsActive: true,
             filter: 'new',
+            todayGoalPoints: 30,
           },
           userPoints: {
             todayPoints: 0,
-            todayGoalPoints: 30,
             allPoints: 0,
           },
           activeBoard: 0,

@@ -70,6 +70,7 @@ export interface ActiveOptions {
   isWordsOpacityActive: boolean;
   isRecommendedWordsActive: boolean;
   filter: string;
+  todayGoalPoints: number;
 }
 
 
@@ -89,6 +90,5 @@ export interface Message {
 
 export interface UserPoints {
   todayPoints: number;
-  todayGoalPoints: number;
   allPoints: number;
 }
