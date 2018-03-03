@@ -73,7 +73,9 @@ export class AddNewWordComponent implements OnInit {
 
     this.eventsService.addNewWord$
       .subscribe(() => {
-        this.eventsService.onShowMessage({ text: 'Added!' });
+        if (!this.optionsService.activeOptions.isUserPointsActive) {
+          this.eventsService.onShowMessage({ text: 'Added!' });
+        }
       });
 
     this.keyUpLearningWord$
@@ -133,7 +135,7 @@ export class AddNewWordComponent implements OnInit {
     this.wordsService.getAvailableWords(word)
       .subscribe(
         (availableWords: AvailableWord[]) => {
-          this.availableWords = availableWords.slice(0, 7);
+          this.availableWords = availableWords.slice(0, 6);
         },
         err => this.eventsService.onServerError(err)
       );

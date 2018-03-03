@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EventsService } from './events.service';
+import { OptionsService } from './options.service';
 import { UserPoints } from './interface/interfaces';
 
 @Injectable()
@@ -8,6 +9,7 @@ export class UserPointsService {
   userPoints: UserPoints;
 
   constructor(private http: HttpClient,
+    private optionsService: OptionsService,
     private eventsService: EventsService) { }
 
   setUp(userPoints: UserPoints) {
@@ -17,9 +19,11 @@ export class UserPointsService {
   updatePoints(pointsDifference: number) {
     this.http.post('user-points', ({pointsDifference}))
       .subscribe((userPoints: UserPoints) => {
-        this.eventsService.onShowMessage({
-          text: pointsDifference > 0 ? `+${pointsDifference}` : String(pointsDifference)
-        });
+        if (this.optionsService.activeOptions.isUserPointsActive) {
+          this.eventsService.onShowMessage({
+            text: pointsDifference > 0 ? `+${pointsDifference}` : String(pointsDifference)
+          });
+        }
 
         this.updateTodayPoints(pointsDifference)
           .then(() => {
