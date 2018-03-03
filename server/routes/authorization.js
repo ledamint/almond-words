@@ -38,6 +38,7 @@ module.exports = (app, db) => {
             isBackgroundActive: true,
             isWordsOpacityActive: true,
             isRecommendedWordsActive: true,
+            isUserPointsActive: true,
             filter: 'new',
             todayGoalPoints: 30,
           },
