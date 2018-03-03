@@ -69,6 +69,7 @@ export interface ActiveOptions {
   isBackgroundActive: boolean;
   isWordsOpacityActive: boolean;
   isRecommendedWordsActive: boolean;
+  isUserPointsActive: boolean;
   filter: string;
   todayGoalPoints: number;
 }

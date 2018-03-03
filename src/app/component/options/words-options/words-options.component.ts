@@ -13,6 +13,8 @@ import { MainInfoService } from 'app/service/main-info.service';
           </div>
           <div class="user-points">
               <h3 title="points which you plan to earn every day">Points goal per day</h3>
+              <span class="option-item button" [class.active]="optionsService.activeOptions.isUserPointsActive"
+                  (click)="toggleUserPoints()">active</span>
               <input class="text-input" type="number" min="20" max="500"
                 [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
           </div>
@@ -25,5 +27,9 @@ export class WordsOptionsComponent {
 
   updateSort(sortValue: string) {
     this.optionsService.updateSorts(sortValue);
+  }
+
+  toggleUserPoints() {
+    this.optionsService.toggleUserPoints();
   }
 }

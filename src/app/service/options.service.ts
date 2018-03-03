@@ -92,6 +92,10 @@ export class OptionsService {
     this.activeOptions.isRecommendedWordsActive = !this.activeOptions.isRecommendedWordsActive;
   }
 
+  toggleUserPoints() {
+    this.activeOptions.isUserPointsActive = !this.activeOptions.isUserPointsActive;
+  }
+
   updateIsRecommendedWordsAvailable() {
     this.isRecommendedWordsAvailable = this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.learningLanguage) !== -1 &&
       this.mainInfoService.recommendedWordsAvailableLangs.indexOf(this.familiarLanguage) !== -1;

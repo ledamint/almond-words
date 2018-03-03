@@ -6,7 +6,8 @@ import { OptionsService } from 'app/service/options.service';
 @Component({
   selector: 'corner-user-points',
   template: `
-        <div class="corner-user-points theme-color-background-third" *ngIf="userPointsService.userPoints">
+        <div class="corner-user-points theme-color-background-third"
+          *ngIf="userPointsService.userPoints && optionsService.activeOptions.isUserPointsActive">
           <span title="points today" [ngClass]="{
             'theme-color-text-second': userPointsService.userPoints?.todayPoints >= optionsService.activeOptions?.todayGoalPoints
           }">
