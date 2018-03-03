@@ -72,6 +72,7 @@ export interface ActiveOptions {
   isUserPointsActive: boolean;
   filter: string;
   todayGoalPoints: number;
+  wordsInCard: number;
 }
 
 
