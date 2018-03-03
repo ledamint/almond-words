@@ -12,11 +12,14 @@ import { MainInfoService } from 'app/service/main-info.service';
                 *ngFor="let sort of mainInfoService.options.sorts" (click)="updateSort(sort.value)">{{ sort.name }}</span>
           </div>
           <div class="user-points">
-              <h3 title="points which you plan to earn every day">Points goal per day</h3>
-              <span class="option-item button" [class.active]="optionsService.activeOptions.isUserPointsActive"
+              <h3 title="points which you plan to earn every day">User points</h3>
+              <span class="option-item button active" [class.active]="optionsService.activeOptions.isUserPointsActive"
                   (click)="toggleUserPoints()">active</span>
-              <input class="text-input" type="number" min="20" max="500"
-                [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
+              <div class="per-day" *ngIf="optionsService.activeOptions.isUserPointsActive">
+                  <span class="option-item">points goal per day:</span>
+                  <input class="text-input" type="number" min="20" max="500"
+                    [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
+              </div>
           </div>
         `,
   styleUrls: ['./words-options.component.scss']
