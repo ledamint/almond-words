@@ -41,6 +41,7 @@ module.exports = (app, db) => {
             isUserPointsActive: true,
             filter: 'new',
             todayGoalPoints: 30,
+            wordsInCard: 8,
           },
           userPoints: {
             todayPoints: 0,

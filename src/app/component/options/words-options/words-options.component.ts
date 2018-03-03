@@ -16,9 +16,17 @@ import { MainInfoService } from 'app/service/main-info.service';
               <span class="option-item button active" [class.active]="optionsService.activeOptions.isUserPointsActive"
                   (click)="toggleUserPoints()">active</span>
               <div class="per-day" *ngIf="optionsService.activeOptions.isUserPointsActive">
-                  <span class="option-item">points goal per day:</span>
+                  <span class="option-item option-item-label">points goal per day:</span>
                   <input class="text-input" type="number" min="20" max="500"
                     [(ngModel)]="optionsService.activeOptions.todayGoalPoints" required>
+              </div>
+          </div>
+          <div class="cards">
+              <h3>Cards</h3>
+              <div>
+                  <span class="option-item option-item-label">words in card</span>
+                  <input class="text-input" type="number" min="5" max="20"
+                    [(ngModel)]="optionsService.activeOptions.wordsInCard" required>
               </div>
           </div>
         `,

@@ -31,6 +31,7 @@ export class OptionsService {
 
   updateActiveOptions() {
     this.validateTodayGoalPoints();
+    this.validateWordsInCard();
     this.http.post('active-options', this.activeOptions)
       .subscribe(
         () => {
@@ -42,21 +43,24 @@ export class OptionsService {
       );
   }
 
-  validateTodayGoalPoints() {
-    let todayGoalPoints = this.activeOptions.todayGoalPoints;
-    // TODO move to config
-    const minPoints = 20;
-    const maxPoints = 500;
-
-    if (typeof todayGoalPoints !== 'number') {
-      todayGoalPoints = minPoints;
-    } else if (todayGoalPoints < minPoints) {
-      todayGoalPoints = minPoints;
-    } else if (todayGoalPoints > maxPoints) {
-      todayGoalPoints = maxPoints;
+  validateNumber(number: number, min: number, max: number) {
+    if (typeof number !== 'number') {
+      number = min;
+    } else if (number < min) {
+      number = min;
+    } else if (number > max) {
+      number = max;
     }
 
-    this.activeOptions.todayGoalPoints = todayGoalPoints;
+    return number;
+  }
+
+  validateTodayGoalPoints() {
+    this.activeOptions.todayGoalPoints = this.validateNumber(this.activeOptions.todayGoalPoints, 20, 500);
+  }
+
+  validateWordsInCard() {
+    this.activeOptions.wordsInCard = this.validateNumber(this.activeOptions.wordsInCard, 5, 20);
   }
 
   saveOptionsCopy() {

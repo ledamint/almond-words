@@ -97,7 +97,7 @@ export class WordsService {
     let cardId: number = -1;
 
     this.activeWords.forEach((word, i) => {
-      if (i % 10 === 0) {
+      if (i % this.optionsService.activeOptions.wordsInCard === 0) {
         cardId += 1;
         this.cards[cardId] = {
           words: [],
