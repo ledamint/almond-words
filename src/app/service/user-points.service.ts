@@ -17,9 +17,33 @@ export class UserPointsService {
   updatePoints(pointsDifference: number) {
     this.http.post('user-points', ({pointsDifference}))
       .subscribe((userPoints: UserPoints) => {
-        this.userPoints = userPoints;
+        this.eventsService.onShowMessage({
+          text: pointsDifference > 0 ? `+${pointsDifference}` : String(pointsDifference)
+        });
+
+        this.updateTodayPoints(pointsDifference)
+          .then(() => {
+            this.userPoints = userPoints;
+          });
       },
       err => this.eventsService.onServerError(err)
     )
+  }
+
+  async updateTodayPoints(pointsDifference) {
+    return new Promise((resolve) => {
+      let delay = 0;
+
+      for (let i = 0; i < Math.abs(pointsDifference); i++) {
+        setTimeout(() => {
+          if (pointsDifference > 0) this.userPoints.todayPoints += 1;
+          if (pointsDifference < 0) this.userPoints.todayPoints -= 1;
+
+          if (i === Math.abs(pointsDifference) - 1) resolve();
+        }, delay);
+
+        delay += 150;
+      }
+    });
   }
 }
