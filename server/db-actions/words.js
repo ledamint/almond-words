@@ -38,17 +38,18 @@ const updateUserPoints = (user, query) => {
       nextUpdateUserPointsTime.setDate(nextUpdateUserPointsTime.getDate() + 1);
       nextUpdateUserPointsTime.setHours(6);
 
-      const historyPoints = userPoints.historyPoints || [];
+      /* const historyPoints = userPoints.historyPoints || [];
       historyPoints.push({
         points: userPoints.todayPoints || 0,
         todayGoalPoints: user.activeOptions.todayGoalPoints || 20,
-      });
+      }); */
 
       query.$set.userPoints = {
         ...userPoints,
         todayPoints: 0,
         nextUpdateUserPointsTime,
-        historyPoints,
+        // TODO turn on history later
+        // historyPoints,
       };
     }
   }
