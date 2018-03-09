@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { SessionService } from 'app/service/session.service';
 import { setTimeout } from 'timers';
 
 @Component({
   selector: 'welcome',
   template: `
-    <div class="welcome" [class.inactive]="isOpacityInactive" *ngIf="isShowing">
+    <div class="welcome" [class.inactive]="isOpacityInactive" *ngIf="isActive && !sessionService.isWelcomePopupShowed">
       <div class="content">
         <p>
           Привет!
@@ -36,10 +37,15 @@ import { setTimeout } from 'timers';
 })
 export class WelcomeComponent {
   isOpacityInactive: boolean = false;
-  isShowing: boolean = true;
+  isActive: boolean = true;
+
+  constructor(public sessionService: SessionService) { }
 
   hideWelcome() {
     this.isOpacityInactive = true;
-    setTimeout(() => this.isShowing = false, 1000);
+    setTimeout(() => {
+      this.isActive = false;
+      this.sessionService.isWelcomePopupShowed = true;
+    }, 1000);
   }
 }

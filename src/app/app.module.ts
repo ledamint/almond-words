@@ -44,6 +44,7 @@ import { AccountInformationService } from './service/account-information.service
 import { BackgroundService } from './service/background.service';
 import { TestWordsService } from './service/test-words.service';
 import { UserPointsService } from './service/user-points.service';
+import { SessionService } from './service/session.service';
 
 // TODO move to separate file
 const appRoutes: Routes = [
@@ -138,7 +139,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountInformationService,
     TestWordsService,
     BackgroundService,
-    UserPointsService
+    UserPointsService,
+    SessionService
   ]
 })
 export class AppModule { }
