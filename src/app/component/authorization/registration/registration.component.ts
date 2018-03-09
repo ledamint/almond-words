@@ -30,7 +30,11 @@ import { RegistrationData } from 'app/service/interface/interfaces';
               <select class="text-input" type="text" name="learning-language" [(ngModel)]="learningLanguage" required>
                   <option value="{{ language }}" *ngFor="let language of mainInfoService.languages">{{ language | translate }}</option>
               </select>
-              <button class="button" type="submit" [disabled]="!registrationForm.valid">Sign up</button>
+              <label class="rules">
+                  <input type="checkbox" [(ngModel)]="isRulesAccepted" name="rules" required>
+                  <span class="label">Я согласен с <a class="theme-color-text-second" routerLink="/rules">правилами</a></span>
+              </label>
+              <button class="button" type="submit" [disabled]="!registrationForm.valid || !isRulesAccepted">Sign up</button>
           </form>
           <div class="side-panel">
               <a routerLink="/auto-registration" class="side-panel__item">fast registration</a>
@@ -42,6 +46,7 @@ export class RegistrationComponent {
   // TODO: move to main info
   familiarLanguage: string = 'ru';
   learningLanguage: string = 'en';
+  isRulesAccepted: boolean = true;
 
   constructor(public mainInfoService: MainInfoService,
               public authorizationService: AuthorizationService) { }

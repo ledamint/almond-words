@@ -227,6 +227,15 @@ select.text-input {
   }
 }
 
+.rules {
+  margin-bottom: 20px;
+
+  .label {
+    position: relative;
+    bottom: 2px;
+  }
+}
+
 @media (max-width: $tablet-width) {
   .side-panel {
     flex-direction: row;
@@ -318,6 +327,12 @@ select.text-input {
       display: block;
       margin-right: 0;
       margin-bottom: 10px;
+    }
+  }
+
+  .rules {
+    .label {
+      margin-left: 10px;
     }
   }
 }
