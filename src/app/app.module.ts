@@ -10,6 +10,7 @@ import { AppComponent } from './component/app/app.component';
 import { RegistrationComponent } from './component/authorization/registration/registration.component';
 import { AutoRegistrationComponent } from './component/authorization/auto-registration/auto-registration.component';
 import { LoginComponent } from './component/authorization/login/login.component';
+import { RulesComponent } from './component/authorization/rules/rules.component';
 import { ForgetPasswordComponent } from './component/authorization/forget-password/forget-password.component';
 import { BackgroundComponent } from './component/background/background.component';
 import { PopUpComponent } from './component/pop-up/pop-up.component';
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'auto-registration', component: AutoRegistrationComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'rules', component: RulesComponent },
   { path: 'password-recovery', component: ForgetPasswordComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'word/:id', component: WordComponent },
@@ -102,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RegistrationComponent,
     AutoRegistrationComponent,
     LoginComponent,
+    RulesComponent,
     ForgetPasswordComponent,
     BackgroundComponent,
     PopUpComponent,

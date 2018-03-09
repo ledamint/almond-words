@@ -1,3 +1,22 @@
+@import 'variables';
+
 h2 {
   font-style: italic;
+}
+
+.rules {
+  margin-bottom: 20px;
+
+  .label {
+    position: relative;
+    bottom: 2px;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .rules {
+    .label {
+      margin-left: 10px;
+    }
+  }
 }
