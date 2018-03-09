@@ -3,6 +3,7 @@ import { NgForm, EmailValidator } from '@angular/forms';
 
 import { MainInfoService } from 'app/service/main-info.service';
 import { AuthorizationService } from 'app/service/authorization.service';
+import { SessionService } from 'app/service/session.service';
 
 import { RegistrationData } from 'app/service/interface/interfaces';
 
@@ -14,12 +15,14 @@ import { RegistrationData } from 'app/service/interface/interfaces';
           <form class="form" #registrationForm="ngForm" action="" method="post" (ngSubmit)="registerUser(registrationForm)">
               <h4 class="input-title">email</h4>
               <div class="input-wrapper">
-                  <input class="text-input" type="email" name="email" myAutofocus ngModel required email>
+                  <input class="text-input" type="email" name="email" myAutofocus
+                    [(ngModel)]="sessionService.registrationEmail" required email>
                   <span class="prompt theme-color-text-second">verification is not needed</span>
               </div>
               <h4 class="input-title">password</h4>
               <div class="input-wrapper">
-                  <input class="text-input" type="password" name="password" ngModel required required minlength="6">
+                  <input class="text-input" type="password" name="password"
+                    [(ngModel)]="sessionService.registrationPassword" required required minlength="6">
                   <span class="prompt theme-color-text-second">min 6 symbols</span>
               </div>
               <h4 class="input-title">familiar language</h4>
@@ -49,14 +52,15 @@ export class RegistrationComponent {
   isRulesAccepted: boolean = true;
 
   constructor(public mainInfoService: MainInfoService,
+              public sessionService: SessionService,
               public authorizationService: AuthorizationService) { }
 
   registerUser(form: NgForm) {
-    const email: string = form.value.email.trim().toLowerCase();
+    const email: string = this.sessionService.registrationEmail.trim().toLowerCase();
 
     const registrationData: RegistrationData = {
       email: email,
-      password: form.value.password,
+      password: this.sessionService.registrationPassword,
       learningLanguage: form.value['learning-language'],
       familiarLanguage: form.value['familiar-language']
     };
