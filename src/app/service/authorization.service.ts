@@ -37,7 +37,7 @@ export class AuthorizationService {
         (isLoginDone: boolean) => {
           if (isLoginDone) {
             this.mainService.setUpUser();
-          } else this.router.navigateByUrl('/auto-registration');
+          } else this.router.navigateByUrl('/login');
         },
         (err) => {
           this.eventsService.onServerError(err);
