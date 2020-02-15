@@ -8,4 +8,4 @@ The tech stack contains Angular 4, Node.js, Express, MongoDB.
 npm i --production 
 ng build  
 PORT=3535 node server  
-http://localhost:3535
+http://localhost:3535  
