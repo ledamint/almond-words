@@ -5,12 +5,7 @@ The tech stack contains Angular 4, Node.js, Express, MongoDB.
 
 ### Build  
 
-npm i --production  
+npm i --production 
 ng build  
 PORT=3535 node server  
-http://localhost:3535  
-
-login: heresliker@gmail.com  
-password: 123123
-
-Registration works too
+http://localhost:3535
