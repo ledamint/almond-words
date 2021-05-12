@@ -37,7 +37,7 @@
     "helmet": "^3.8.1",
     "lodash.shuffle": "^4.2.0",
     "mongodb": "^2.2.26",
-    "nodemailer": "^4.0.1",
+    "nodemailer": "^6.4.16",
     "rxjs": "^5.5.3",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
